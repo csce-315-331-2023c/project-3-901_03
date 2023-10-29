@@ -42,7 +42,7 @@ h6 {
     width: 400px;
 }
 
-#breakfast {
+#border {
     background-color: rgb(117, 209, 209);
     border-radius: 50px;
     border-width: 15px;
@@ -51,7 +51,6 @@ h6 {
 .column {
     float: left;
     width: 33.33%;
-
 }
 
 .row:after{
