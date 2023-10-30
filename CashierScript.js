@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentOrder = [];
     let total = 0.00;
 
-    // Function to remove the selected item from the order
-    function removeSelectedItem() {
+    // Removes the selected item from the order
+    deleteButton.addEventListener("click", () => {
         const selectedItem = orderList.querySelector(".selected");
         if (selectedItem) {
             const itemIndex = Array.from(orderList.children).indexOf(selectedItem);
@@ -17,10 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
             orderList.removeChild(selectedItem);
             totalPrice.textContent = total.toFixed(2);
         }
-    }
-
-    deleteButton.addEventListener("click", () => {
-        removeSelectedItem();
     });
 
     menuItems.forEach(item => {
