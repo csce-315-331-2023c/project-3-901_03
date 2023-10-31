@@ -1,0 +1,13 @@
+.managing-buttons {
+    display: inline-flex;
+}
+.managing-buttons a{
+    background-color: #8AC6D0;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 0 15px 10px 0;
+    overflow: visible;
+    padding: 12px 20px;
+    vertical-align: middle;
+}
