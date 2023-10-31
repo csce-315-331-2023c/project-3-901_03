@@ -1,0 +1,24 @@
+Sprint Planning Meeting Notes - 10/27/2023
+-
+
+Scrum Meeting Notes - 10/28/2023
+Sarah
+-Yesterday: Researching hosting services and what frameworks to use
+-Today:  Researching hosting services and what frameworks to use
+-Obstacle: Not knowing enough about the subject 
+
+Caroline
+-Yesterday: Researching frotend tools and learning react
+-Today: Learning React and making the UI
+-Obstacle: Not knowing enough about the subject 
+
+Mahika
+-Yesterday: Brainstroming with Maggie about webpage and researched specific API's
+-Today: Learning React and researching the webpage
+-Obstacle: Not knowing enough about the subject 
+
+Maggie
+-Yesterday: Brainstroming with Mahika about webpage and researched specific API's
+-Today: Researching backend and making a webpage
+-Obstacle: Not knowing enough about the subject
+
