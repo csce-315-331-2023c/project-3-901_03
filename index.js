@@ -34,7 +34,7 @@ manager.get('/', (req, res) => {
                 inventory.push(query_res.rows[i]);
             }
             const data = {inventory: inventory};
-            console.log(inventory);
+            //console.log(inventory);
             res.render('manager', data);
         });
 });
