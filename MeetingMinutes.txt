@@ -22,3 +22,26 @@ Maggie
 -Today: Researching backend and making a webpage
 -Obstacle: Not knowing enough about the subject
 
+
+-------------------------------------------------------------------------------------
+
+Sprint Planning Meeting Notes - 10/30/2023
+Sarah
+-Yesterday: Beginning the backend tools to implement SQL in the java with Mahika
+-Today: Implenting SQL in the JavaScript with Mahika
+-Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Caroline
+-Yesterday: Creating and desgining HTML pages
+-Today: Creating and desgning HTML pages with BootStrap
+-Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Mahika
+-Yesterday: Designing a menu on the HTML page for user interface
+-Today: Implenting SQL in the JavaScript with Sarah 
+-Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Maggie
+-Yesterday: Creating and designing HTML pages
+-Today: Researching how to implement SQL in the JavaScript
+-Obstacle: Not understanding how to have a webpage that interacts with the database
