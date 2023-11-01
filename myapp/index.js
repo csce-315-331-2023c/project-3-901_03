@@ -42,9 +42,12 @@ app.get('/user', (req, res) => {
         res.render('user', data);
         });
     });
-    app.listen(port, () => {
-        console.log(`Example app listening at http://localhost:${port}`);
-    });
-
+    
+    app.get("/", (req, res) => {
+        res.send("Express on Vercel");
+      });
+      app.listen(5000, () => {
+        console.log("Running on port 5000.");
+      });
 module.exports = app;
 
