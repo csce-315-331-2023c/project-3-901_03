@@ -25,7 +25,7 @@ Maggie
 
 -------------------------------------------------------------------------------------
 
-Sprint Planning Meeting Notes - 10/30/2023
+Sprint Planning Meeting Notes - 10/29/2023
 Sarah
 -Yesterday: Beginning the backend tools to implement SQL in the java with Mahika
 -Today: Implenting SQL in the JavaScript with Mahika
@@ -45,3 +45,24 @@ Maggie
 -Yesterday: Creating and designing HTML pages
 -Today: Researching how to implement SQL in the JavaScript
 -Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Scrum Meeting Notes - 10/30/2023
+Sarah
+-Yesterday: working on SQL and framework
+-Today:  working on SQL and framework
+-Obstacle: Don't know how to implement multiple commands 
+
+Caroline
+-Yesterday: making html page for the cashier
+-Today: making html pages for the manager
+-Obstacle: time and bootstrap knowledge 
+
+Mahika
+-Yesterday: making html page for the menu
+-Today: working on SQL and framework
+-Obstacle: Don't know how to implement multiple commands 
+
+Maggie
+-Yesterday:  with Mahika about webpage and researched specific API's
+-Today: Researching website hosting 
+-Obstacle: Not knowing enough about the subject
