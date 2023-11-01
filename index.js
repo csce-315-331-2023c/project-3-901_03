@@ -35,7 +35,7 @@ manager.get('/', (req, res) => {
             }
             const data = {inventory: inventory};
             //console.log(inventory);
-            res.render('manager', data);
+            res.render('index', data);
         });
 });
 // app.get('/user', (req, res) => {
