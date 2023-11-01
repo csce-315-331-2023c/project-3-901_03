@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config();
 
 // Create express app
 const index = express();
-const port = 3000;
+const port = 10000;
 const path = require('path');
 //index.set('views', path.join(__dirname, '.\views'));
 
