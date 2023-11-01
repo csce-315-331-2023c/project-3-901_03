@@ -40,6 +40,7 @@ index.get('/', (req, res) => {
             res.render('index', data);
         });
 });
+
 // app.get('/user', (req, res) => {
 //     teammembers = []
 //     pool
