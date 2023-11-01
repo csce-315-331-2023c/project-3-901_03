@@ -6,7 +6,7 @@ const dotenv = require('dotenv').config();
 const manager = express();
 const port = 3000;
 const path = require('path');
-app.set('views', path.join(__dirname, 'views'));
+manager.set('views', path.join(__dirname, 'views'));
 
 // Create pool
 const pool = new Pool({
