@@ -12,7 +12,7 @@
     <body>
         <div class="modify-ingredient-add-screen">
             <h1>Add Ingredient</h1>
-            <form>
+            <form method="post" action="/ingredient_add">
               <label for="IngredName">Enter the ingredient name:</label><br>
               <input type="text" id="IngredName" name="IngredName"><br>
         
@@ -29,10 +29,10 @@
               <input type="date" id="endDate" name="endDate"><br>
         
               <p>Choose Storage Method:</p>
-                <input type="radio" id="fridge" name="fridge" value="Fridge">
-                <label for="allDay">Fridge</label><br>
+                <input type="radio" id="fridge" name="storageMethod" value="fridge">
+                <label for="fridge">Fridge</label><br>
         
-                <input type="radio" id="pantry" name="pantry" value="Pantry">
+                <input type="radio" id="pantry" name="storageMethod" value="pantry">
                 <label for="pantry">Pantry</label><br><br>
         
               <input type="submit" value="Submit">

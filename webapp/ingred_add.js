@@ -44,10 +44,10 @@ index.get('/', (req, res) => {
         });
 });
 
-index.post('/delete', (req, res) => {
-    console.log("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", " + req.body.startDate + ", " + req.body.endDate + ", '" + req.body.radio + "';");
+index.post('/ingredient_add', (req, res) => {
+    console.log("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
     pool
-        .query("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", " + req.body.startDate + ", " + req.body.endDate + ", '" + req.body.radio + "';");
+        .query("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
     res.render('ingred_add');
 });
 
