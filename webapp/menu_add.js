@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 
 // Create express app
 const index = express();
-const port = 3000;
+const port = 300;
 const path = require('path');
 index.set('views', path.join(__dirname, 'views'));
 index.use(bodyParser.json());
@@ -40,15 +40,18 @@ index.get('/', (req, res) => {
             }
             const data = {inventory: inventory};
             //console.log(inventory);
-            res.render('ingred_add', data);
+            res.render('menu_add', data);
         });
 });
 
-index.post('/ingredient_add', (req, res) => {
-    console.log("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
+index.post('/menuitem_add', (req, res) => {
+    console.log("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
+    // for (let i = 0; i < query_res.rowCount; i++) {
+    //     teammembers.push(query_res.rows[i]);
+    // }
     pool
-        .query("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
-    res.render('ingred_add');
+        .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
+    res.render('menu_add');
 });
 
 index.listen(port, () => {

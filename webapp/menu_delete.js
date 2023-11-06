@@ -40,15 +40,15 @@ index.get('/', (req, res) => {
             }
             const data = {inventory: inventory};
             //console.log(inventory);
-            res.render('ingred_add', data);
+            res.render('menu_delete', data);
         });
 });
 
-index.post('/ingredient_add', (req, res) => {
-    console.log("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
+index.post('/menu_deletion', (req, res) => {
+    console.log("DELETE FROM food_item WHERE food_name = '" + req.body.ItemName + "';");
     pool
-        .query("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
-    res.render('ingred_add');
+        .query("DELETE FROM food_item WHERE food_name = '" + req.body.ItemName + "';");
+    res.render('menu_delete');
 });
 
 index.listen(port, () => {
