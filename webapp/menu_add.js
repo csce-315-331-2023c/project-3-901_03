@@ -50,7 +50,7 @@ index.post('/menuitem_add', (req, res) => {
     //     teammembers.push(query_res.rows[i]);
     // }
     pool
-        .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
+        .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
     res.render('menu_add');
 });
 
