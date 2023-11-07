@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 
 // Create express app
 const app = express();
-const port = 3300;
+const port = 3000;
 const path = require('path');
 //app.set('views', path.join(__dirname, '.\views'));
 app.use(bodyParser.json());
