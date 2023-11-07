@@ -40,6 +40,15 @@ index.get('/', (req, res) => {
             res.render('index', data);
         });
 });
+
+index.get('/modify_ingred.ejs', (req, res) => {
+    res.render('modify_ingred.ejs');
+});
+
+index.get('/modify_menu.ejs', (req, res) => {
+    res.render('modify_menu.ejs');
+});
+
 // app.get('/user', (req, res) => {
 //     teammembers = []
 //     pool
