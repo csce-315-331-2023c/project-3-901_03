@@ -32,16 +32,29 @@ process.on('SIGINT', function() {
 	 	 	 	
 app.set("view engine", "ejs");
 
-app.get('/', (req, res) => {
-    inventory = []
+app.get('/ingred_add.ejs', (req, res) => {
+    res.render('ingred_add.ejs');
+});
+
+app.get('/ingred_delete.ejs', (req, res) => {
+    res.render('ingred_delete.ejs');
+});
+
+app.get('/ingred_mod_name.ejs', (req, res) => {
+    res.render('ingred_mod_name.ejs');
+});
+
+app.get('/ingred_delete.ejs', (req, res) => {
+    res.render('ingred_delete.ejs');
+});
+
+app.post('/ingredient_add', (req, res) => {
+    console.log("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
     pool
-        .query('SELECT * FROM inventory;')
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                inventory.push(query_res.rows[i]);
-            }
-            const data = {inventory: inventory};
-            //console.log(inventory);
-            res.render('ingred_mod', data);
-        });
+        .query("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
+    res.render('ingred_add');
+});
+
+index.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
 });

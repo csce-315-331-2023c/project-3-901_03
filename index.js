@@ -49,6 +49,10 @@ index.get('/modify_menu.ejs', (req, res) => {
     res.render('modify_menu.ejs');
 });
 
+index.get('/ingred_add.ejs', (req, res) => {
+    res.render('ingred_add.ejs');
+});
+
 // app.get('/user', (req, res) => {
 //     teammembers = []
 //     pool
