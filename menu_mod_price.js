@@ -32,7 +32,7 @@ router.get('/menu_mod_price.ejs', (req, res) => {
     res.render('menu_mod_price');
 });
 
-router.post('/menu_mod_price.ejs', (req, res) => {
+router.post('/', (req, res) => {
     pool
         .query("UPDATE food_item SET price_food = '" + req.body.MenuItemPrice + "' WHERE food_name = '"
         + req.body.MenuItemName + "';");
