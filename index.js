@@ -8,6 +8,10 @@ const port = 3000;
 const path = require('path');
 index.set('views', path.join(__dirname, 'views'));
 
+const ingredModRouter = require('./ingred_mod_name');
+index.use("/ingred_mod_name", ingredModRouter)
+const ingredAddRouter = require('./ingred_add');
+index.use("/ingred_add", ingredAddRouter)
 // Create pool
 const pool = new Pool({
     user: process.env.PSQL_USER,
@@ -48,24 +52,6 @@ index.get('/modify_ingred.ejs', (req, res) => {
 index.get('/modify_menu.ejs', (req, res) => {
     res.render('modify_menu.ejs');
 });
-
-index.get('/ingred_add.ejs', (req, res) => {
-    res.render('ingred_add.ejs');
-});
-
-// app.get('/user', (req, res) => {
-//     teammembers = []
-//     pool
-//         .query('SELECT * FROM teammembers;')
-//         .then(query_res => {
-//             for (let i = 0; i < query_res.rowCount; i++){
-//                 teammembers.push(query_res.rows[i]);
-//             }
-//             const data = {teammembers: teammembers};
-//             console.log(teammembers);
-//             res.render('user', data);
-//         });
-// });
 
 index.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
