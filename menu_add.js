@@ -35,15 +35,12 @@ router.get('/menu_add.ejs', (req, res) => {
         for (let i = 0; i < query_res.rowCount; i++){
             ingredients.push(query_res.rows[i]);
         }
-        const data = {ingredients: ingredients};
-        console.log(ingredients);
-        res.render('user', data);
     });
     res.render('menu_add');
     console.log(ingredients);
 });
 
-router.post('/menu_add/menu_add.ejs', (req, res) => {
+router.post('/', (req, res) => {
     pool
         .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
     res.render('menu_add');

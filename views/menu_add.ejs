@@ -12,7 +12,7 @@
     <body>
         <div class="modify-menu-add-screen">
             <h1>Add Menu Item</h1>
-            <form method="post" action="/menuitem_add">
+            <form method="post" action="/menu_add">
               <label for="ItemName">Enter the item name:</label><br>
               <input type="text" id="ItemName" name="ItemName"><br>
         
@@ -42,9 +42,12 @@
                 <input type="radio" id="breakfast" name="MenuTime" value="Breakfast">
                 <label for="breakfast">Breakfast</label><br><br>
         
-              <label for="ingredientList">Enter the ingredient list:</label><br>
-              <input type="text" id="ingredientList" name="ingredientList"><br><br>
-        
+              <p>Select Ingredients:</p>
+                <% for (var i in ingredients) {%>
+                <input type="checkbox" id=ingredients[i].ingred_name name="ingredientList"><br><br>
+                <label for="ingredients[i].ingred_name"> ingredients[i].ingred_name </label>
+                <% } %>
+          
               <input type="submit" value="Submit">
             </form>
         </div>
