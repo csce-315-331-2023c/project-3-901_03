@@ -12,6 +12,17 @@ const ingredModRouter = require('./ingred_mod_name');
 index.use("/ingred_mod_name", ingredModRouter)
 const ingredAddRouter = require('./ingred_add');
 index.use("/ingred_add", ingredAddRouter)
+const ingredDeleteRouter = require('./ingred_delete');
+index.use("/ingred_delete", ingredDeleteRouter)
+const menuAddRouter = require('./menu_add');
+index.use("/menu_add", menuAddRouter)
+const menuDeleteRouter = require('./menu_delete');
+index.use("/menu_delete", menuDeleteRouter)
+const menuNameRouter = require('./menu_mod_name');
+index.use("/menu_mod_name", menuNameRouter)
+const menuPriceRouter = require('./menu_mod_price');
+index.use("/menu_mod_price", menuPriceRouter)
+
 // Create pool
 const pool = new Pool({
     user: process.env.PSQL_USER,

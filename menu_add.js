@@ -4,12 +4,11 @@ const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
 
 // Create express app
-const index = express();
+const router = express.Router(); //chnage to router
 const port = 300;
 const path = require('path');
-index.set('views', path.join(__dirname, 'views'));
-index.use(bodyParser.json());
-index.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 
 // Create pool
 const pool = new Pool({
@@ -27,24 +26,12 @@ process.on('SIGINT', function() {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
-	 	 	 	
-index.set("view engine", "ejs");
 
-index.get('/', (req, res) => {
-    inventory = []
-    pool
-        .query('SELECT * FROM inventory;')
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                inventory.push(query_res.rows[i]);
-            }
-            const data = {inventory: inventory};
-            //console.log(inventory);
-            res.render('menu_add', data);
-        });
+router.get('/menu_add.ejs', (req, res) => {
+    res.render('menu_add');
 });
 
-index.post('/menuitem_add', (req, res) => {
+router.post('/menuitem_add', (req, res) => {
     console.log("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
     // for (let i = 0; i < query_res.rowCount; i++) {
     //     teammembers.push(query_res.rows[i]);
@@ -54,6 +41,5 @@ index.post('/menuitem_add', (req, res) => {
     res.render('menu_add');
 });
 
-index.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+module.exports = router;
+

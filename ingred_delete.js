@@ -4,12 +4,11 @@ const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
 
 // Create express app
-const index = express();
+const router = express.Router(); //chnage to router
 const port = 3000;
 const path = require('path');
-index.set('views', path.join(__dirname, 'views'));
-index.use(bodyParser.json());
-index.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 
 // Create pool
 const pool = new Pool({
@@ -28,44 +27,16 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 	 	 	 	
-index.set("view engine", "ejs");
-
-index.get('/', (req, res) => {
-    inventory = []
-    pool
-        .query('SELECT * FROM inventory;')
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                inventory.push(query_res.rows[i]);
-            }
-            const data = {inventory: inventory};
-            //console.log(inventory);
-            res.render('ingred_delete', data);
-        });
+router.get('/ingred_delete.ejs', (req, res) => {
+    res.render('ingred_delete');
 });
 
-index.post('/delete', (req, res) => {
+router.post('/delete', (req, res) => {
     console.log("DELETE FROM inventory WHERE ingred_name = '" + req.body.IngredientName + "';");
     pool
         .query("DELETE FROM inventory WHERE ingred_name = '" + req.body.IngredientName + "';");
     res.render('ingred_delete');
 });
 
-// app.get('/user', (req, res) => {
-//     teammembers = []
-//     pool
-//         .query('SELECT * FROM teammembers;')
-//         .then(query_res => {
-//             for (let i = 0; i < query_res.rowCount; i++){
-//                 teammembers.push(query_res.rows[i]);
-//             }
-//             const data = {teammembers: teammembers};
-//             console.log(teammembers);
-//             res.render('user', data);
-//         });
-// });
-
-index.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+module.exports = router;
 

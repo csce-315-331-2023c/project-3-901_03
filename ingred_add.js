@@ -9,7 +9,7 @@ const port = 3000;
 const path = require('path');
 //index.set('views', path.join(__dirname, 'views'));
 router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.urlencoded({extended: false}));
 
 // Create pool
 const pool = new Pool({
