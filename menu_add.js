@@ -31,14 +31,13 @@ router.get('/menu_add.ejs', (req, res) => {
     res.render('menu_add');
 });
 
-router.post('/', (req, res) => {
-    console.log("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
+router.post('/menu_add/menu_add.ejs', (req, res) => {
     // for (let i = 0; i < query_res.rowCount; i++) {
     //     teammembers.push(query_res.rows[i]);
     // }
     pool
         .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
-    res.send('menu_add');
+    res.render('menu_add');
 });
 
 module.exports = router;

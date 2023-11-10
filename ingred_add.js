@@ -32,7 +32,7 @@ router.get('/ingred_add.ejs', (req, res) => {
     res.render('ingred_add');
 });
 
-router.post('/ingred_add', (req, res) => {
+router.post('/', (req, res) => {
     // console.log("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
     pool
         .query("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");

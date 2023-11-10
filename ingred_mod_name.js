@@ -27,27 +27,12 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 	 	 	 	
-// router.set("view engine", "ejs");
-
-// router.get('/', (req, res) => {
-//     inventory = []
-//     pool
-//         .query('SELECT * FROM inventory;')
-//         .then(query_res => {
-//             for (let i = 0; i < query_res.rowCount; i++){
-//                 inventory.push(query_res.rows[i]);
-//             }
-//             const data = {inventory: inventory};
-//             //console.log(inventory);
-//             res.render('ingred_mod', data);
-//         });
-// });
 
 router.get('/ingred_mod_name.ejs', (req, res) => {
-    res.render('ingred_mod_name.ejs');
+    res.render('ingred_mod_name');
 });
 
-router.post('/ingred_mod_name', (req, res) => {
+router.post('/', (req, res) => {
     pool
         .query("UPDATE inventory SET ingred_name = '" + req.body.NewItemName + "' WHERE ingred_name = '"
         + req.body.ItemName + "';");
