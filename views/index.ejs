@@ -28,9 +28,20 @@
 
         <div class="container">
             <h2>Inventory</h2>
-            <% for (var i in inventory) {%>
-            <p>Name: <%=inventory[i].ingred_name%>, Quantity: <%=inventory[i].quantity%><p>
-            <% } %>
+            
+                <table class="table table-bordered border border-5"> 
+                    <tr class="border border-5">
+                        <th class="border border-5 bg bg-info-subtle">Item</th>
+                        <th class="border border-5 bg bg-info-subtle">Quantity</th>
+                    </tr>
+                <% for (var i in inventory) {%>
+                    <tr class="border border-5">
+                        <th class="border border-5"><%=inventory[i].ingred_name%></th>
+                        <th class="border border-5"><%=inventory[i].quantity%></th>
+                    </tr>
+                <% } %>
+            </table>
+        
         </div>
         <script src="manager.js"></script>
     </body>
