@@ -37,7 +37,6 @@ router.get('/menu_add.ejs', (req, res) => {
         }
     });
     res.render('menu_add');
-    console.log(ingredients);
 });
 
 router.post('/', (req, res) => {
