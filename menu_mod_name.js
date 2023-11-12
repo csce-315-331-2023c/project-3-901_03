@@ -31,7 +31,7 @@ router.get('/menu_mod_name.ejs', (req, res) => {
     res.render('menu_mod_name');
 });
 
-router.post('/mod_menu_name', (req, res) => {
+router.post('/', (req, res) => {
     pool
         .query("UPDATE food_item SET food_name = '" + req.body.NewMenuItemName + "' WHERE food_name = '"
         + req.body.MenuItemName + "';");

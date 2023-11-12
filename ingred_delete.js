@@ -31,7 +31,7 @@ router.get('/ingred_delete.ejs', (req, res) => {
     res.render('ingred_delete');
 });
 
-router.post('/delete', (req, res) => {
+router.post('/', (req, res) => {
     console.log("DELETE FROM inventory WHERE ingred_name = '" + req.body.IngredientName + "';");
     pool
         .query("DELETE FROM inventory WHERE ingred_name = '" + req.body.IngredientName + "';");

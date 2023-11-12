@@ -64,6 +64,10 @@ index.get('/modify_menu.ejs', (req, res) => {
     res.render('modify_menu.ejs');
 });
 
+index.get('/reports.ejs', (req, res) => {
+    res.render('reports.ejs');
+});
+
 index.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
