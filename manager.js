@@ -48,6 +48,10 @@ app.get('/ingred_delete.ejs', (req, res) => {
     res.render('ingred_delete.ejs');
 });
 
+router.get('/order_history.ejs', (req, res) => {
+    res.render('order_history.ejs');
+});
+
 app.post('/ingredient_add', (req, res) => {
     console.log("INSERT INTO inventory VALUES ('" + req.body.IngredName + "', " + req.body.quantity + ", " + req.body.price + ", '" + req.body.startDate + "', '" + req.body.endDate + "', '" + req.body.storageMethod + "');");
     pool

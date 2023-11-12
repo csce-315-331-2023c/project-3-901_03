@@ -4,14 +4,12 @@ const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
 
 // Create express app
-const app = express();
+const router = express.Router(); //chnage to router
 const port = 3600;
 const path = require('path');
 //app.set('views', path.join(__dirname, '.\views'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
- extended: true
- }));
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 
 // Create pool
 const pool = new Pool({
@@ -30,19 +28,15 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 	 	 	 	
-app.set("view engine", "ejs");
-
-app.get('/', (req, res) => {
+router.get('/menu_mod_price.ejs', (req, res) => {
     res.render('menu_mod_price');
 });
 
-app.post('/mod_menu_price', (req, res) => {
+router.post('/', (req, res) => {
     pool
         .query("UPDATE food_item SET price_food = '" + req.body.MenuItemPrice + "' WHERE food_name = '"
         + req.body.MenuItemName + "';");
     res.render('menu_mod_price');
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+module.exports = router;

@@ -11,16 +11,17 @@
 
     <body>
         <div class="report-menu-sales-screen">
-            <h1>View Sales Report</h1>
-            <form>
-            <label for="StartDate">Enter the start date:</label><br>
-            <input type="text" id="StartDate" name="StartDate"><br>
-
-            <label for="EndDate">Enter the end date:</label><br>
-            <input type="text" id="EndDate" name="EndDate"><br><br>
-
-            <input type="submit" value="Submit">
-            </form>
+            <center>
+                <div class="managing-buttons">
+                    <h1>View Reports</h1><br>
+                    <a href="order_history.ejs" class="button"> Order History</a>
+                    <a href="report_sales.ejs" class="button"> Sales Report</a>
+                    <a href="report_restock.ejs" class="button"> Restock Report</a>
+                    <a href="report_ordered_together.ejs" class="button"> Ordered Together Report</a>
+                    <a href="report_product_sales.ejs" class="button"> Product Sales Report</a>
+                    <a href="report_excess.ejs" class="button"> Excess Report</a>
+                </div>
+            </center>
         </div>
         <script src="manager.js"></script>
     </body>

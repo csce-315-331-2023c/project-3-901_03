@@ -4,12 +4,11 @@ const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
 
 // Create express app
-const index = express();
+const router = express.Router(); //chnage to router
 const port = 3000;
 const path = require('path');
-index.set('views', path.join(__dirname, 'views'));
-index.use(bodyParser.json());
-index.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 
 // Create pool
 const pool = new Pool({
@@ -27,30 +26,16 @@ process.on('SIGINT', function() {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
-	 	 	 	
-index.set("view engine", "ejs");
 
-index.get('/', (req, res) => {
-    inventory = []
-    pool
-        .query('SELECT * FROM inventory;')
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                inventory.push(query_res.rows[i]);
-            }
-            const data = {inventory: inventory};
-            //console.log(inventory);
-            res.render('menu_delete', data);
-        });
+router.get('/menu_delete.ejs', (req, res) => {
+    res.render('menu_delete');
 });
 
-index.post('/menu_deletion', (req, res) => {
+router.post('/', (req, res) => {
     console.log("DELETE FROM food_item WHERE food_name = '" + req.body.ItemName + "';");
     pool
         .query("DELETE FROM food_item WHERE food_name = '" + req.body.ItemName + "';");
     res.render('menu_delete');
 });
 
-index.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+module.exports = router;

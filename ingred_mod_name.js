@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 
 // Create express app
 const router = express.Router(); //chnage to router
-const port = 300;
+const port = 3000;
 const path = require('path');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
@@ -26,25 +26,21 @@ process.on('SIGINT', function() {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
+	 	 	 	
 
-router.get('/menu_add.ejs', (req, res) => {
-    ingredients = []
-    pool
-    .query('SELECT ingred_name FROM inventory;')
-    .then(query_res => {
-        for (let i = 0; i < query_res.rowCount; i++){
-            ingredients.push(query_res.rows[i]);
-        }
-    });
-    res.render('menu_add');
-    console.log(ingredients);
+router.get('/ingred_mod_name.ejs', (req, res) => {
+    res.render('ingred_mod_name');
 });
 
 router.post('/', (req, res) => {
     pool
-        .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
-    res.render('menu_add');
+        .query("UPDATE inventory SET ingred_name = '" + req.body.NewItemName + "' WHERE ingred_name = '"
+        + req.body.ItemName + "';");
+    res.render('ingred_mod_name');
 });
 
-module.exports = router;
+// app.listen(port, () => {
+//     console.log(`Example app listening at http://localhost:${port}`);
+// });
 
+module.exports = router;
