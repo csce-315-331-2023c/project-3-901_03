@@ -30,19 +30,23 @@ process.on('SIGINT', function() {
 router.get('/menu_add.ejs', (req, res) => {
     ingredients = []
     pool
-    .query('SELECT ingred_name FROM inventory;')
+    .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
     .then(query_res => {
         for (let i = 0; i < query_res.rowCount; i++){
             ingredients.push(query_res.rows[i]);
         }
+        const data = {ingredients: ingredients};
+            //console.log(inventory);
+        res.render('menu_add', data);
     });
-    res.render('menu_add');
-    console.log(ingredients);
+    // res.render('menu_add');
 });
 
 router.post('/', (req, res) => {
     pool
         .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
+    const cb = document.querySelector('#<%=ingredients[i].ingred_name%>');
+    console.log(cb.checked);
     res.render('menu_add');
 });
 
