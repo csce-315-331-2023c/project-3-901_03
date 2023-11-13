@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 const router = express.Router(); //chnage to router
 const port = 300;
 const path = require('path');
+const { query } = require('express');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
@@ -39,16 +40,28 @@ router.get('/menu_add.ejs', (req, res) => {
             //console.log(inventory);
         res.render('menu_add', data);
     });
-    // res.render('menu_add');
 });
 
 router.post('/', (req, res) => {
+    var cbox = req.body['ingredList']
     pool
-        .query("INSERT INTO food_item (price_food, food_name, menu_type, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
-    const cb = document.querySelector('#<%=ingredients[i].ingred_name%>');
-    console.log(cb.checked);
+        .query("INSERT INTO food_item (price_food, food_name, menu_type, ingredients, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '{" + req.body['ingredList'] + "}', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
+
     res.render('menu_add');
 });
+
+{/* <script>console.log("script start")</script>
+<% for (var i in ingredients) {%>
+  <script>
+    console.log("hi")
+  const cb = document.querySelector('#<%=ingredients[i].ingred_name%>');
+  
+  if (cb.checked) {
+    console.log(cb)
+    ingredFinal.push(ingredients[i].ingred_name);
+  }
+  </script>
+<% } %>  */}
 
 module.exports = router;
 
