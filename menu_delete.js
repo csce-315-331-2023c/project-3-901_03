@@ -32,7 +32,6 @@ router.get('/menu_delete.ejs', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log("DELETE FROM food_item WHERE food_name = '" + req.body.ItemName + "';");
     pool
         .query("DELETE FROM food_item WHERE food_name = '" + req.body.ItemName + "';");
     res.render('menu_delete');
