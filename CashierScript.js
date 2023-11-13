@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
             newItem.textContent = `${itemName} - $${itemPrice.toFixed(2)}`;
 
             newItem.addEventListener("click", () => {
-                // Toggle the "selected" class on click
                 newItem.classList.toggle("selected");
             });
 
