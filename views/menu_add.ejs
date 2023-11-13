@@ -43,13 +43,13 @@
                 <label for="breakfast">Breakfast</label><br><br>
         
               <p>Select Ingredients:</p>
-                <input type="checkbox" id="lol" name="ingredientList" value="lol"><br><br>
-                <label for="lol">salsa</label>
-                <!--<% for (var i in ingredients) {%>
-                <input type="checkbox" id=ingredients[i].ingred_name name="ingredientList"><br><br>
-                <label for="ingredients[i].ingred_name"> ingredients[i].ingred_name </label>
-                <% } %>-->
-          
+                <!-- <input type="checkbox" id="lol" name="ingredientList" value="lol">
+                <label for="lol">salsa</label> -->
+                <% for (var i in ingredients) {%>
+                <input type="checkbox" id="<%=ingredients[i].ingred_name%>" name="ingredientList">
+                <label for="<%=ingredients[i].ingred_name%>"> <%=ingredients[i].ingred_name%> <br> </label>
+                <% } %> 
+                <br><br>
               <input type="submit" value="Submit">
             </form>
         </div>
