@@ -6,7 +6,7 @@ const index = express();
 const port = 3000;
 const path = require('path');
 index.set('views', path.join(__dirname, 'views'));
-
+index.use(express.static(__dirname + '/'));
 
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)

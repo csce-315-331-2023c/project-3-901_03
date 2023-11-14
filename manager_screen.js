@@ -35,7 +35,7 @@ router.use("/menu_mod_price", menuPriceRouter)
 router.get('/manager_screen.ejs', (req, res) => {
     inventory = []
     pool
-        .query('SELECT * FROM inventory;')
+        .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
                 inventory.push(query_res.rows[i]);
