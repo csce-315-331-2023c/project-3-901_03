@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const removedItem = currentOrder.splice(itemIndex, 1)[0];
             total -= removedItem.price;
             orderList.removeChild(selectedItem);
-            totalPrice.textContent = total.toFixed(2);
+            updateTotal();
         }
     });
 
@@ -25,15 +25,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const itemPrice = parseFloat(item.getAttribute("data-price"));
 
             const newItem = document.createElement("li");
-            newItem.textContent = `${itemName} - $${itemPrice.toFixed(2)}`;
 
             const incrementButton = document.createElement("button");
             incrementButton.textContent = "+";
             incrementButton.addEventListener("click", () => {
                 // Increment the count of the item
-                currentOrder.find(orderItem => orderItem.name === itemName).count++;
+                const orderItem = currentOrder.find(orderItem => orderItem.name === itemName);
+                orderItem.count++;
+                countSpan.textContent = orderItem.count;
                 updateTotal();
             });
+
+            const countSpan = document.createElement("span");
+            countSpan.textContent = "1"; // Default count is 1
+            countSpan.style.padding = "0 8px"; // Added padding
 
             const decrementButton = document.createElement("button");
             decrementButton.textContent = "-";
@@ -42,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const orderItem = currentOrder.find(orderItem => orderItem.name === itemName);
                 if (orderItem.count > 1) {
                     orderItem.count--;
+                    countSpan.textContent = orderItem.count;
                 } else {
                     const itemIndex = currentOrder.indexOf(orderItem);
                     currentOrder.splice(itemIndex, 1);
@@ -50,7 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 updateTotal();
             });
 
+            newItem.textContent = `${itemName} - $${itemPrice.toFixed(2)}`;
+            newItem.style.padding = "0 8px";
             newItem.appendChild(incrementButton);
+            newItem.appendChild(countSpan);
             newItem.appendChild(decrementButton);
 
             currentOrder.push({ name: itemName, price: itemPrice, count: 1 });
