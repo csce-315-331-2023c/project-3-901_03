@@ -24,18 +24,48 @@ document.addEventListener("DOMContentLoaded", function () {
             const itemName = item.getAttribute("data-name");
             const itemPrice = parseFloat(item.getAttribute("data-price"));
 
-            currentOrder.push({ name: itemName, price: itemPrice });
-            total += itemPrice;
-
             const newItem = document.createElement("li");
             newItem.textContent = `${itemName} - $${itemPrice.toFixed(2)}`;
+
+            const incrementButton = document.createElement("button");
+            incrementButton.textContent = "+";
+            incrementButton.addEventListener("click", () => {
+                // Increment the count of the item
+                currentOrder.find(orderItem => orderItem.name === itemName).count++;
+                updateTotal();
+            });
+
+            const decrementButton = document.createElement("button");
+            decrementButton.textContent = "-";
+            decrementButton.addEventListener("click", () => {
+                // Decrement the count of the item, and remove if count is zero
+                const orderItem = currentOrder.find(orderItem => orderItem.name === itemName);
+                if (orderItem.count > 1) {
+                    orderItem.count--;
+                } else {
+                    const itemIndex = currentOrder.indexOf(orderItem);
+                    currentOrder.splice(itemIndex, 1);
+                    orderList.removeChild(newItem);
+                }
+                updateTotal();
+            });
+
+            newItem.appendChild(incrementButton);
+            newItem.appendChild(decrementButton);
+
+            currentOrder.push({ name: itemName, price: itemPrice, count: 1 });
 
             newItem.addEventListener("click", () => {
                 newItem.classList.toggle("selected");
             });
 
             orderList.appendChild(newItem);
-            totalPrice.textContent = total.toFixed(2);
+            updateTotal();
         });
     });
+
+    function updateTotal() {
+        total = currentOrder.reduce((acc, item) => acc + item.price * item.count, 0);
+        totalPrice.textContent = total.toFixed(2);
+    }
 });
