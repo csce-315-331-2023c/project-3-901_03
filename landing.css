@@ -48,6 +48,11 @@ h6 {
     border-width: 15px;
 }
 
+.column {
+    float: left;
+    width: 33.33%;
+}
+
 .row:after{
     content: "";
     display: table;
