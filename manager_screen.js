@@ -27,6 +27,12 @@ const menuNameRouter = require('./menu_mod_name');
 router.use("/menu_mod_name", menuNameRouter)
 const menuPriceRouter = require('./menu_mod_price');
 router.use("/menu_mod_price", menuPriceRouter)
+const orderHistoryRouter = require('./order_history');
+router.use("/order_history", orderHistoryRouter)
+const restockReportRouter = require('./report_restock');
+router.use("/report_restock", restockReportRouter)
+const saleReportRouter = require('./report_sales');
+router.use("/report_sales", saleReportRouter)
 	 	 	 	
 //index.set('views', path.join(__dirname, 'views'));
 	 	 	 	

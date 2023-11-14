@@ -11,11 +11,14 @@
 
     <body>
         <div class="container">
-          <h2>Inventory</h2>
-          <% for (var i in inventory) {%>
-          <p>Name: <%=inventory[i].ingred_name%>, Quantity: <%=inventory[i].quantity%><p>
-          <% } %>
+            <h2>Order History</h2>
+          <form method="get" action="/manager_screen/order_history">
+            <% for (var i in orders) {%>
+            <p>Order Number: <%=orders[i].order_num%>, Order: <%=orders[i].order_item%>, Order Date: <%=orders[i].order_date%>, Cashier ID: <%=orders[i].cashier_id%><p>
+            <% } %>
+            </form>
       </div>
     </body>
+    <script src="manager.js"></script>
 
 </html>
