@@ -52,7 +52,6 @@ router.get('/manager_screen.ejs', (req, res) => {
         });
 });
 
-
 router.get('/modify_ingred.ejs', (req, res) => {
     res.render('modify_ingred.ejs');
 });
