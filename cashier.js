@@ -27,7 +27,7 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 
-router.get('/cashier2.ejs', (req, res) => {
+router.get('/', (req, res) => {
     menuitems = []
     pool
     .query('SELECT * FROM food_item;')
@@ -41,10 +41,13 @@ router.get('/cashier2.ejs', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-    // var cbox = req.body['ingredList']
-    console.log()
-    res.render('cashier2');
+router.post('/submit', (req, res) => {
+    console.log(req.body);
+    const { cart } = req.body;
+    // for(let i = 0; i < cart.length; i++) {
+    pool
+        .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES (" + 1000000 + ", '" + cart[0].name + "', '" +  cart[0].price + "');");
+    res.render('cashier2.ejs');
 });
 
 module.exports = router;

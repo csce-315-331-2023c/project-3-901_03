@@ -27,8 +27,9 @@ index.get('/login_screen.ejs', (req, res) => {
     res.render('login_screen.ejs');
 });
 
-index.get('/cashier.ejs', (req, res) => {
-    res.render('cashier.ejs');
+index.get('/cashier2.ejs', (req, res) => {
+    let currentOrder = [];
+    res.render('cashier2.ejs', { currentOrder: currentOrder });
 });
 
 index.listen(port, () => {
