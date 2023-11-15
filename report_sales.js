@@ -27,13 +27,17 @@ process.on('SIGINT', function() {
 //     res.render('report_sales');
 // });
 
-router.get('/report_sales.ejs', (req, res) => {
+/*router.get('/report_sales.ejs', (req, res) => {
     res.render('report_sales');
-});
+});*/
 
-router.post('/report_sales', (req, res) => {
+router.use(bodyParser.urlencoded({extended: false}))
+router.use(bodyParser.json());
+
+router.get('/report_sales.ejs', (req, res) => {
     try {
     orders = []
+    //const {startDate, endDate}
     console.log(req.body.startDate);
     pool
         .query("SELECT order_item, SUM(order_price) AS item_total FROM orders WHERE order_date >= '" + req.body.startDate + "' AND order_date <= '" + req.body.endDate + "' GROUP BY order_item ORDER BY item_total DESC;")
@@ -43,40 +47,14 @@ router.post('/report_sales', (req, res) => {
             }
             const data = {orders: orders};
             //console.log(inventory);
-            res.render('report_sales.ejs', data);
+            res.redirect(orders);
         });
     } catch (err) {
-        next(err)
-    }
-});
-
-router.get('/report_sales', (req, res) => {
-    try {
-    orders = []
-    console.log(req.body.startDate);
-    pool
-        .query("SELECT order_item, SUM(order_price) AS item_total FROM orders WHERE order_date >= '" + req.body.startDate + "' AND order_date <= '" + req.body.endDate + "' GROUP BY order_item ORDER BY item_total DESC;")
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                orders.push(query_res.rows[i]);
-            }
-            const data = {orders: orders};
-            //console.log(inventory);
-            res.render('report_sales.ejs', data);
-        });
-    } catch (err) {
-        next(err)
+        next(err);
     }
 });
 
 
-
-
-
-
-// <% for (var i in orders) {%>
-//     <p>Menu Item: <%=orders[i].order_item%>, Sales Total: <%=orders[i].item_total%><p>
-//     <% } %>
 
 
 module.exports = router;

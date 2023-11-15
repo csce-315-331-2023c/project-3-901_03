@@ -7,7 +7,20 @@
     </head>
 
     <body>
+        <p>Search within the menu: </p>
+        <div class="topnav">
+            <input type="text" placeholder="Search..">
+        </div>
+        </div>
         <div class="pos-container">
+            <div class="menu">
+                <h2>Menu</h2>
+                <ul id="menu-items">
+                    <li data-name="Item 1" data-price="5">Item 1 - $5.00</li>
+                    <li data-name="Item 2" data-price="7">Item 2 - $7.00</li>
+                    <li data-name="Item 3" data-price="9">Item 3 - $9.00</li>
+                </ul>
+            </div>
             <div class="order">
                 <h2>Order</h2>
                 <ul id="order-items">
@@ -16,14 +29,6 @@
                 <p>Total: $<span id="total-price">0.00</span></p>
                 <button id="submit-button">Submit</button>
                 <button id="delete-button">Delete</button>
-            </div>
-            <div class="menu">
-                <h2>Menu</h2>
-                <ul id="menu-items">
-                    <li data-name="Item 1" data-price="5">Item 1 - $5.00</li>
-                    <li data-name="Item 2" data-price="7">Item 2 - $7.00</li>
-                    <li data-name="Item 3" data-price="9">Item 3 - $9.00</li>
-                </ul>
             </div>
         </div>
         <script src="../cashier.js"></script>

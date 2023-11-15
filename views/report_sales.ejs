@@ -11,7 +11,7 @@
     <body>
         <div class="report-menu-sales-screen">
             <h1>Sales Report</h1>
-            <form method="post" action="/manager_screen/report_sales/report_sales">
+            <form method="get" action="/manager_screen/report_sales/report_sales"></form>
                 <label for="startDate">Enter the start date range:</label><br>
                 <input type="date" id="startDate" name="startDate"><br>
     
@@ -19,7 +19,10 @@
                 <input type="date" id="endDate" name="endDate"><br><br>
     
                 <input type="submit" value="Submit">
+            
             </form>
+
+            
         </div>
 
     </body>
@@ -27,9 +30,7 @@
     <body>
     <div class="container">
         <h2>Sale Report</h2>
-            <% for (var i in orders) {%>
-                <p>Ordered Item: <%=orders[i].order_item%>, Total Net Price: <%=orders[i].item_total%><p>
-            <% } %>
+            
     </div>
     </body>
 
