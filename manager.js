@@ -48,8 +48,12 @@ app.get('/ingred_delete.ejs', (req, res) => {
     res.render('ingred_delete.ejs');
 });
 
-router.get('/order_history.ejs', (req, res) => {
+app.get('/order_history.ejs', (req, res) => {
     res.render('order_history.ejs');
+});
+
+app.get('/report_restock.ejs', (req, res) => {
+    res.render('report_restock.ejs');
 });
 
 app.post('/ingredient_add', (req, res) => {

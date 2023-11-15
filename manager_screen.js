@@ -33,6 +33,9 @@ const restockReportRouter = require('./report_restock');
 router.use("/report_restock", restockReportRouter)
 const saleReportRouter = require('./report_sales');
 router.use("/report_sales", saleReportRouter)
+const togetherReportRouter = require('./report_ordered_together');
+router.use("/report_ordered_together", togetherReportRouter)
+
 	 	 	 	
 //index.set('views', path.join(__dirname, 'views'));
 	 	 	 	

@@ -21,7 +21,17 @@
                 <input type="submit" value="Submit">
             </form>
 
-        
+            
+            <p>Order Name:
+                <% if (result && result.length > 0) { %>
+                    <% result.forEach(row => { %>
+                        <p>Item Name: <%= row.order_item %>, Item Price: <%=row.item_total%></p>
+                    <% }); %>
+                <% } else { %>
+                    <p>No results found.</p>
+                <% } %>
+            </p>
+            
         </div>
 
     </body>
