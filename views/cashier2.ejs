@@ -28,18 +28,6 @@
 
             let total = 0.00;
 
-            // Removes the selected item from the order
-            // deleteButton.addEventListener("click", () => {
-            //     const selectedItem = orderList.querySelector(".selected");
-            //     if (selectedItem) {
-            //         const itemIndex = Array.from(orderList.children).indexOf(selectedItem);
-            //         const removedItem = currentOrder.splice(itemIndex, 1)[0];
-            //         total -= removedItem.price;
-            //         orderList.removeChild(selectedItem);
-            //         updateTotal();
-            //     }
-            // });
-
             menuItems.forEach(item => {
                 item.addEventListener("click", () => {
                     const order_num = item.getAttribute("order-num")

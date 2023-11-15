@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 const router = express.Router(); //chnage to router
 const port = 3000;
 const path = require('path');
+const { maxHeaderSize } = require('http');
 //const { query } = require('express');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
@@ -65,14 +66,13 @@ router.post('/submit', (req, res) => {
     let month = date.getMonth()+1;
     let year = date.getFullYear();
     let currentDate  = `${year}-${month}-${day}`;
-    console.log(req.body);
+    // console.log(req.body);
     const { cart } = req.body;
-    var ordernum = 118220;
+    //var ordernum = 118219;
     for(let i = 0; i < cart.length; i++) {
-        for (let j = 0; j < cart[0].count; j++) {
+        for (let j = 0; j < cart[i].count; j++) {
         pool
-            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES (" + ordernum + ", '" + currentDate + "', '" + timestamp + "', '" + cart[0].name + "', " +  cart[0].price + ", '" + dineIn + "', " + cashier_num + ");");
-        ordernum +=1;
+            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[j].name + "', " +  cart[j].price + ", '" + dineIn + "', " + cashier_num + ");");
         }    
     }
         res.render('cashier2.ejs');
