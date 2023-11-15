@@ -11,6 +11,9 @@ index.use(express.static(__dirname + '/'));
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
 
+const cashierScreenRouter = require('./cashier');
+index.use("/cashier", cashierScreenRouter)
+
 const pool = require('./connection.js')
 pool.connect();
 	 	 	 	
