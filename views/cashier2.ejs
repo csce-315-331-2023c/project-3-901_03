@@ -8,7 +8,6 @@
     <script>
         let currentOrder = [];
         function checkoutCart(currentOrder) {
-            location.reload();
             console.log("CHECKING OUT");
             console.log(currentOrder);
             fetch("/cashier/submit", {
