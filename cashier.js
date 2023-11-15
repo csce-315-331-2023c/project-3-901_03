@@ -72,7 +72,7 @@ router.post('/submit', (req, res) => {
     for(let i = 0; i < cart.length; i++) {
         for (let j = 0; j < cart[i].count; j++) {
         pool
-            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[j].name + "', " +  cart[j].price + ", '" + dineIn + "', " + cashier_num + ");");
+            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ");");
         }    
     }
         res.render('cashier2.ejs');
