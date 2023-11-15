@@ -11,6 +11,9 @@ index.use(express.static(__dirname + '/'));
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
 
+const cashierScreenRouter = require('./cashier');
+index.use("/cashier", cashierScreenRouter)
+
 const pool = require('./connection.js')
 pool.connect();
 	 	 	 	
@@ -24,8 +27,9 @@ index.get('/login_screen.ejs', (req, res) => {
     res.render('login_screen.ejs');
 });
 
-index.get('/cashier.ejs', (req, res) => {
-    res.render('cashier.ejs');
+index.get('/cashier2.ejs', (req, res) => {
+    let currentOrder = [];
+    res.render('cashier2.ejs', { currentOrder: currentOrder });
 });
 
 index.listen(port, () => {

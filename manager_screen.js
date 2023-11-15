@@ -67,5 +67,9 @@ router.get('/reports.ejs', (req, res) => {
     res.render('reports.ejs');
 });
 
+router.get('/index.ejs', (req, res) => {
+    res.render('index.ejs');
+});
+
 module.exports = router;
 
