@@ -1,59 +1,50 @@
 const express = require('express');
+const app = express();
 const dotenv = require('dotenv').config();
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
+
+app.set('view engine', 'ejs');
 
 // Create express app
 const router = express.Router(); //chnage to router
 const port = 3000;
 const path = require('path');
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
 const pool = require('./connection.js')
 pool.connect();
 
-
-// Add process hook to shutdown pool
-process.on('SIGINT', function() {
-    pool.end();
-    console.log('Application successfully shutdown');
-    process.exit(0);
-});
-	 	 	
-
-// router.post('/report_sales.ejs',(req, res) => { 
-//     pool
-//         .query("SELECT order_item, SUM(order_price) AS item_total FROM orders WHERE order_date >= '" + req.body.startDate + "' AND order_date <= '" + req.body.endDate + "' GROUP BY order_item ORDER BY SUM(order_price) DESC;");
-//     res.render('report_sales');
-// });
-
-/*router.get('/report_sales.ejs', (req, res) => {
-    res.render('report_sales');
-});*/
-
-router.use(bodyParser.urlencoded({extended: false}))
-router.use(bodyParser.json());
+app.use('/', router);
+app.use(express.urlencoded({ extended: true}));
 
 router.get('/report_sales.ejs', (req, res) => {
-    try {
-    orders = []
-    //const {startDate, endDate}
-    console.log(req.body.startDate);
-    pool
-        .query("SELECT order_item, SUM(order_price) AS item_total FROM orders WHERE order_date >= '" + req.body.startDate + "' AND order_date <= '" + req.body.endDate + "' GROUP BY order_item ORDER BY item_total DESC;")
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                orders.push(query_res.rows[i]);
-            }
-            const data = {orders: orders};
-            //console.log(inventory);
-            res.redirect(orders);
-        });
-    } catch (err) {
-        next(err);
-    }
+    res.render('report_sales', {result: null});
 });
 
+
+
+router.post('/report_sales', async (req, res) => {
+    const startDate = req.body.startDate;
+    const endDate = req.body.endDate;
+
+    if (!startDate || !endDate) {
+        return res.status(400).send('Please provide both start and end dates.');
+    }
+
+    try {
+        const sqlQuery = 'SELECT order_item, SUM(order_price) AS item_total FROM orders WHERE order_date >= $1 AND order_date <= $2 GROUP BY order_item ORDER BY item_total DESC';
+        
+        const result = await pool.query(sqlQuery, [startDate, endDate]);
+    
+        res.render('report_sales', {result: result.rows})
+        console.log("Entry displayed successfully");
+    } catch (error) {
+        console.error('Error executing SQL query:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 
 

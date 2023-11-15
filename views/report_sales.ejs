@@ -11,7 +11,7 @@
     <body>
         <div class="report-menu-sales-screen">
             <h1>Sales Report</h1>
-            <form method="get" action="/manager_screen/report_sales/report_sales"></form>
+            <form method="post" action="/manager_screen/report_sales/report_sales">
                 <label for="startDate">Enter the start date range:</label><br>
                 <input type="date" id="startDate" name="startDate"><br>
     
@@ -19,21 +19,12 @@
                 <input type="date" id="endDate" name="endDate"><br><br>
     
                 <input type="submit" value="Submit">
-            
             </form>
 
-            
+        
         </div>
 
     </body>
-
-    <body>
-    <div class="container">
-        <h2>Sale Report</h2>
-            
-    </div>
-    </body>
-
    
     <script src="report_sales.js"></script>
 
