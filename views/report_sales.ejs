@@ -20,19 +20,11 @@
     
                 <input type="submit" value="Submit">
             </form>
+
+        
         </div>
 
     </body>
-
-    <body>
-    <div class="container">
-        <h2>Sale Report</h2>
-            <% for (var i in orders) {%>
-                <p>Ordered Item: <%=orders[i].order_item%>, Total Net Price: <%=orders[i].item_total%><p>
-            <% } %>
-    </div>
-    </body>
-
    
     <script src="report_sales.js"></script>
 
