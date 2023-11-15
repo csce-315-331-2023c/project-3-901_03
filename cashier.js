@@ -27,7 +27,7 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 
-router.get('/cashier.ejs', (req, res) => {
+router.get('/cashier2.ejs', (req, res) => {
     menuitems = []
     pool
     .query('SELECT * FROM food_item;')
@@ -37,14 +37,14 @@ router.get('/cashier.ejs', (req, res) => {
         }
         const data = {menuitems: menuitems};
             //console.log(inventory);
-        res.render('cashier.ejs', data);
+        res.render('cashier2.ejs', data);
     });
 });
 
 router.post('/', (req, res) => {
     // var cbox = req.body['ingredList']
     console.log()
-    res.render('cashier');
+    res.render('cashier2');
 });
 
 module.exports = router;

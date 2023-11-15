@@ -20,6 +20,13 @@
             <div class="menu">
                 <h2>Menu</h2>
                 <ul id="menu-items">
+                    <form method="post" action="/index/cashier">
+                        <% for (var i in menuitems) {%>
+                            
+                          <label for="<%=menuitems[i].food_name%>"> <%=menuitems[i].food_name%>: $<%=menuitems[i].price_food%></label>
+                          <input type="button" id="<%=menuitems[i].food_name%>" name="menuItem" value="Add To Order" onclick="order()">
+                          <br><br>
+                        <% } %> </form>
                     <li data-name="Item 1" data-price="5">Item 1 - $5.00</li>
                     <li data-name="Item 2" data-price="7">Item 2 - $7.00</li>
                     <li data-name="Item 3" data-price="9">Item 3 - $9.00</li>
