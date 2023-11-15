@@ -41,13 +41,41 @@ router.get('/', (req, res) => {
     });
 });
 
+function randCashierNum(){
+    var x = Math.floor(Math.random() * 10)+1;
+    return x;
+}
+function randDineIn(){
+    var dineInResp = ["Yes", "No"];
+    var x = Math.floor(Math.random() * 2);
+    return dineInResp[x];
+}
 router.post('/submit', (req, res) => {
+    var cashier_num = randCashierNum();
+    var dineIn = randDineIn();
+    const date = new Date();
+    currentHours = date.getHours();
+    currentHours = ("0" + currentHours).slice(-2);
+    currentMin = date.getMinutes();
+    currentMin = ("0" + currentMin).slice(-2);
+    currentSec = date.getSeconds();
+    currentSec = ("0" + currentSec).slice(-2);
+    const timestamp = currentHours + ":" + currentMin + ":" + currentSec;
+    let day = date.getDate();
+    let month = date.getMonth()+1;
+    let year = date.getFullYear();
+    let currentDate  = `${year}-${month}-${day}`;
     console.log(req.body);
     const { cart } = req.body;
-    // for(let i = 0; i < cart.length; i++) {
-    pool
-        .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES (" + 1000000 + ", '" + cart[0].name + "', '" +  cart[0].price + "');");
-    res.render('cashier2.ejs');
+    var ordernum = 118220;
+    for(let i = 0; i < cart.length; i++) {
+        for (let j = 0; j < cart[0].count; j++) {
+        pool
+            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES (" + ordernum + ", '" + currentDate + "', '" + timestamp + "', '" + cart[0].name + "', " +  cart[0].price + ", '" + dineIn + "', " + cashier_num + ");");
+        ordernum +=1;
+        }    
+    }
+        res.render('cashier2.ejs');
 });
 
 module.exports = router;
