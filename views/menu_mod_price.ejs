@@ -21,8 +21,13 @@
         <div class="modify-menu-delete-screen">
             <h1>Change Price of Menu Item</h1>
             <form method="post" action="/manager_screen/menu_mod_price">
-            <label for="MenuItemName">Enter the menu item name:</label><br>
-            <input type="text" id="MenuItemName" name="MenuItemName"><br>
+                <select class="select" name="MenuItemName" id="MenuItemName">
+                    <option value="" selected disabled>Please select item name</option>
+                    <% for (var i in menuItems) {%>
+                        <option value="<%=menuItems[i].food_name%>" ><%=menuItems[i].food_name%></option>
+                    <% } %>
+                </select>
+                <br><br>
 
             <label for="MenuItemPrice">Enter the new menu item price:</label><br>
             <input type="text" id="MenuItemPrice" name="MenuItemPrice"><br><br>

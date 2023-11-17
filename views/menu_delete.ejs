@@ -22,8 +22,13 @@
             <h1>Delete Menu Item</h1>
 
             <form method="post" action="/manager_screen/menu_delete">
-            <label for="ItemName">Enter the item name:</label><br>
-            <input type="text" id="ItemName" name="ItemName"><br><br>
+                <select class="select" name="ItemName" id="ItemName">
+                    <option value="" selected disabled>Please select item name</option>
+                    <% for (var i in menuItems) {%>
+                        <option value="<%=menuItems[i].food_name%>" ><%=menuItems[i].food_name%></option>
+                    <% } %>
+                </select>
+                <br><br>
 
             <input type="submit" value="Submit">
             </form>

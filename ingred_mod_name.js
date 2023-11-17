@@ -14,7 +14,17 @@ pool.connect();
 	 	 	 	
 
 router.get('/ingred_mod_name.ejs', (req, res) => {
-    res.render('ingred_mod_name');
+    inventory = []
+    pool
+        .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                inventory.push(query_res.rows[i]);
+            }
+            const data = {inventory: inventory};
+            //console.log(inventory);
+            res.render('ingred_mod_name', data);
+        });
 });
 
 router.post('/', (req, res) => {

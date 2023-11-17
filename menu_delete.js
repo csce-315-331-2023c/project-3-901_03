@@ -28,7 +28,17 @@ process.on('SIGINT', function() {
 });
 
 router.get('/menu_delete.ejs', (req, res) => {
-    res.render('menu_delete');
+    menuItems = []
+    pool
+        .query('SELECT * FROM food_item ORDER BY food_name ASC;')
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                menuItems.push(query_res.rows[i]);
+            }
+            const data = {menuItems: menuItems};
+            //console.log(inventory);
+            res.render('menu_delete', data);
+        });
 });
 
 router.post('/', (req, res) => {

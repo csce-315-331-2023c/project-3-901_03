@@ -21,8 +21,13 @@
         <div class="modify-ingredient-name-screen">
             <h1>Change Name of Ingredient</h1>
             <form method="post" action="/manager_screen/ingred_mod_name">
-            <label for="ItemName">Enter the item name:</label><br>
-            <input type="text" id="ItemName" name="ItemName"><br>
+                <select class="select" name="ItemName" id="ItemName">
+                    <option value="" selected disabled>Please select item name</option>
+                    <% for (var i in inventory) {%>
+                        <option value="<%=inventory[i].ingred_name%>" ><%=inventory[i].ingred_name%></option>
+                    <% } %>
+                </select>
+                <br><br>
 
             <label for="NewItemName">Enter the new item name:</label><br>
             <input type="text" id="NewItemName" name="NewItemName"><br><br>
