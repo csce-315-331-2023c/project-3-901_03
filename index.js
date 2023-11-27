@@ -14,6 +14,9 @@ index.use("/manager_screen", managerScreenRouter)
 const cashierScreenRouter = require('./cashier');
 index.use("/cashier", cashierScreenRouter)
 
+const menuScreenRouter = require('./menu');
+index.use("/menu", menuScreenRouter)
+
 const pool = require('./connection.js')
 pool.connect();
 	 	 	 	
@@ -25,6 +28,10 @@ index.get('/', (req, res) => {
 
 index.get('/login_screen.ejs', (req, res) => {
     res.render('login_screen.ejs');
+});
+
+index.get('/menu.ejs', (req, res) => {
+    res.render('menu.ejs');
 });
 
 index.get('/cashier2.ejs', (req, res) => {
