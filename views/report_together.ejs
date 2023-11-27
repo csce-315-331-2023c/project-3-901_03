@@ -21,15 +21,6 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <p>Order Name:
-                <% if (result && result.length > 0) { %>
-                    <% result.forEach(row => { %>
-                        <p>Ingredients: <%= row.ingred_name %>, Total Usage: <%=row.total_usage%></p>
-                    <% }); %>
-                <% } else { %>
-                    <p>No results found.</p>
-                <% } %>
-            </p>
 
             
         </div>
