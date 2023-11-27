@@ -49,6 +49,7 @@ app.get('/ingred_delete.ejs', (req, res) => {
 });
 
 app.get('/order_history.ejs', (req, res) => {
+    // COME BACK TO IT, DISPLAY TIME AND DATE CORRECTLY AS WELL AS THE ENTIRE LIST
     res.render('order_history.ejs');
 });
 

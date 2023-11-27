@@ -12,7 +12,7 @@
         <div class="report-menu-together-screen">
             <h1>Restock Report</h1>
             <form method="post" action="/manager_screen/report_together/report_together">
-                <label for="startDate">Enter the start date range:</label><br>
+                <label for="startDate">Enter the month to parse through:</label><br>
                 <input type="date" id="startDate" name="startDate"><br>
     
                 <label for="endDate">Enter the end date range:</label><br>
@@ -21,6 +21,15 @@
                 <input type="submit" value="Submit">
             </form>
 
+            <p>Order Name:
+                <% if (result && result.length > 0) { %>
+                    <% result.forEach(row => { %>
+                        <p>Frequently Ordered: <%= row.item1 %>, In Concurrency With: <%=row.item2%>, On The Day: <%=row.order_date%>, At The Time: <%=row.order_order_time%></p>
+                    <% }); %>
+                <% } else { %>
+                    <p>No results found.</p>
+                <% } %>
+            </p>
 
             
         </div>
