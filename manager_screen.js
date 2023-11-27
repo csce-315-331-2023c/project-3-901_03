@@ -35,6 +35,8 @@ const saleReportRouter = require('./report_sales');
 router.use("/report_sales", saleReportRouter)
 const togetherReportRouter = require('./report_together');
 router.use("/report_together", togetherReportRouter)
+const togetherProductSalesRouter = require('./report_product_sales');
+router.use("/report_product_sales", togetherProductSalesRouter)
 
 	 	 	 	
 //index.set('views', path.join(__dirname, 'views'));
