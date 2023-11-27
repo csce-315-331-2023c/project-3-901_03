@@ -19,12 +19,12 @@ pool.connect();
 app.use('/', router);
 app.use(express.urlencoded({ extended: true}));
 
-router.get('/report_ordered_together.ejs', (req, res) => {
-    res.render('report_ordered_together', {result: null});
+router.get('/report_together.ejs', (req, res) => {
+    res.render('report_together', {result: null});
 });
 
 	 	 	
-router.post('/report_ordered_together', async (req, res) => {
+router.post('/report_together', async (req, res) => {
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
     
@@ -37,7 +37,7 @@ router.post('/report_ordered_together', async (req, res) => {
         
         const result = await pool.query(sqlQuery, [startDate, endDate]);
 
-        res.render('report_ordered_together', {result: result.rows})
+        res.render('report_restock', {result: result.rows})
         console.log("Entry displayed successfully");
     } catch (error) {
         console.error('Error executing SQL query:', error);
