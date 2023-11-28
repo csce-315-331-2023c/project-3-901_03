@@ -13,8 +13,7 @@
         <div class="report-menu-sales-screen">
             <center>
                 <div class="managing-buttons">
-                    <h1>View Reports</h1><br>
-                    <a href="order_history/order_history.ejs" class="button"> Order History</a>
+                    <h1>Manager Business Reports</h1><br>
                     <a href="report_sales/report_sales.ejs" class="button"> Sales Report</a>
                     <a href="report_restock/report_restock.ejs" class="button"> Restock Report</a>
                     <a href="report_together/report_together.ejs" class="button"> Ordered Together Report</a>
@@ -22,6 +21,15 @@
                     <a href="report_excess/report_excess.ejs" class="button"> Excess Report</a>
                 </div>
             </center>
+            <div class="container">
+                <h2>Order History</h2>
+              <form method="get" action="/manager_screen/order_history">
+                  <p>if the employee id and the order time and the roder date is the same, output the order items together
+                  </p>
+                  <p> put it into a sql in a .js file
+                  </p>
+                </form>
+          </div>
         </div>
         <script src="manager.js"></script>
     </body>

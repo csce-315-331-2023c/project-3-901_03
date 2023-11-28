@@ -37,6 +37,8 @@ const togetherReportRouter = require('./report_together');
 router.use("/report_together", togetherReportRouter)
 const togetherProductSalesRouter = require('./report_product_sales');
 router.use("/report_product_sales", togetherProductSalesRouter)
+const excessReportRouter = require('./report_excess');
+router.use("/report_excess", excessReportRouter)
 
 	 	 	 	
 //index.set('views', path.join(__dirname, 'views'));

@@ -14,6 +14,7 @@
             <h2>Order History</h2>
           <form method="get" action="/manager_screen/order_history">
             <% for (var i in orders) {%>
+              <p>if the employee id and the order time and the roder date is the same, output the order items together </p>
             <p>Order Number: <%=orders[i].order_num%>, Order: <%=orders[i].order_item%>, Order Date: <%=orders[i].order_date%>, Cashier ID: <%=orders[i].cashier_id%><p>
             <% } %>
             </form>
