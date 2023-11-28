@@ -53,10 +53,14 @@
               <p>Select Ingredients:</p>
                 <!-- <input type="checkbox" id="lol" name="ingredientList" value="lol">
                 <label for="lol">salsa</label> -->
-                <% for (var i in ingredients) {%>
-                <input type="checkbox" id="<%=ingredients[i].ingred_name%>" name=ingredList value="<%=ingredients[i].ingred_name%>">
-                <label for="<%=ingredients[i].ingred_name%>"> <%=ingredients[i].ingred_name%> <br> </label>
-                <% } %> 
+                <div class="row">
+                  <% for (var i in ingredients) {%>
+                    <div class="col-2">
+                      <input type="checkbox" id="<%=ingredients[i].ingred_name%>" name=ingredList value="<%=ingredients[i].ingred_name%>">
+                      <label for="<%=ingredients[i].ingred_name%>"> <%=ingredients[i].ingred_name%> <br> </label>
+                    </div>
+                  <% } %> 
+                </div>
                 <br><br>
         
 
