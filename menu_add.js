@@ -22,7 +22,8 @@ router.get('/menu_add.ejs', (req, res) => {
             ingredients.push(query_res.rows[i]);
         }
         const data = {ingredients: ingredients};
-            //console.log(inventory);
+  
+        //console.log(inventory);
         res.render('menu_add', data);
     });
 });
