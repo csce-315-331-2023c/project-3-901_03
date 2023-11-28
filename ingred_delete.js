@@ -29,7 +29,17 @@ router.get('/ingred_delete.ejs', (req, res) => {
 router.post('/', (req, res) => {
     pool
         .query("DELETE FROM inventory WHERE ingred_name = '" + req.body.IngredientName + "';");
-    res.render('ingred_delete');
+        inventory = []
+        pool
+            .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
+            .then(query_res => {
+                for (let i = 0; i < query_res.rowCount; i++){
+                    inventory.push(query_res.rows[i]);
+                }
+                const data = {inventory: inventory};
+                //console.log(inventory);
+                res.render('modify_ingred.ejs', data);
+            });
 });
 
 module.exports = router;
