@@ -24,7 +24,6 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-// Add process hook to shutdown pool
 process.on('SIGINT', function() {
     pool.end();
     console.log('Application successfully shutdown');
@@ -34,28 +33,25 @@ process.on('SIGINT', function() {
 app.use('/', router);
 app.use(express.urlencoded({ extended: true}));
 
-router.get('/report_together.ejs', (req, res) => {
-    res.render('report_together', {result: null});
+router.get('/report_product_sales.ejs', (req, res) => {
+    res.render('report_product_sales', {result: null});
 });
 
 	 	 	
-router.post('/report_together', async (req, res) => {
+router.post('/report_product_sales', async (req, res) => {
     const startDate = req.body.startDate;
-    const endDate = req.body.startDate;
-
+    const endDate = req.body.endDate;
     
     if (!startDate || !endDate) {
-        return res.status(400).send('Please select a month to parse through.');
+        return res.status(400).send('Please provide both start and end dates.');
     }
 
     try {
-        // COME BACK TO IT, DISPLAY TIME AND DATE CORRECTLY AS WELL AS THE ENTIRE LIST
-        const sqlQuery = 'WITH PairedItems AS ( SELECT DISTINCT LEAST(o1.order_item, o2.order_item) AS item1, GREATEST(o1.order_item, o2.order_item) AS item2, o1.order_date, o1.order_time FROM orders o1 JOIN orders o2 ON o1.order_time = o2.order_time AND o1.order_date = o2.order_date AND o1.cashier_id = o2.cashier_id AND o1.order_num <> o2.order_num WHERE o1.order_date BETWEEN $1 AND $2) SELECT item1, item2, order_date, order_time FROM PairedItems ORDER BY ( SELECT COUNT(*) FROM PairedItems AS p WHERE item1 = p.item1 AND item2 = p.item2 ) DESC';
-        
+        const sqlQuery = 'SELECT i.ingred_name, COUNT(*) AS total_usage FROM orders o JOIN food_item fi ON o.order_item = fi.food_name JOIN inventory i ON i.ingred_name = ANY(fi.ingredients) WHERE o.order_date BETWEEN $1 AND $2 GROUP BY i.ingred_name';
         
         const result = await pool.query(sqlQuery, [startDate, endDate]);
 
-        res.render('report_together', {result: result.rows})
+        res.render('report_product_sales', {result: result.rows})
         console.log("Entry displayed successfully");
     } catch (error) {
         console.error('Error executing SQL query:', error);
