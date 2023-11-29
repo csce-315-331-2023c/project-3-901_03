@@ -39,6 +39,7 @@
                 <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a></li>
                 <li><a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a></li>
                 <li><a href="/menu.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Menu</h3></a></li>
+                <li><button onclick="toggleZoom()">Zoom</button></li>
                 <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
                 <h1 style="margin-left: 350px;"> SWEET PARIS </h1>
                 <h2 style="margin-left: 350px;"> ---- creperie & cafe ---- </h2>
@@ -68,5 +69,23 @@
             <h2> <center> ---- creperie & cafe ---- </center> </h2>
             <br> -->
             <h3> <center> Bonjour! </center> </h3>
+            <script>
+                function toggleZoom() {
+                const body = document.body;
+                body.classList.toggle('zoomed');
+                adjustScreen();
+            }
+
+            function adjustScreen() {
+                const body = document.body;
+                const scale = body.classList.contains('zoomed') ? 1 : 1.5; 
+                const screenWidth = window.innerWidth;
+                const newWidth = screenWidth * scale;
+                const newHeight = window.innerHeight * scale;
+
+                body.style.width = newWidth + 'px';
+                body.style.height = newHeight + 'px';
+            }
+            </script>
             
     
