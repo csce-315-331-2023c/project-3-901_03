@@ -62,14 +62,14 @@ router.use("/report_excess", excessReportRouter)
 //router.set("view engine", "ejs");
 
 router.get('/manager_screen.ejs', (req, res) => {
-    inventory = []
+    employees = []
     pool
-        .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
+        .query('SELECT * FROM employees ORDER BY employee_type DESC;')
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
-                inventory.push(query_res.rows[i]);
+                employees.push(query_res.rows[i]);
             }
-            const data = {inventory: inventory};
+            const data = {employees: employees};
             //console.log(inventory);
             res.render('manager_screen.ejs', data);
         });

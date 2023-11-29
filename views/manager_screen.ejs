@@ -27,7 +27,7 @@
         <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
         <div class="managing-screen">
-            <a href="index.ejs" class="btn btn-lg">Logout</a>
+            <a href="/" class="btn btn-lg">Logout</a>
 
             <center>
             <h1>Manager View</h1>
@@ -44,16 +44,18 @@
 
 
         <div class="container">
-            <h2>Inventory</h2>
+            <h2>Employees</h2>
             <table class="table table-bordered border border-5"> 
                 <tr class="border border-5">
-                    <th class="border border-5 bg bg-info-subtle">Item</th>
-                    <th class="border border-5 bg bg-info-subtle">Quantity</th>
+                    <th class="border border-5 bg bg-info-subtle">Name</th>
+                    <th class="border border-5 bg bg-info-subtle">ID</th>
+                    <th class="border border-5 bg bg-info-subtle">Position</th>
                 </tr>
-                <% for (var i in inventory) {%>
+                <% for (var i in employees) {%>
                     <tr class="border border-5">
-                        <th class="border border-5"><%=inventory[i].ingred_name%></th>
-                        <th class="border border-5"><%=inventory[i].quantity%></th>
+                        <th class="border border-5"><%=employees[i].em_name%></th>
+                        <th class="border border-5"><%=employees[i].employee_id%></th>
+                        <th class="border border-5"><%=employees[i].employee_type%></th>
                     </tr>
                 <% } %>
         </table>
