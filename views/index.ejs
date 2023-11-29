@@ -47,45 +47,36 @@
             </center>
 
             <br>
-            <!-- </center> -->
 
-            <!-- <div class="option-buttons">
-                <center>
-                <a href="login_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Login</h3></a>
-                </center>
-            </div> -->
-            <!-- <div class="option-buttons">
-                <center>
-                <a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a> 
-                </center>
-            </div> -->
-            <!-- <div class="option-buttons">
-                <center>   
-                <a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a>  
-                </center>
-            </div> -->
-            <!-- <br>
-            <h1> <center> SWEET PARIS </center> </h1>
-            <h2> <center> ---- creperie & cafe ---- </center> </h2>
-            <br> -->
-            <h3> <center> Bonjour! </center> </h3>
-            <script>
-                function toggleZoom() {
-                const body = document.body;
-                body.classList.toggle('zoomed');
-                adjustScreen();
-            }
+            <img src="home.jpg" alt="" id="homeimg">
+            <h3 style="margin-bottom:  0px;"> <center> Bonjour! </center> </h3>
+            <div id="p">
+                <h2 style="font-size: 19px;margin-left: 10px;margin-right: 10px;margin-top: 0px;"> <center>Welcome to Sweet Paris Creperie & Cafe! </center> <h2 style="font-size: 19px;margin-left: 10px;margin-right: 10px;margin-top: 0px;font-style: italic;"> Here at Sweet Paris we want to make sure you have the best experience with us possible. Feel free to browse around our site, place an order, or contact us below. For employees and members, please login above.</h2></h2>
+            </div>
+            <!-- <img style="max-width: 100%;height: auto;" src="crepes.png" alt="" id="homeimg"> -->
+            <br> <br>
+            <h3 style="margin-bottom:  0px;"> <center> Contact Us </center> </h3>
+            <div id="p">
+                <h2 style="font-size: 19px;margin-left: 10px;margin-right: 10px;margin-top: 0px;"> <center> Please Don't! </center></h2>
+            </div>
+        </div>
+        <script>
+            function toggleZoom() {
+            const body = document.body;
+            body.classList.toggle('zoomed');
+            adjustScreen();
+        }
 
-            function adjustScreen() {
-                const body = document.body;
-                const scale = body.classList.contains('zoomed') ? 1 : 1.5; 
-                const screenWidth = window.innerWidth;
-                const newWidth = screenWidth * scale;
-                const newHeight = window.innerHeight * scale;
+        function adjustScreen() {
+            const body = document.body;
+            const scale = body.classList.contains('zoomed') ? 1 : 1.5; 
+            const screenWidth = window.innerWidth;
+            const newWidth = screenWidth * scale;
+            const newHeight = window.innerHeight * scale;
 
-                body.style.width = newWidth + 'px';
-                body.style.height = newHeight + 'px';
-            }
-            </script>
-            
-    
+            body.style.width = newWidth + 'px';
+            body.style.height = newHeight + 'px';
+        }
+        </script>
+    </body>
+</html>

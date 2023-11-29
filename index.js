@@ -1,7 +1,10 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
+
 const passport = require('passport');
 const google = require('./google');
+
+var bodyParser = require("body-parser");
 
 let currentUser = "NA";
 // Create express app
@@ -23,6 +26,9 @@ index.use("/cashier", cashierScreenRouter)
 
 const menuScreenRouter = require('./menu');
 index.use("/menu", menuScreenRouter)
+
+const seasonalmenuScreenRouter = require('./seasonalmenu');
+index.use("/seasonalmenu", seasonalmenuScreenRouter)
 
 const pool = require('./connection.js')
 pool.connect();
@@ -46,6 +52,10 @@ index.get('/login_screen.ejs', (req, res) => {
 
 index.get('/menu.ejs', (req, res) => {
     res.render('menu.ejs');
+});
+
+index.get('/seasonalmenu.ejs', (req, res) => {
+    res.render('seasonalmenu.ejs');
 });
 
 index.get('/cashier2.ejs', (req, res) => {
