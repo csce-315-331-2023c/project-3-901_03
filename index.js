@@ -1,4 +1,5 @@
 const express = require('express');
+const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 
 const passport = require('passport');
@@ -17,6 +18,23 @@ index.use(express.static(__dirname + '/'));
 index.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 index.use(passport.initialize());
 index.use(passport.session());
+
+// Create pool
+const pool = new Pool({
+    user: process.env.PSQL_USER,
+    host: process.env.PSQL_HOST,
+    database: process.env.PSQL_DATABASE,
+    password: process.env.PSQL_PASSWORD,
+    port: process.env.PSQL_PORT,
+    ssl: {rejectUnauthorized: false}
+});
+
+// // Add process hook to shutdown pool
+// process.on('SIGINT', function() {
+//     pool.end();
+//     console.log('Application successfully shutdown');
+//     process.exit(0);
+// });
 
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
@@ -42,8 +60,8 @@ index.use("/savory", savorymenuScreenRouter)
 const drinksmenuScreenRouter = require('./drinksmenu');
 index.use("/drinksmenu", drinksmenuScreenRouter)
 
-const pool = require('./connection.js')
-pool.connect();
+// const pool = require('./connection.js')
+// pool.connect();
 	 	 	 	
 index.set("view engine", "ejs");
 
@@ -67,7 +85,17 @@ index.get('/menu.ejs', (req, res) => {
 });
 
 index.get('/seasonalmenu.ejs', (req, res) => {
-    res.render('seasonalmenu.ejs');
+    seasonal = []
+    pool
+        .query("SELECT * FROM food_item WHERE menu_type = 'Seasonal Item';")
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                seasonal.push(query_res.rows[i]);
+            }
+            const data = {seasonal: seasonal};
+            //console.log(inventory);
+            res.render('seasonalmenu.ejs', data);
+    });
 });
 
 index.get('/breakfastmenu.ejs', (req, res) => {

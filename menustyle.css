@@ -57,7 +57,7 @@ a {
 }
 
 .column {
-    float: left;
+    float: inline-start;
     width: 33.33%;
 }
 
