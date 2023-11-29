@@ -13,8 +13,8 @@ router.use(bodyParser.urlencoded({extended: false}));
 const pool = require('./connection.js')
 pool.connect();
 	 	 	 	
-router.get('/menu.ejs', (req, res) => {
-    res.render('menu.ejs');
+router.get('/breakfastmenu.ejs', (req, res) => {
+    res.render('breakfastmenu.ejs');
 });
 
 module.exports = router;

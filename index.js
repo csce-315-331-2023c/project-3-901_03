@@ -30,6 +30,18 @@ index.use("/menu", menuScreenRouter)
 const seasonalmenuScreenRouter = require('./seasonalmenu');
 index.use("/seasonalmenu", seasonalmenuScreenRouter)
 
+const breakfastmenuScreenRouter = require('./breakfastmenu');
+index.use("/breakfastmenu", breakfastmenuScreenRouter)
+
+const sweetmenuScreenRouter = require('./sweetmenu');
+index.use("/sweetmenu", sweetmenuScreenRouter)
+
+const savorymenuScreenRouter = require('./savorymenu');
+index.use("/savory", savorymenuScreenRouter)
+
+const drinksmenuScreenRouter = require('./drinksmenu');
+index.use("/drinksmenu", drinksmenuScreenRouter)
+
 const pool = require('./connection.js')
 pool.connect();
 	 	 	 	
@@ -56,6 +68,22 @@ index.get('/menu.ejs', (req, res) => {
 
 index.get('/seasonalmenu.ejs', (req, res) => {
     res.render('seasonalmenu.ejs');
+});
+
+index.get('/breakfastmenu.ejs', (req, res) => {
+    res.render('breakfastmenu.ejs');
+});
+
+index.get('/sweetmenu.ejs', (req, res) => {
+    res.render('sweetmenu.ejs');
+});
+
+index.get('/savorymenu.ejs', (req, res) => {
+    res.render('savorymenu.ejs');
+});
+
+index.get('/drinksmenu.ejs', (req, res) => {
+    res.render('drinksmenu.ejs');
 });
 
 index.get('/cashier2.ejs', (req, res) => {
