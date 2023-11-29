@@ -104,7 +104,7 @@ li a {
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 25px 20px 16px;
+    padding: 25px 30px 16px;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -118,5 +118,95 @@ li a:hover {
 }
 
 .active { 
-    background-color: #04AA6D;
+    text-decoration: underline;
+    text-decoration-thickness: 5px;
+    text-decoration-color: rgb(81, 145, 145);
+}
+
+nav {
+    border-top: 15px;
+    background-color: black;
+    margin-top: 25px;
+    margin-right: 500px;
+    margin-left: 0px;
+    padding: 0;
+    border-radius: 0px;
+}
+
+#sidebar a{/* customize links for new id sidebar*/
+    position: absolute;
+    width: 100px;
+    left: -80px;
+    transition: 0.5s;
+    padding: 10px;
+    color: white;
+    font-size: 0px;
+    text-align: left;
+    border-radius: 0 15px 15px 0;
+    margin-right: 400px;
+    text-shadow: 60px;
+}
+
+#seasonal {
+    font-style: bold;
+    top: 240px;
+    background-color: rgb(255, 0, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+    font-size: 5px;
+}
+
+#breakfast {
+    font-style: bold;
+    top: 300px;
+    background-color: rgb(255, 42, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+    
+}
+
+#sweet {
+    font-style: bold;
+    top: 360px;
+    background-color: rgb(255, 60, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#savory {
+    font-style: bold;
+    top: 420px;
+    background-color: rgb(255, 94, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#drinks {
+    top: 480px;
+    background-color: rgb(255, 110, 1);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#homeimg {
+    float:right;
+}
+
+#p {
+    background-color: rgb(149, 223, 234);
+    border-radius: 40px;
+    border-color: gray;
+    border-style: ridge;
+    width: 510px;
+    left: 20px;
 }
