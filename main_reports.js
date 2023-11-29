@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv').config();
-const bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
 
 app.set('view engine', 'ejs');
 
@@ -23,27 +23,28 @@ router.get('/main_reports.ejs', (req, res) => {
     res.render('main_reports', {result: null});
 });
 
-
-
-router.post('/manager_screen/report_sales', async (req, res) => {
+	 	 	
+router.post('/main_reports/submit', async (req, res) => {
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
-    console.log(startDate);
-
+    let result;
+    
     if (!startDate || !endDate) {
         return res.status(400).send('Please provide both start and end dates.');
     }
 
-    try {
-        const sqlQuery = 'SELECT order_item, SUM(order_price) AS item_total FROM orders WHERE order_date >= $1 AND order_date <= $2 GROUP BY order_item ORDER BY item_total DESC';
-        
-        const result = await pool.query(sqlQuery, [startDate, endDate]);
+    if (req.body.button === 'sales') {
+        try {
+            const sqlQuery = 'SELECT i.ingred_name, COUNT(*) AS total_usage FROM orders o JOIN food_item fi ON o.order_item = fi.food_name JOIN inventory i ON i.ingred_name = ANY(fi.ingredients) WHERE o.order_date BETWEEN $1 AND $2 GROUP BY i.ingred_name';
+            
+            result = await pool.query(sqlQuery, [startDate, endDate]);
     
-        res.render('report_sales', {result: result.rows})
-        console.log("Entry displayed successfully");
-    } catch (error) {
-        console.error('Error executing SQL query:', error);
-        res.status(500).send('Internal Server Error');
+            res.render('report_restock', {result: result.rows})
+            console.log("Entry displayed successfully");
+        } catch (error) {
+            console.error('Error executing SQL query for Sales Report:', error);
+            res.status(500).send('Internal Server Error');
+        }
     }
 });
 

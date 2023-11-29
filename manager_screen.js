@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -75,15 +76,44 @@ router.get('/manager_screen.ejs', (req, res) => {
 });
 
 router.get('/modify_ingred.ejs', (req, res) => {
-    res.render('modify_ingred.ejs');
+    inventory = []
+    pool
+        .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                inventory.push(query_res.rows[i]);
+            }
+            const data = {inventory: inventory};
+            //console.log('in manager_screen.js get function');
+            res.render('modify_ingred.ejs', data);
+        });
 });
 
-router.get('/modify_menu.ejs', (req, res) => {
-    res.render('modify_menu.ejs');
+router.get('/modify_menu.ejs', async(req, res) => {
+    try {
+        // Assuming you have a table named 'items' with columns 'name' and 'description'
+        const queryArray1 = 'SELECT * FROM food_item ORDER BY food_name ASC;';
+        const queryArray2 = 'SELECT * FROM inventory ORDER BY ingred_name ASC;';
+    
+        const resultArray1 = await pool.query(queryArray1);
+        const resultArray2 = await pool.query(queryArray2);
+    
+        const menuItems = resultArray1.rows;
+        const ingredients = resultArray2.rows;
+    
+        res.render('modify_menu.ejs', { menuItems, ingredients });
+    } 
+    catch (error) {
+        console.error('Error fetching data from PostgreSQL:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
-router.get('/reports.ejs', (req, res) => {
-    res.render('reports.ejs');
+router.get('/main_reports.ejs', async (req, res) => {
+        const sqlquery = "SELECT ROW_NUMBER() OVER (ORDER BY order_date DESC, order_time DESC) AS row_num, order_date, order_time, STRING_AGG(DISTINCT order_item, ', ' ORDER BY order_item) AS order_items, MAX(order_price) AS order_price, MAX(dine_in) AS dine_in, cashier_id FROM orders GROUP BY order_date, order_time, cashier_id ORDER BY order_date DESC, order_time DESC LIMIT 100"
+        const result = await pool.query(sqlquery);
+
+        res.render('main_reports', {result: result.rows})
 });
 
 router.get('/index.ejs', (req, res) => {
