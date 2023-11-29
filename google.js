@@ -6,9 +6,9 @@ const VerifyCallback=require('passport-google-oauth20').VerifyCallback;
 passport.use(
   new Strategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_REDIRECT_URL,
+      clientID: "732182815623-en9h03k46oi28j7g8kl9d8c1okg7ksrf.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: "https://project3-sweet-paris-901-03-c0hs.onrender.com/api/auth/google/redirect",
       scope: [
         'email',
         'profile',
