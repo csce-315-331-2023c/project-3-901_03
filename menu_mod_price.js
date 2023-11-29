@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -28,25 +29,43 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 	 	 	 	
-router.get('/menu_mod_price.ejs', (req, res) => {
-    menuItems = []
-    pool
-        .query('SELECT * FROM food_item ORDER BY food_name ASC;')
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                menuItems.push(query_res.rows[i]);
-            }
-            const data = {menuItems: menuItems};
-            //console.log(inventory);
-            res.render('menu_mod_price', data);
-        });
-});
+// router.get('/menu_mod_price.ejs', (req, res) => {
+//     menuItems = []
+//     pool
+//         .query('SELECT * FROM food_item ORDER BY food_name ASC;')
+//         .then(query_res => {
+//             for (let i = 0; i < query_res.rowCount; i++){
+//                 menuItems.push(query_res.rows[i]);
+//             }
+//             const data = {menuItems: menuItems};
+//             //console.log(inventory);
+//             res.render('menu_mod_price', data);
+//         });
+// });
 
-router.post('/', (req, res) => {
-    pool
+router.post('/', async(req, res) => {
+    await pool
         .query("UPDATE food_item SET price_food = '" + req.body.MenuItemPrice + "' WHERE food_name = '"
         + req.body.MenuItemName + "';");
-    res.render('menu_mod_price');
+    
+    try {
+        // Assuming you have a table named 'items' with columns 'name' and 'description'
+        const queryArray1 = 'SELECT * FROM food_item ORDER BY food_name ASC;';
+        const queryArray2 = 'SELECT * FROM inventory ORDER BY ingred_name ASC;';
+    
+        const resultArray1 = await pool.query(queryArray1);
+        const resultArray2 = await pool.query(queryArray2);
+    
+        const menuItems = resultArray1.rows;
+        const ingredients = resultArray2.rows;
+    
+        res.render('modify_menu.ejs', { menuItems, ingredients });
+    } 
+    catch (error) {
+        console.error('Error fetching data from PostgreSQL:', error);
+        res.status(500).send('Internal Server Error');
+    }
+    //res.render('menu_mod_price');
 });
 
 module.exports = router;
