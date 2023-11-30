@@ -11,16 +11,6 @@
     <body>
         <div class="report-menu-restock-screen">
             <h1>Change restock to be like order hisotry and only display things below a minimum</h1>
-            <form method="post" action="/manager_screen/report_restock/report_restock">
-                <label for="startDate">Enter the start date range:</label><br>
-                <input type="date" id="startDate" name="startDate"><br>
-    
-                <label for="endDate">Enter the end date range:</label><br>
-                <input type="date" id="endDate" name="endDate"><br><br>
-    
-                <input type="submit" value="Submit">
-            </form>
-
             <p>Order Name:
                 <% if (result && result.length > 0) { %>
                     <% result.forEach(row => { %>
