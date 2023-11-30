@@ -54,6 +54,10 @@ a {
     border-width: 15px;
 }
 
+.reports-top {
+    background-color: rgb(117, 209, 209);
+}
+
 .column {
     float: left;
     width: 33.33%;

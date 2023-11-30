@@ -19,6 +19,7 @@
     </head>
 
     <body>
+        <div class="reports-top">
         <div id="google_translate_element"></div>
 
         <script type="text/javascript">
@@ -29,8 +30,17 @@
 
         <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-        <a href="manager_screen.ejs" class="btn btn-lg">Back</a>
+        <a href="manager_screen.ejs" class="btn btn-info">Back</a>
 
+        <div class="report-menu-sales-screen">
+            <center>
+                <div class="managing-buttons">
+                    <h1>Manager Business Reports</h1><br>
+                </div>
+            </center>
+        </div>
+
+        
         <br></br>
        <div class ="inventory-container mx-5" style="float: left">
             <table class="table">
@@ -80,7 +90,7 @@
                         <div class="inventory-management" style="float: right" >
 
                         <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
-                            <h2>Restock Report</h2><br>
+                            <h2>Usage Report</h2><br>
                             <form method="post" action="/manager_screen/report_restock">   
                                 <label for="startDate">Enter the start date range:</label><br>
                                 <input type="date" id="startDate" name="startDate"><br>
@@ -88,7 +98,7 @@
                                 <label for="endDate">Enter the end date range:</label><br>
                                 <input type="date" id="endDate" name="endDate"><br><br>
 
-                                <button type="submit">Restock Report</button>
+                                <button type="submit">Usage Report</button>
                             </form>
                         </div>
                         </div>
@@ -147,19 +157,8 @@
             </table>
        </div>
        
-        <div class="report-menu-sales-screen">
-            <center>
-                <div class="managing-buttons">
-                    <h1>Manager Business Reports</h1><br>
-                    <a href="report_sales/report_sales.ejs" class="button"> Sales Report</a>
-                    <a href="report_restock/report_restock.ejs" class="button"> Restock Report</a>
-                    <a href="report_together/report_together.ejs" class="button"> Ordered Together Report</a>
-                    <a href="report_product_sales/report_product_sales.ejs" class="button"> Product Usage Report</a>
-                    <a href="report_excess/report_excess.ejs" class="button"> Excess Report</a>
-                </div>
-            </center>
-            </div>
         <script src="manager_screen.js"></script>
+        </div>
     </body>
 
 </html>
