@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Menu</title>
+        <link rel="stylesheet" href="../menustyle.css">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" -->
+            <!-- integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bodoni Moda' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Beth Ellen' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bacasime Antique' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
+    </head>
+
+    <div id="bordernav"> <h3 style="margin-top: 1px; margin-left: 50px; color: white;"> Menu  </h3>
+    </div> 
+    
+    <body>
+        <div id="google_translate_element"></div>
+
+        <script type="text/javascript">
+        function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+        <div class="home-screen">
+            <button type="button" onclick="refresh()" style="float:inherit;">Refresh</button>
+            <br>
+            <center>
+            <!-- experimenting with navigation bar -->
+            <center>
+                <div id="nav2">
+                    <li style="float:left"><a href="api/auth/google/redirect"><h3 style="font-size: 20px; margin-top: 10px;">Login </h3></a></li>
+                    <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a></li>
+                    <li><a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a></li>
+                    <li><a href="/menu.ejs" class="active"><h3 style="font-size: 20px; margin-top: 10px;">Menu</h3></a></li>
+                    <li><button onclick="toggleZoom()">Zoom</button></li>
+                    <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
+                    <h2 style="margin-left: 40px;margin-top: 45px;font-size: 18px; left: 0px; color: black;float: left;"> Current User: <%= currentUser %> </h2>
+    
+                    <a href="/"><h1 style="margin-left: 400px;"> SWEET PARIS </h1></a>
+                    <a href="/"><h2 style="margin-left: 350px;"> ---- creperie & cafe ---- </h2></a>
+                </div>
+                </center>
+
+            <br><br><br>
+
+            <nav>
+                <ul>
+                    <div id = "sidebar">
+                        <a href="/seasonalmenu.ejs" id="seasonal">Seasonal</a>
+                        <a href="/breakfastmenu.ejs" id="breakfast"> Breakfast Crepes </a>
+                        <a href="/sweetmenu.ejs" id="sweet"> Sweet Crepes </a>
+                        <a href="/savorymenu.ejs" id="savory" style="font-style: italic;text-decoration: underline;"> Savory Crepes </a>
+                        <a href="/drinksmenu.ejs" id="drinks"> Drinks </a>
+                    </div>
+                </ul>
+            </nav>
+
+            <div id="border">
+                <h4> SAVORY CREPES </h4>
+                <div class="row">
+                    <div class="column">
+                        <center>
+                        <h5> <center> Chicken Alfredo </center> </h5>
+                        <h6> <center> grilled chicken, mushrooms, mozzarella, parmesan, & alfredo sauce </center></h6>
+                        </center>
+                    </div>
+                    <div class="column">
+                        <center>
+                        <h5> <center> Ham and Gruyere </center> </h5>
+                        <h6> <center> smoked ham, gruyère, dijon mustard, fresh oregano, & béchamel sauce </center></h6>
+                        </center>
+                    </div>
+                    <div class="column">
+                        <center>
+                        <h5> <center> Nordic </center> </h5>
+                        <h6> <center> smoked salmon, dill sour cream, capers, scallions, pickled red onions, & lemon </center></h6>
+                        </center>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="column"> 
+                        <center>
+                        <h5> <center> Truffled Caprese </center> </h5>
+                        <h6> <center> mozzarella, basil infused cherry tomatoes, & truffle oil </center></h6>
+                        </center>
+                    </div>
+                    <div class="column">
+                        <center>
+                        <h5> <center> Turkey, Grapes, and Brie </center> </h5>
+                        <h6> <center> turkey, french brie, red grapes, spring mix, walnuts, & dijon vinaigrette </center></h6>
+                        </center>
+                    </div>
+                    <div class="column"> 
+                        <center>
+                        <h5> <center> The Vegan </center> </h5>
+                        <h6> <center> portobello mushrooms, black bean purée, corn salsa, & chipotle sauce </center></h6>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            
+            <script src="index.js"></script>
+        </body>
+    </html>
+    
