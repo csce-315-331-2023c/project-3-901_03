@@ -81,10 +81,23 @@ index.get('/login_screen.ejs', (req, res) => {
 });
 
 index.get('/menu.ejs', (req, res) => {
-    res.render('menu.ejs');
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+    res.render('menu.ejs', {currentUser: currentUser});
 });
 
 index.get('/seasonalmenu.ejs', (req, res) => {
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+
     seasonal = []
     pool
         .query("SELECT * FROM food_item WHERE menu_type = 'Seasonal Item';")
@@ -94,24 +107,92 @@ index.get('/seasonalmenu.ejs', (req, res) => {
             }
             const data = {seasonal: seasonal};
             //console.log(inventory);
-            res.render('seasonalmenu.ejs', data);
+            res.render('seasonalmenu.ejs', {data, currentUser: currentUser});
     });
 });
 
 index.get('/breakfastmenu.ejs', (req, res) => {
-    res.render('breakfastmenu.ejs');
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+
+    breakfast = []
+    pool
+        .query("SELECT * FROM food_item WHERE menu_type = 'Breakfast';")
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                breakfast.push(query_res.rows[i]);
+            }
+            const data = {breakfast: breakfast};
+            //console.log(inventory);
+            res.render('breakfastmenu.ejs', {data, currentUser: currentUser});
+    });
 });
 
 index.get('/sweetmenu.ejs', (req, res) => {
-    res.render('sweetmenu.ejs');
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+
+    sweet = []
+    pool
+        .query("SELECT * FROM food_item WHERE menu_type = 'Sweet Crepes';")
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                sweet.push(query_res.rows[i]);
+            }
+            const data = {sweet: sweet};
+            //console.log(inventory);
+            res.render('sweetmenu.ejs', {data, currentUser: currentUser});
+    });
 });
 
 index.get('/savorymenu.ejs', (req, res) => {
-    res.render('savorymenu.ejs');
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+
+    savory = []
+    pool
+        .query("SELECT * FROM food_item WHERE menu_type = 'Savory Crepes';")
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                savory.push(query_res.rows[i]);
+            }
+            const data = {savory: savory};
+            //console.log(inventory);
+            res.render('savorymenu.ejs', {data, currentUser: currentUser});
+    });
 });
 
 index.get('/drinksmenu.ejs', (req, res) => {
-    res.render('drinksmenu.ejs');
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+
+    drinks = []
+    pool
+        .query("SELECT * FROM food_item WHERE menu_type = 'Drink';")
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                drinks.push(query_res.rows[i]);
+            }
+            const data = {drinks: drinks};
+            //console.log(inventory);
+            res.render('drinksmenu.ejs', {data, currentUser: currentUser});
+    });
 });
 
 index.get('/cashier2.ejs', (req, res) => {

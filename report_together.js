@@ -34,12 +34,12 @@ process.on('SIGINT', function() {
 app.use('/', router);
 app.use(express.urlencoded({ extended: true}));
 
-router.get('/report_together.ejs', (req, res) => {
-    res.render('report_together', {result: null});
+router.get('/main_reports.ejs', (req, res) => {
+    res.render('main_reports', {result: null});
 });
 
 	 	 	
-router.post('/report_together', async (req, res) => {
+router.post('/', async (req, res) => {
     const startDate = req.body.startDate;
     const endDate = req.body.startDate;
 

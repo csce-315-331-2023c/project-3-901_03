@@ -47,11 +47,13 @@
                         <table class="table table-bordered border border-5"> 
                             <tr class="border border-5">
                                 <th class="border border-5 bg bg-info-subtle">Item</th>
+                                <th class="border border-5 bg bg-info-subtle">Type</th>
                                 <th class="border border-5 bg bg-info-subtle">Price</th>
                             </tr>
                             <% for (var i in menuItems) {%>
                                 <tr class="border border-5">
                                     <th class="border border-5"><%=menuItems[i].food_name%></th>
+                                    <th class="border border-5"><%=menuItems[i].menu_type%></th>
                                     <th class="border border-5"><%=menuItems[i].price_food%></th>
                                 </tr>
                             <% } %> 
@@ -83,7 +85,7 @@
                                 <label for="breakfast">Breakfast</label><br>
                         
                                 <input type="radio" id="drink" name="MenuType" value="Drink">
-                                <label for="drink">Fountain Drink</label><br>
+                                <label for="drink">Drink</label><br>
                         
                                 <input type="radio" id="seasonal" name="MenuType" value="Seasonal Item">
                                 <label for="seasonal">Seasonal Item</label><br><br>
@@ -94,6 +96,10 @@
                         
                                 <input type="radio" id="breakfast" name="MenuTime" value="Breakfast">
                                 <label for="breakfast">Breakfast</label><br><br>
+
+                              <p>Enter Menu Item Description:</p>
+                                <textarea id="description" name="description" rows="5" cols="50"></textarea><br><br>
+                                
                         
                               <p>Select Ingredients:</p>
                                 <!-- <input type="checkbox" id="lol" name="ingredientList" value="lol">

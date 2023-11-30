@@ -10,16 +10,6 @@
     </head>
     <body>
         <div class="report-menu-product-screen">
-            <h1>Product Usage Report</h1>
-            <form method="post" action="/manager_screen/report_product_sales/report_product_sales">
-                <label for="startDate">Enter the start date range:</label><br>
-                <input type="date" id="startDate" name="startDate"><br>
-    
-                <label for="endDate">Enter the end date range:</label><br>
-                <input type="date" id="endDate" name="endDate"><br><br>
-    
-                <input type="submit" value="Submit">
-            </form>
 
             <p>Order Name:
                 <% if (result && result.length > 0) { %>

@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
 
@@ -13,18 +14,31 @@ const path = require('path');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
-const pool = require('./connection.js')
-pool.connect();
+const pool = new Pool({
+    user: process.env.PSQL_USER,
+    host: process.env.PSQL_HOST,
+    database: process.env.PSQL_DATABASE,
+    password: process.env.PSQL_PASSWORD,
+    port: process.env.PSQL_PORT,
+    ssl: {rejectUnauthorized: false}
+});
+
+// Add process hook to shutdown pool
+process.on('SIGINT', function() {
+    pool.end();
+    console.log('Application successfully shutdown');
+    process.exit(0);
+});
 
 app.use('/', router);
 app.use(express.urlencoded({ extended: true}));
 
-router.get('/report_restock.ejs', (req, res) => {
-    res.render('report_restock', {result: null});
+router.get('/main_reports.ejs', (req, res) => {
+    res.render('main_reports', {result: null});
 });
 
 	 	 	
-router.post('/report_restock', async (req, res) => {
+router.post('/', async (req, res) => {
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
     

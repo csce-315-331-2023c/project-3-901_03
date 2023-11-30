@@ -10,27 +10,50 @@
     </head>
     <body>
         <div class="report-menu-restock-screen">
-            <h1>Change restock to be like order hisotry and only display things below a minimum</h1>
-            <form method="post" action="/manager_screen/report_restock/report_restock">
-                <label for="startDate">Enter the start date range:</label><br>
-                <input type="date" id="startDate" name="startDate"><br>
-    
-                <label for="endDate">Enter the end date range:</label><br>
-                <input type="date" id="endDate" name="endDate"><br><br>
-    
-                <input type="submit" value="Submit">
-            </form>
+            <th>
+                <div class="container">
+                    <h2>Total Usage</h2>
+                    <p>Displays the total amount of how many ingredients were used within the given timeframe</p>
+                    <table class="table table-bordered border border-5"> 
+                        <tr class="border border-5">
+                            <th class="border border-5 bg bg-info-subtle">Ingredient</th>
+                            <th class="border border-5 bg bg-info-subtle">Total Usage</th>
+                        </tr>
+                        <% if (result && result.length > 0) { %>
+                            <% result.forEach(row => { %>
+                                <tr class="border border-5">
+                                    <th class="border border-5"><%=row.ingred_name%></th>
+                                    <th class="border border-5"><%=row.total_usage%></th>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <p>No results found.</p>
+                        <% } %>
 
-            <p>Order Name:
-                <% if (result && result.length > 0) { %>
-                    <% result.forEach(row => { %>
-                        <p>Ingredients: <%= row.ingred_name %>, Total Usage: <%=row.total_usage%></p>
-                    <% }); %>
-                <% } else { %>
-                    <p>No results found.</p>
-                <% } %>
-            </p>
 
+                        <%if (result && result.length > 0) { %>
+                            <%let maxItemTotal = Number.MIN_VALUE; %>
+                            <% let minItemTotal = Number.MAX_VALUE; %>
+                        
+
+                            <% result.forEach(row => { %>
+                                <% maxItemTotal = Math.max(maxItemTotal, row.total_usage); %>
+                            <% }); %>
+
+                            <% result.forEach(row => { %>
+                                <% minItemTotal = Math.min(minItemTotal, row.total_usage); %>
+                            <% }); %>
+                        
+                            <p>Maximum Item Total: <%= maxItemTotal %></p>
+                            <p>Minimum Item Total: <%= minItemTotal %></p> 
+
+                        <% } else {%>
+                                <p>No results found.</p>
+                        <% } %>
+                        
+                </table>
+                </div>
+            </th>
             
         </div>
 

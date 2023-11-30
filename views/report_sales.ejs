@@ -10,18 +10,51 @@
     </head>
     <body>
         <div class="report-menu-sales-screen">
-            <h1>Sales Report</h1>
-            
-            <p>Order Name:
-                <% if (result && result.length > 0) { %>
-                    <% result.forEach(row => { %>
-                        <p>Item Name: <%= row.order_item %>, Item Price: <%=row.item_total%></p>
-                    <% }); %>
-                <% } else { %>
-                    <p>No results found.</p>
-                <% } %>
-            </p>
-            
+            <th>
+                <div class="container">
+                    <h2>Sales Report</h2>
+                    <p>The total income of each item within the given timeframe of</p>
+                    <table class="table table-bordered border border-5"> 
+                        <tr class="border border-5">
+                            <th class="border border-5 bg bg-info-subtle">Item Sold</th>
+                            <th class="border border-5 bg bg-info-subtle">Total Income</th>
+                        </tr>
+                        <% if (result && result.length > 0) { %>
+                            <% result.forEach(row => { %>
+                                <tr class="border border-5">
+                                    <th class="border border-5"><%= row.order_item %></th>
+                                    <th class="border border-5"><%=row.item_total%></th>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <p>No results found.</p>
+                        <% } %>
+
+                       
+                        <%if (result && result.length > 0) { %>
+                            <%let maxItemTotal = Number.MIN_VALUE; %>
+                            <% let minItemTotal = Number.MAX_VALUE; %>
+                        
+
+                            <% result.forEach(row => { %>
+                                <% maxItemTotal = Math.max(maxItemTotal, row.item_total); %>
+                            <% }); %>
+
+                            <% result.forEach(row => { %>
+                                <% minItemTotal = Math.min(minItemTotal, row.item_total); %>
+                            <% }); %>
+                        
+                            <p>Maximum Item Total: <%= maxItemTotal %></p>
+                            <p>Minimum Item Total: <%= minItemTotal %></p> 
+
+                        <% } else {%>
+                                <p>No results found.</p>
+                        <% } %>
+                        
+
+                </table>
+                </div>
+            </th>
         </div>
 
     </body>

@@ -36,12 +36,12 @@ process.on('SIGINT', function() {
 app.use('/', router);
 app.use(express.urlencoded({ extended: true}));
 
-router.get('/report_excess.ejs', (req, res) => {
-    res.render('report_excess', {result: null});
+router.get('/main_reports.ejs', (req, res) => {
+    res.render('main_reports', {result: null});
 });
 
 	 	 	
-router.post('/report_excess', async (req, res) => {
+router.post('/', async (req, res) => {
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
     

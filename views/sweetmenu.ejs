@@ -15,39 +15,39 @@
         <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
     </head>
 
-    <div id="bordernav"> <h3 style="margin-top: 1px; margin-left: 50px; color: white;"> Menu  </h3>
+    <div id="bordernav"> <h3 style="margin-top: -15px; margin-left: 80px; color: white;"> Menu </h3>
     </div> 
     
     <body>
-        <div id="google_translate_element"></div>
-
-        <script type="text/javascript">
-        function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-        }
-        </script>
-
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        
         <div class="home-screen">
-            <button type="button" onclick="refresh()" style="float:inherit;">Refresh</button>
-            <br>
+            <!-- <button type="button" onclick="refresh()" style="float:right;">Refresh</button>
+            <br> -->
             <center>
             <!-- experimenting with navigation bar -->
             <center>
-            <div id="nav2">
-                <li style="float:left"><a href="login_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Login</h3></a></li>
-                <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a></li>
-                <li><a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a></li>
-                <li><a class="active" href="/menu.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Menu</h3></a></li>
-                <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
-                <a href="/"><h1 style="margin-left: 350px;"> SWEET PARIS </h1></a>
-                <a href="/"><h2 style="margin-left: 350px;"> ---- creperie & cafe ---- </h2></a>
-            </div>
-            </center>
+                <div id="nav2">
+                    <li style="float:left"><a href="api/auth/google/redirect"><h3 style="font-size: 20px; margin-top: 10px;">Login </h3></a></li>
+                    <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a></li>
+                    <li><a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a></li>
+                    <li><a href="/menu.ejs" class="active"><h3 style="font-size: 20px; margin-top: 10px;">Menu</h3></a></li>
+                    <li><button onclick="toggleZoom()">Zoom</button></li>
+                    <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
+                    <h2 style="margin-left: 40px;margin-top: 45px;font-size: 18px; left: 0px; color: black;float: left;"> Current User: <%= currentUser %> </h2>
+    
+                    <a href="/"><h1 style="margin-left: 400px;"> SWEET PARIS </h1></a>
+                    <a href="/"><h2 style="margin-left: 350px;"> ---- creperie & cafe ---- </h2></a>
+                </div>
+                </center>
 
             <br><br><br>
-
+            <div id="google_translate_element">
+                <script  style="float: left;" type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                }
+                </script>
+                <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            </div>
             <nav>
                 <ul>
                     <div id = "sidebar">
@@ -63,66 +63,16 @@
             <div id="border">
                 <h4> SWEET CREPES </h4>
                 <div class="row">
+                    <% for (var i in sweet) {%>
                     <div class="column">
                         <center>
-                        <h5> <center> Nutella </center> </h5>
-                        <h6> <center> Nutella® with optional strawberries and/or bananas </center></h6>
+                        <h5> <center> <%=sweet[i].food_name%> </center> </h5>
+                        <h6> <center> <%=sweet[i].description%> </center> </h6>
+                        <br>
+                        <h6 style="color: rgb(204, 255, 251);"> <center>$<%=sweet[i].price_food%> </center> </h5>
                         </center>
                     </div>
-                    <div class="column">
-                        <center>
-                        <h5> <center> Bonne Maman </center> </h5>
-                        <h6> <center> spread of cherry, strawberry, redcurrant & raspberry preserves, with sweet cream </center></h6>
-                        </center>
-                    </div>
-                    <div class="column">
-                        <center>
-                        <h5> <center> Dulce de Leche </center> </h5>
-                        <h6> <center> dulce de leche sauce with optional strawberries and/or bananas </center></h6>
-                        </center>
-                    </div>
-                </div>
-            
-                <div class="row">
-                    <div class="column"> 
-                        <center>
-                        <h5> <center> Cookie Butter </center> </h5>
-                        <h6> <center> cookie butter, sweet cream cheese, strawberries, coulis, & white chocolate chip morsels </center></h6>
-                        </center>
-                    </div>
-                    <div class="column">
-                        <center>
-                        <h5> <center> Lemon & Sugar </center> </h5>
-                        <h6> <center> fresh lemon, whipped butter, & vanilla bean sugar </center></h6>
-                        </center>
-                    </div>
-                    <div class="column"> 
-                        <center>
-                        <h5> <center> Cinnamon </center> </h5>
-                        <h6> <center> cinnamon, nutmeg, winter spices & gingerbread cookie crumbles topped with cream </center></h6>
-                        </center>
-                    </div>
-                </div>
-            
-                <div class="row">
-                    <div class="column"> 
-                        <center>
-                        <h5> <center> The 90103 </center> </h5>
-                        <h6> <center> the group favorite: dark, milk, and white chocolate mousse topped with caramel & chocolate chips </center></h6>
-                        </center>
-                    </div>
-                    <div class="column">
-                        <center>
-                        <h5> <center> The Honey </center> </h5>
-                        <h6> <center> local honeycomb, whipped butter, & caramel sauce drizzled with fresh honey </center></h6>
-                        </center>
-                    </div>
-                    <div class="column"> 
-                        <center>
-                        <h5> <center> Smores </center> </h5>
-                        <h6> <center> milk chocolate, toasted marshmallow fluff, graham cracker crumble & chocolate drizzle </center></h6>
-                        </center>
-                    </div>
+                    <% } %>
                 </div>
             </div>
         
