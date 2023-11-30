@@ -47,11 +47,13 @@
                         <table class="table table-bordered border border-5"> 
                             <tr class="border border-5">
                                 <th class="border border-5 bg bg-info-subtle">Item</th>
+                                <th class="border border-5 bg bg-info-subtle">Type</th>
                                 <th class="border border-5 bg bg-info-subtle">Price</th>
                             </tr>
                             <% for (var i in menuItems) {%>
                                 <tr class="border border-5">
                                     <th class="border border-5"><%=menuItems[i].food_name%></th>
+                                    <th class="border border-5"><%=menuItems[i].menu_type%></th>
                                     <th class="border border-5"><%=menuItems[i].price_food%></th>
                                 </tr>
                             <% } %> 
