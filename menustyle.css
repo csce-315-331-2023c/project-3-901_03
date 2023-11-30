@@ -29,9 +29,11 @@ h3 {
 
 h4 {
     font-family: "Bacasime Antique", sans-serif;
-    font-size: 35px;
-    margin-top: -15px;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: -3px;
     margin-left: 15px;
+    margin-bottom: 45px;
 }
 
 h5 {
@@ -62,7 +64,8 @@ a {
     margin-left: 300px;
     margin-top: -50px;
     border-color: black;
-    border-width: 15px;
+    border-width: 2px;
+    border-style: solid;
 }
 
 .column {
