@@ -1,4 +1,5 @@
 const express = require('express');
+const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
 var async = require('async');
@@ -11,8 +12,22 @@ const { query } = require('express');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
-const pool = require('./connection.js')
-pool.connect();
+// Create pool
+const pool = new Pool({
+  user: process.env.PSQL_USER,
+  host: process.env.PSQL_HOST,
+  database: process.env.PSQL_DATABASE,
+  password: process.env.PSQL_PASSWORD,
+  port: process.env.PSQL_PORT,
+  ssl: {rejectUnauthorized: false}
+});
+
+// Add process hook to shutdown pool
+process.on('SIGINT', function() {
+  pool.end();
+  console.log('Application successfully shutdown');
+  process.exit(0);
+});
 
 // router.get('/menu_add.ejs', (req, res) => {
 //     ingredients = []
@@ -32,7 +47,7 @@ pool.connect();
 router.post('/', async(req, res) => {
   var cbox = req.body['ingredList']
   await pool
-      .query("INSERT INTO food_item (price_food, food_name, menu_type, ingredients, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '{" + req.body['ingredList'] + "}', '" + req.body.MenuTime + "', '" + req.body.ItemDesc + "');");
+      .query("INSERT INTO food_item (price_food, food_name, menu_type, ingredients, menu_time, description) VALUES (" + req.body.ItemPrice + ", '" + req.body.ItemName + "', '" + req.body.MenuType + "', '{" + req.body['ingredList'] + "}', '" + req.body.MenuTime + "', '" + req.body.description + "');");
   try {
     // Assuming you have a table named 'items' with columns 'name' and 'description'
     const queryArray1 = 'SELECT * FROM food_item ORDER BY food_name ASC;';
