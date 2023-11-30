@@ -61,6 +61,8 @@ a {
     width: 1000px;
     margin-left: 300px;
     margin-top: -50px;
+    border-color: black;
+    border-width: 15px;
 }
 
 .column {
