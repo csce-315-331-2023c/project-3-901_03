@@ -31,7 +31,8 @@
 
         <a href="manager_screen.ejs" class="btn btn-lg">Back</a>
 
-       <div class ="inventory-container mx-5">
+        <br></br>
+       <div class ="inventory-container mx-5" style="float: left">
             <table class="table">
                 <tr>
                     <th>
@@ -75,8 +76,7 @@
                             </form>
                         </div>
                         </div>
-                    </th>
-                    <th>
+                    
                         <div class="inventory-management" style="float: right" >
 
                         <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
@@ -92,12 +92,12 @@
                             </form>
                         </div>
                         </div>
-                    </th>
-                    <th>
+                        
+
                         <div class="inventory-management" style="float: right" >
 
                         <div class="report-together-screen border border-5 d-block p-5 bg-info-subtle">
-                            <h2>Frequently Ordered Together Items Report</h2><br>
+                            <h2>Items Frequently Ordered Together</h2><br>
                             <form method="post" action="/manager_screen/report_together">   
                                 <label for="startDate">Enter the start date range:</label><br>
                                 <input type="date" id="startDate" name="startDate"><br>
@@ -105,7 +105,40 @@
                                 <label for="endDate">Enter the end date range:</label><br>
                                 <input type="date" id="endDate" name="endDate"><br><br>
 
-                                <button type="submit">Ordered Together</button>
+                                <button type="submit">Ordered Together Report</button>
+                            </form>
+                        </div>
+                        </div>
+
+                        <div class="inventory-management" style="float: right" >
+                        
+                        <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
+                            <h2>Product Sales Report</h2><br>
+                            <form method="post" action="/manager_screen/report_product_sales">   
+                                <label for="startDate">Enter the start date range:</label><br>
+                                <input type="date" id="startDate" name="startDate"><br>
+                    
+                                <label for="endDate">Enter the end date range:</label><br>
+                                <input type="date" id="endDate" name="endDate"><br><br>
+
+                                <button type="submit">Product Sales Report</button>
+                            </form>
+                        </div>
+                        </div>
+
+                        <div class="inventory-management" style="float: right" >
+                        
+                        <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
+                            <h2>Excess Report</h2><br>
+                            <p>Under Construction!</p>
+                            <form method="post" action="/manager_screen/report_excess">   
+                                <label for="startDate">Enter the start date range:</label><br>
+                                <input type="date" id="startDate" name="startDate"><br>
+                    
+                                <label for="endDate">Enter the end date range:</label><br>
+                                <input type="date" id="endDate" name="endDate"><br><br>
+
+                                <button type="submit">Excess Product Report</button>
                             </form>
                         </div>
                         </div>

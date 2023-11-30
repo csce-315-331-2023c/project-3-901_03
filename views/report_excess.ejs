@@ -11,17 +11,18 @@
     <body>
         <div class="report-menu-excess-screen">
             <h1>Report Excess</h1>
-            <form method="post" action="/manager_screen/report_excess/report_excess">
-                <label for="startDate">Enter the start date range:</label><br>
-                <input type="date" id="startDate" name="startDate"><br>
-    
-                <label for="endDate">Enter the end date range:</label><br>
-                <input type="date" id="endDate" name="endDate"><br><br>
-    
-                <input type="submit" value="Submit">
-            </form>
 
-            <p>Order Name:</p>        
+            <p>Order Name:</p> 
+             <% if (text && text.length > 0) { %>
+                <ul>
+                    <% text.forEach(item => { %>
+                        <li><%= text %></li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p>No results found.</p>
+            <% } %>
+			       
 
             
         </div>
