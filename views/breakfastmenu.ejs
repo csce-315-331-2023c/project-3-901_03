@@ -15,23 +15,13 @@
         <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
     </head>
 
-    <div id="bordernav"> <h3 style="margin-top: 1px; margin-left: 50px; color: white;"> Menu  </h3>
+    <div id="bordernav"> <h3 style="margin-top: -15px; margin-left: 80px; color: white;"> Menu </h3>
     </div> 
     
     <body>
-        <div id="google_translate_element"></div>
-
-        <script type="text/javascript">
-        function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-        }
-        </script>
-
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        
         <div class="home-screen">
-            <button type="button" onclick="refresh()" style="float:inherit;">Refresh</button>
-            <br>
+            <!-- <button type="button" onclick="refresh()" style="float:right;">Refresh</button> -->
+            <!-- <br> -->
             <center>
             <!-- experimenting with navigation bar -->
             <center>
@@ -50,7 +40,14 @@
                 </center>
 
             <br><br><br>
-
+            <div id="google_translate_element">
+                <script  style="float: left;" type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                }
+                </script>
+                <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            </div>
             <nav>
                 <ul>
                     <div id = "sidebar">
@@ -66,45 +63,16 @@
             <div id="border">
                 <h4> BREAKFAST CREPES </h4>
                 <div class="row">
+                    <% for (var i in breakfast) {%>
                     <div class="column">
                         <center>
-                        <h5> <center> Alisons Parfait </center> </h5>
-                        <h6> <center> vanilla low-fat yogurt, bananas, strawberries, granola, toasted almonds, & a drizzle of honey </center></h6>
+                        <h5> <center> <%=breakfast[i].food_name%> </center> </h5>
+                        <h6> <center> <%=breakfast[i].description%> </center> </h6>
+                        <br>
+                        <h6 style="color: rgb(204, 255, 251);"> <center>$<%=breakfast[i].price_food%> </center> </h5>
                         </center>
                     </div>
-                    <div class="column">
-                        <center>
-                        <h5> <center> Blueberry </center> </h5>
-                        <h6> <center> berry compote, fresh cream, & hand picked blueberries </center></h6>
-                        </center>
-                    </div>
-                    <div class="column">
-                        <center>
-                        <h5> <center> Croque Madame </center> </h5>
-                        <h6> <center> scrambled eggs, gruyère, smoked ham, & béchamel sauce </center></h6>
-                        </center>
-                    </div>
-                </div>
-            
-                <div class="row">
-                    <div class="column"> 
-                        <center>
-                        <h5> <center> Le Mexicain </center> </h5>
-                        <h6> <center> scrambled eggs, queso fresco, refried beans, cumin, and cinnamon spiced carnitas, topped with chipotle sauce, crema, avocado, & cilantro </center></h6>
-                        </center>
-                    </div>
-                    <div class="column">
-                        <center>
-                        <h5> <center> The Aggie </center> </h5>
-                        <h6> <center> scrambled eggs, mozzarella, bacon, sausage, potatoes, & fresh jalapenos </center></h6>
-                        </center>
-                    </div>
-                    <div class="column"> 
-                        <center>
-                        <h5> <center> Gingerbread </center> </h5>
-                        <h6> <center> cinnamon, nutmeg, winter spices & gingerbread cookie crumbles topped with cream </center></h6>
-                        </center>
-                    </div>
+                    <% } %>
                 </div>
             </div>
         

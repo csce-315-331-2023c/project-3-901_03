@@ -1,6 +1,12 @@
 body {
     background-color: rgb(180, 235, 240);
-
+    height: 20px;
+    background-image: url("menubg.jpg");
+    /* background-size: 1350px; */
+    background-size: 1440px 830px;
+    background-position:bottom;
+    background-position-y: 50px;
+    background-repeat:repeat-y;
 }
 
 h1 {
@@ -39,7 +45,7 @@ h6 {
     font-family: "Fuzzy Bubbles", sans-serif;
     font-size: 20px;
     margin-top: -60px;
-    width: 400px;
+    width: 850px;
 }
 
 a {
@@ -54,11 +60,12 @@ a {
     border-width: 15px;
     width: 1000px;
     margin-left: 300px;
+    margin-top: -50px;
 }
 
 .column {
-    float: inline-start;
-    width: 33.33%;
+    float: center;
+    width: 100;
 }
 
 .row:after{
@@ -88,6 +95,7 @@ a {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    margin-top: -10px;
     overflow: hidden;
     background-color: rgb(117, 209, 209);
     margin-left: -10px;
@@ -95,6 +103,9 @@ a {
     /* border-radius: 50px; */
     width: 1500;
     height: 120px;
+    border-style: double;
+    border-color: rgb(31, 31, 31);
+    border-width: 12px;
 }
   
 li {
@@ -139,20 +150,20 @@ nav {
     position: fixed;
     font-style: bold;
     color: black;
-    left: 20px;
+    left: 28px;
     font-style: 50px;
     text-align: center;
     border-style: groove;
     border-color: white;
-    width: 200px;
-    font-size: 20px;
+    width: 240px;
+    font-size: 30px;
     font-family: "Sofia";
     border-radius: 15px;
 }
 
 #seasonal {
     font-style: bold;
-    top: 320px;
+    top: 305px;
     background-color: rgb(180, 235, 240);
     opacity: 85%;
     border-style: ridge;
@@ -163,7 +174,7 @@ nav {
 
 #breakfast {
     font-style: bold;
-    top: 380px;
+    top: 375px;
     background-color: rgb(144, 227, 234);
     opacity: 85%;
     border-style: ridge;
@@ -174,7 +185,7 @@ nav {
 
 #sweet {
     font-style: bold;
-    top: 440px;
+    top: 445px;
     background-color: rgb(106, 221, 232);
     opacity: 85%;
     border-style: ridge;
@@ -184,7 +195,7 @@ nav {
 
 #savory {
     font-style: bold;
-    top: 500px;
+    top: 515px;
     background-color: rgb(55, 216, 230);
     opacity: 85%;
     border-style: ridge;
@@ -193,7 +204,7 @@ nav {
 }
 
 #drinks {
-    top: 560px;
+    top: 585px;
     background-color: rgb(0, 210, 230);
     opacity: 85%;
     border-style: ridge;
@@ -204,10 +215,10 @@ nav {
 #bordernav {
     position: fixed;
     float: left;
-    margin-top: 200px;
+    margin-top: 235px;
     margin-bottom: 0px;
     height: 400px;
-    width: 230px;
+    width: 270px;
     border-radius: 0px 45px 45px 0px;
     background-color: rgb(51, 136, 136);
     border-style: groove;
@@ -231,13 +242,28 @@ nav {
     position: fixed;
     font-style: bold;
     color: black;
-    left: 20px;
+    left: 28px;
     font-style: 50px;
     text-align: center;
     border-style: outset;
     border-color: gray;
-    width: 200px;
-    font-size: 20px;
+    width: 240px;
+    font-size: 30px;
+    font-family: "Sofia";
+    border-radius: 15px;
+}
+
+#sidebar a:active {
+    position: fixed;
+    font-style: bold;
+    color: white;
+    left: 28px;
+    font-style: 50px;
+    text-align: center;
+    border-style: inset;
+    border-color: gray;
+    width: 240px;
+    font-size: 30px;
     font-family: "Sofia";
     border-radius: 15px;
 }
@@ -245,4 +271,12 @@ nav {
 .menuactive { 
    font-style: italic;
    border-radius: 50px;
+   border-style: inset;
+   border-color: gray;
+}
+
+#google_translate_element {
+    float: left;
+    margin-top: -190px;
+    margin-left: 0px;
 }

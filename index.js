@@ -128,7 +128,7 @@ index.get('/breakfastmenu.ejs', (req, res) => {
             }
             const data = {breakfast: breakfast};
             //console.log(inventory);
-            res.render('breakfast.ejs', {data, currentUser: currentUser});
+            res.render('breakfastmenu.ejs', {data, currentUser: currentUser});
     });
 });
 
@@ -184,7 +184,7 @@ index.get('/drinksmenu.ejs', (req, res) => {
 
     drinks = []
     pool
-        .query("SELECT * FROM food_item WHERE menu_type = 'Drinks';")
+        .query("SELECT * FROM food_item WHERE menu_type = 'Drink';")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
                 drinks.push(query_res.rows[i]);
