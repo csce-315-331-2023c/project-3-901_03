@@ -3,8 +3,9 @@ body {
     padding: 0px 0px 0px 0px;
     background-image: url('home.jpg');
     background-repeat: no-repeat;
-    background-position-y: 170px;
-    background-size: 1300px 1200px;
+    background-position-y: -70px;
+    /* background-size: 1500px 1140px;
+    height: 1140px; */
 }
 
 h1 {
@@ -90,7 +91,7 @@ a {
     color: white;
 }
 
-ul {
+#ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -98,6 +99,7 @@ ul {
     background-color: rgb(117, 209, 209);
     margin-left: -10px;
     margin-right: -10px;
+    margin-bottom: 0px;
     /* border-radius: 50px; */
     width: 1500;
     height: 120px;
@@ -221,4 +223,14 @@ nav {
     border-style: ridge;
     width: 510px;
     left: 20px;
+}
+
+#welcome {
+    float: left;
+
+}   
+
+#welcome::after {
+    transition: 2s;
+    float: right;
 }
