@@ -1,6 +1,10 @@
 body {
     background-color: rgb(180, 235, 240);
     padding: 0px 0px 0px 0px;
+    background-image: url('home.jpg');
+    background-repeat: no-repeat;
+    background-position-y: 170px;
+    background-size: 1300px 1200px;
 }
 
 h1 {
@@ -97,6 +101,9 @@ ul {
     /* border-radius: 50px; */
     width: 1500;
     height: 120px;
+    border-style: double;
+    border-color: rgb(31, 31, 31);
+    border-width: 12px;
 }
   
 li {
