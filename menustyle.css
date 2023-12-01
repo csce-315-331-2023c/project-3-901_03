@@ -47,7 +47,7 @@ h6 {
     font-family: "Fuzzy Bubbles", sans-serif;
     font-size: 20px;
     margin-top: -60px;
-    width: 850px;
+    width: 750px;
 }
 
 a {
@@ -63,14 +63,25 @@ a {
     width: 1000px;
     margin-left: 300px;
     margin-top: -50px;
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
+    /* border-color: black; */
+    /* border-width: 2px;
+    border-style: solid; */
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .column {
-    float: center;
-    width: 100;
+    /* float: center; */
+    width: 50;
+    border-color: black;
+    border-style: solid;
+    border-style: 5px;
+    border-radius: 10%;
+    padding-top: 45px;
+    /* padding-right: 70px; */
+    /* margin-top: 20px; */
+    margin-bottom: 50px;
+    width: 750px;
 }
 
 .row:after{
@@ -283,5 +294,14 @@ nav {
 #google_translate_element {
     float: left;
     margin-top: -190px;
+    margin-left: 0px;
+}
+
+#foodimg {
+    border-radius: 10%;
+    border-color: black;
+    border-style: dotted;
+    border-width: 10px;
+    width: 250px;
     margin-left: 0px;
 }

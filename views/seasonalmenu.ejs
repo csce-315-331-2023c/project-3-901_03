@@ -66,11 +66,15 @@
                     <% for (var i in seasonal) {%>
                     <div class="column">
                         <center>
-                        <h5> <center> <%=seasonal[i].food_name%> </center> </h5>
-                        <h6> <center> <%=seasonal[i].description%> </center> </h6>
-                        <br>
-                        <h6 style="color: rgb(204, 255, 251);"> <center>$<%=seasonal[i].price_food%> </center> </h5>
-                        </center>
+                            <img id="foodimg" src="<%=seasonal[i].food_name%>.png">
+                            <br><br><br>
+                            <h5> <center> <%=seasonal[i].food_name%> </center> </h5>
+                            <center>
+                            <h6> <center> <%=seasonal[i].description%> </center> </h6>
+                            <br>
+                            <h6 style="color: rgb(204, 255, 251);"> <center>$<%=seasonal[i].price_food%> </center> </h5>
+                            </center>
+                            </center>
                     </div>
                     <% } %>
                 </div>

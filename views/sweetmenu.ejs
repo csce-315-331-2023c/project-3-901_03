@@ -64,14 +64,16 @@
                 <h4> SWEET CREPES </h4>
                 <div class="row">
                     <% for (var i in sweet) {%>
-                    <div class="column">
                         <center>
-                        <h5> <center> <%=sweet[i].food_name%> </center> </h5>
-                        <h6> <center> <%=sweet[i].description%> </center> </h6>
-                        <br>
-                        <h6 style="color: rgb(204, 255, 251);"> <center>$<%=sweet[i].price_food%> </center> </h5>
-                        </center>
-                    </div>
+                            <img id="foodimg" src="<%=sweet[i].food_name%>.png">
+                            <br><br><br>
+                            <h5> <center> <%=sweet[i].food_name%> </center> </h5>
+                            <center>
+                            <h6> <center> <%=sweet[i].description%> </center> </h6>
+                            <br>
+                            <h6 style="color: rgb(204, 255, 251);"> <center>$<%=sweet[i].price_food%> </center> </h5>
+                            </center>
+                            </center>
                     <% } %>
                 </div>
             </div>
