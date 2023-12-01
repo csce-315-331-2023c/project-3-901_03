@@ -17,20 +17,20 @@
     </head>
     
     <body>
-        <div id="google_translate_element"></div>
+        <!-- <div id="google_translate_element"></div>
         <script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
         </script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
         <div class="home-screen">
 
             <!-- <button type="button" onclick="refresh()" style="float: left;">Refresh</button> -->
             
             <!-- experimenting with navigation bar -->
             <center>
-            <ul style="padding: 0px 0px 0px 0px;margin-top: 0px;">
+            <ul style="padding: 0px 0px 0px 0px;margin-top: -8px;margin-bottom: 0px;">
                 <li style="float:left"><a href="api/auth/google/redirect"><h3 style="font-size: 20px; margin-top: 10px;">Login </h3></a></li>
                 <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a></li>
                 <li><a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a></li>
@@ -41,23 +41,28 @@
 
                 <h1 style="margin-left: 350px;"> SWEET PARIS </h1>
                 <h2 style="margin-left: 300px;"> ---- creperie & cafe ---- </h2>
-
             </ul>
             </center>
-
-            <br>
-
-            <img src="home.jpg" alt="" id="homeimg">
-            <h3 style="margin-bottom:  0px;"> <center> Bonjour! </center> </h3>
+            
+            <div id="google_translate_element">
+                <script  style="float: left; top:300px" type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                }
+                </script>
+                <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            </div>
+            <!-- <img style="width: 4000px;" src="home.jpg" alt="" id="homeimg"> -->
+            <!-- <h3 style="margin-bottom:  0px;"> <center> Bonjour! </center> </h3>
             <div id="p">
                 <h2 style="font-size: 20px;margin-left: 10px;margin-right: 10px;margin-top: 0px;"> <center>Welcome to Sweet Paris Creperie & Cafe! </center> <h1 style="font-family: Bellota; font-size: 19px;margin-left: 10px;margin-right: 10px;margin-top: 0px;font-style: italic;"> Here at Sweet Paris we want to make sure you have the best experience with us possible. Feel free to browse around our site, place an order, or contact us below. For employees and members, please login above.</h1></h2>
             </div>
-            <!-- <img style="max-width: 100%;height: auto;" src="crepes.png" alt="" id="homeimg"> -->
-            <br> <br>
+            <img style="max-width: 100%;height: auto;" src="crepes.png" alt="" id="homeimg"> -->
+            <!-- <br> <br>
             <h3 style="margin-bottom: 0px;"> <center> Contact Us </center> </h3>
             <div id="p">
                 <h2 style="font-size: 50px;margin-left: 10px;margin-right: 10px;margin-top: 0px;"> <center> Please Don't! </center></h2>
-            </div>
+            </div> --> 
         </div>
         <script>
             function toggleZoom() {
