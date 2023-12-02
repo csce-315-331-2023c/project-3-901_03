@@ -225,10 +225,10 @@ nav {
     left: 20px;
 }
 
-#welcome {
-    float: left;
+/* #welcome {
 
-}   
+
+}    */
 
 #welcome::after {
     transition: 2s;
