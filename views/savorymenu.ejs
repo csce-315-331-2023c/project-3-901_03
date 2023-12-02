@@ -66,7 +66,7 @@
                     <% for (var i in savory) {%>
                     <div class="column">
                         <center>
-                        <img id="foodimg" src="<%=savory[i].food_name%>.png">
+                        <img id="foodimg" src="<%=savory[i].food_name%>.png" onerror="this.onerror=null; this.src='defaultimg.png';">
                         <br><br><br>
                         <h5> <center> <%=savory[i].food_name%> </center> </h5>
                         <center>
