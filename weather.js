@@ -1,3 +1,17 @@
+const express = require('express');
+const dotenv = require('dotenv').config();
+var bodyParser = require("body-parser");
+var async = require('async');
+
+// Create express app
+const router = express.Router(); //chnage to router
+const port = 3000;
+const path = require('path');
+//index.set('views', path.join(__dirname, 'views'));
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
+
+
 // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/College%20Station%2C%20TX?unitGroup=us&key=VJJGNCLMUX552BNFYVJ9RYCNS&contentType=json
 
 // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?aggregateHours=24&contentType=csv&unitGroup=us&key=VJJGNCLMUX552BNFYVJ9RYCNS&locations=New York City,NY 
@@ -46,3 +60,5 @@ function processWeatherData(response) {
       console.log(days[i].datetime+": tempmax="+days[i].tempmax+", tempmin="+days[i].tempmin + ", icon=" + days[i].icon);
     }
   }
+
+  module.exports = router;

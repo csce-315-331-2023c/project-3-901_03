@@ -38,7 +38,9 @@ router.get('/', (req, res) => {
         }
         const data = {menuitems: menuitems};
             //console.log(inventory);
-        res.render('cashier2.ejs', data);
+        let currentOrder = [];
+        res.render('cashier2.ejs', { data, currentOrder: currentOrder });
+        //res.render('cashier2.ejs', data);
     });
 });
 
@@ -77,7 +79,9 @@ router.post('/submit', (req, res) => {
             .query("UPDATE inventory SET quantity = quantity - 1 WHERE ingred_name IN (SELECT unnest(ingredients) AS item FROM food_item WHERE food_name = '" +  cart[i].name + "');");
         }    
     }
-        res.render('cashier2.ejs');
+    
+    let currentOrder = [];
+    res.render('cashier2.ejs', { currentOrder: currentOrder });
 });
 
 module.exports = router;
