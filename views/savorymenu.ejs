@@ -66,13 +66,13 @@
                     <% for (var i in savory) {%>
                     <div class="column">
                         <center>
-                        <img id="foodimg" src="<%=savory[i].food_name%>.png">
+                        <img id="foodimg" src="<%=savory[i].food_name%>.png" onerror="this.onerror=null; this.src='defaultimg.png';">
                         <br><br><br>
                         <h5> <center> <%=savory[i].food_name%> </center> </h5>
                         <center>
                         <h6> <center> <%=savory[i].description%> </center> </h6>
                         <br>
-                        <h6 style="color: rgb(204, 255, 251);"> <center>$<%=savory[i].price_food%> </center> </h5>
+                        <h6 style="font-size: 25px; color: rgb(204, 255, 251);"> <center>$<%=savory[i].price_food%> </center> </h5>
                         </center>
                         </center>
                     </div>
