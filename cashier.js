@@ -2,6 +2,8 @@ const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
+
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -27,19 +29,53 @@ process.on('SIGINT', function() {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
+const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
+router.get('/', async(req, res) => {
 
-router.get('/', (req, res) => {
-    menuitems = []
-    pool
-    .query('SELECT * FROM food_item;')
-    .then(query_res => {
-        for (let i = 0; i < query_res.rowCount; i++){
-            menuitems.push(query_res.rows[i]);
-        }
-        const data = {menuitems: menuitems};
-            //console.log(inventory);
-        res.render('cashier2.ejs', data);
-    });
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+
+    isAuthorized = false;
+    await pool
+        .query(userQuery)
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                console.log("Check currentUser=" + currentUser + " with users table.");     
+                console.log("query_res.rows[i].user_name=" + query_res.rows[i].user_name);
+                console.log("query_res.rows[i].cashier_perm=" + query_res.rows[i].cashier_perm);      
+                console.log("query_res.rows[i].manager_perm=" + query_res.rows[i].manager_perm);     
+                console.log("query_res.rows[i].admin_perm=" + query_res.rows[i].admin_perm);     
+                if(query_res.rows[i].user_name === currentUser && (query_res.rows[i].manager_perm === "Yes" 
+                || query_res.rows[i].admin_perm === "Yes" || query_res.rows[i].cashier_perm == "Yes"))
+                {
+                    isAuthorized = true;
+                    console.log("isAuthorized = true=" +isAuthorized);                     
+                }
+            }
+        });      
+
+
+    console.log("isAuthorized=" + isAuthorized);       
+    if(!isAuthorized) {
+        res.render('unauthorized_manager.ejs', {currentUser: currentUser, currentScreen: "cashier"});
+    }
+    else {
+        menuitems = []
+        pool
+        .query('SELECT * FROM food_item;')
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                menuitems.push(query_res.rows[i]);
+            }
+            const data = {menuitems: menuitems};
+                //console.log(inventory);
+            res.render('cashier2.ejs', data);
+        });
+    }
 });
 
 function randCashierNum(){

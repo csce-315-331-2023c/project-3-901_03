@@ -20,21 +20,15 @@ passport.use(
       profile,
       done
     ) => {
-      console.log(accessToken);
-      console.log(profile);
       done(null, { googleProfile: profile});
     }
   )
 );
 
-passport.serializeUser(function(user, done) {
-  console.log("serializeUser: ");  
-  console.log(user);  
+passport.serializeUser(function(user, done) { 
   done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
-  console.log("deserializeUser: ");  
-  console.log(user);    
+passport.deserializeUser(function(user, done) {   
   done(null, user);
 });
