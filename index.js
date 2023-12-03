@@ -100,7 +100,7 @@ index.get('/seasonalmenu.ejs', (req, res) => {
 
     seasonal = []
     pool
-        .query("SELECT * FROM food_item WHERE menu_type = 'Seasonal Item';")
+        .query("SELECT * FROM food_item WHERE menu_type = 'Seasonal Item' ORDER BY food_name ASC;")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
                 seasonal.push(query_res.rows[i]);
@@ -121,7 +121,7 @@ index.get('/breakfastmenu.ejs', (req, res) => {
 
     breakfast = []
     pool
-        .query("SELECT * FROM food_item WHERE menu_type = 'Breakfast';")
+        .query("SELECT * FROM food_item WHERE menu_type = 'Breakfast' ORDER BY food_name ASC;;")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
                 breakfast.push(query_res.rows[i]);
@@ -142,7 +142,7 @@ index.get('/sweetmenu.ejs', (req, res) => {
 
     sweet = []
     pool
-        .query("SELECT * FROM food_item WHERE menu_type = 'Sweet Crepes';")
+        .query("SELECT * FROM food_item WHERE menu_type = 'Sweet Crepes' ORDER BY food_name ASC;;")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
                 sweet.push(query_res.rows[i]);
@@ -163,7 +163,7 @@ index.get('/savorymenu.ejs', (req, res) => {
 
     savory = []
     pool
-        .query("SELECT * FROM food_item WHERE menu_type = 'Savory Crepes';")
+        .query("SELECT * FROM food_item WHERE menu_type = 'Savory Crepes' ORDER BY food_name ASC;;")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
                 savory.push(query_res.rows[i]);
@@ -184,7 +184,7 @@ index.get('/drinksmenu.ejs', (req, res) => {
 
     drinks = []
     pool
-        .query("SELECT * FROM food_item WHERE menu_type = 'Drink';")
+        .query("SELECT * FROM food_item WHERE menu_type = 'Drink' ORDER BY food_name ASC;;")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
                 drinks.push(query_res.rows[i]);

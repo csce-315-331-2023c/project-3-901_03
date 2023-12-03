@@ -29,9 +29,11 @@ h3 {
 
 h4 {
     font-family: "Bacasime Antique", sans-serif;
-    font-size: 35px;
-    margin-top: -15px;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: -3px;
     margin-left: 15px;
+    margin-bottom: 45px;
 }
 
 h5 {
@@ -45,7 +47,7 @@ h6 {
     font-family: "Fuzzy Bubbles", sans-serif;
     font-size: 20px;
     margin-top: -60px;
-    width: 850px;
+    width: 650px;
 }
 
 a {
@@ -61,11 +63,25 @@ a {
     width: 1000px;
     margin-left: 300px;
     margin-top: -50px;
+    /* border-color: black; */
+    /* border-width: 2px;
+    border-style: solid; */
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .column {
-    float: center;
-    width: 100;
+    /* float: center; */
+    width: 50;
+    border-color: black;
+    border-style: solid;
+    border-style: 5px;
+    border-radius: 10%;
+    padding-top: 45px;
+    /* padding-right: 70px; */
+    /* margin-top: 20px; */
+    margin-bottom: 50px;
+    width: 750px;
 }
 
 .row:after{
@@ -220,7 +236,7 @@ nav {
     height: 400px;
     width: 270px;
     border-radius: 0px 45px 45px 0px;
-    background-color: rgb(51, 136, 136);
+    background-color: rgb(139, 219, 219);
     border-style: groove;
     border-color: rgb(81, 145, 145);
     border-width: 20px;
@@ -278,5 +294,14 @@ nav {
 #google_translate_element {
     float: left;
     margin-top: -190px;
+    margin-left: 0px;
+}
+
+#foodimg {
+    border-radius: 10%;
+    border-color: black;
+    border-style: dotted;
+    border-width: 10px;
+    width: 250px;
     margin-left: 0px;
 }

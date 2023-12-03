@@ -1,6 +1,11 @@
 body {
     background-color: rgb(180, 235, 240);
     padding: 0px 0px 0px 0px;
+    background-image: url('home.jpg');
+    background-repeat: no-repeat;
+    background-position-y: -70px;
+    /* background-size: 1500px 1140px;
+    height: 1140px; */
 }
 
 h1 {
@@ -86,20 +91,7 @@ a {
     color: white;
 }
 
-.light-blue-box {
-    width: 200px;
-    height: 200px;
-    background-color: lightblue;
-    border: 2px solid black;
-    border-radius: 10px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    float: right;
-}
-
-ul {
+#ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -107,9 +99,13 @@ ul {
     background-color: rgb(117, 209, 209);
     margin-left: -10px;
     margin-right: -10px;
+    margin-bottom: 0px;
     /* border-radius: 50px; */
     width: 1500;
     height: 120px;
+    border-style: double;
+    border-color: rgb(31, 31, 31);
+    border-width: 12px;
 }
   
 li {
@@ -227,4 +223,14 @@ nav {
     border-style: ridge;
     width: 510px;
     left: 20px;
+}
+
+/* #welcome {
+
+
+}    */
+
+#welcome::after {
+    transition: 2s;
+    float: right;
 }
