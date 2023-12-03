@@ -35,6 +35,8 @@ const ingredAddRouter = require('./ingred_add');
 router.use("/ingred_add", ingredAddRouter)
 const ingredDeleteRouter = require('./ingred_delete');
 router.use("/ingred_delete", ingredDeleteRouter)
+const ingredRestockRouter = require('./ingred_restock');
+router.use("/ingred_restock", ingredRestockRouter)
 const menuAddRouter = require('./menu_add');
 router.use("/menu_add", menuAddRouter)
 const menuDeleteRouter = require('./menu_delete');
