@@ -86,6 +86,19 @@ a {
     color: white;
 }
 
+.light-blue-box {
+    width: 200px;
+    height: 200px;
+    background-color: lightblue;
+    border: 2px solid black;
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: right;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
