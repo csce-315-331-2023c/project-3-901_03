@@ -107,6 +107,20 @@ a {
     border-color: rgb(31, 31, 31);
     border-width: 12px;
 }
+
+.light-blue-box {
+    width: 200px;
+    height: 200px;
+    background-color: lightblue;
+    border: 2px solid black;
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: right;
+}
+
   
 li {
     float: right;

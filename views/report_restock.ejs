@@ -5,15 +5,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Manager View</title>
+        <link rel="stylesheet" href="../landing.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bodoni Moda' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Beth Ellen' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bacasime Antique' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
     </head>
-    <body>
-        <div class="report-menu-restock-screen">
-            <th>
-                <div class="container">
-                    <h2>Total Usage</h2>
-                    <p>Displays the total amount of how many ingredients were used within the given timeframe</p>
+    <body style="background-color: rgb(194, 78, 78);">
+        <div class="report-menu-sales-screen">
+            <table style="background-color: rgb(197, 197, 197);" class="table">
+            <tr>
+                <th>
+                <div style="background-color: rgb(197, 197, 197);" class="container">
+                    <h1><center>Total Usage</center></h1>
+                    <h6>Displays the total amount of how many ingredients were used within the given timeframe</h6>
                     <table class="table table-bordered border border-5"> 
                         <tr class="border border-5">
                             <th class="border border-5 bg bg-info-subtle">Ingredient</th>
@@ -29,8 +38,12 @@
                         <% } else { %>
                             <p>No results found.</p>
                         <% } %>
+                    </table>
+                </div>
+                </th>
+                <th>
 
-
+                    <div style="background-color: grey;"class="modify-ingredient-add-screen border border-5 d-block p-5 bg-info-subtle">
                         <%if (result && result.length > 0) { %>
                             <%let maxItemTotal = Number.MIN_VALUE; %>
                             <% let minItemTotal = Number.MAX_VALUE; %>
@@ -44,17 +57,18 @@
                                 <% minItemTotal = Math.min(minItemTotal, row.total_usage); %>
                             <% }); %>
                         
-                            <p>Maximum Item Total: <%= maxItemTotal %></p>
-                            <p>Minimum Item Total: <%= minItemTotal %></p> 
+                            <p>Maximum Item Total Usage: <%= maxItemTotal %></p>
+                            <p>Minimum Item Total Usage: <%= minItemTotal %></p> 
 
                         <% } else {%>
                                 <p>No results found.</p>
                         <% } %>
-                        
-                </table>
+                        </div>
+                
                 </div>
             </th>
-            
+        </tr>
+    </table>
         </div>
 
     </body>
