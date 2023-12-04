@@ -27,25 +27,23 @@ process.on('SIGINT', function() {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
-
-router.post('/', async(req, res) => {
-    //console.log("Here in restock! Restocking " + req.body.IngredientName);
-    await pool.query("UPDATE inventory SET quantity = 100, day_bought = CURRENT_DATE, day_bad = CURRENT_DATE + INTERVAL '30 days' WHERE ingred_name = '"
-        + req.body.IngredientName + "';");
-    //console.log("Hereeeeeeeeeeee!");
-    inventory = []
-    await pool
-        .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){
-                inventory.push(query_res.rows[i]);
-            }
-            const data = {inventory: inventory};
-            //console.log(inventory);
-            res.render('modify_ingred.ejs',data);
-        });
+	 	 	 	
+router.post('/', (req, res) => {
+    pool
+        .query("INSERT INTO users VALUES ('" + req.body.UserName + "', '" + req.body.CashierPerm + "', '" + req.body.ManagerPerm + "', '" + req.body.AdminPerm + "');");
+        //console.log("Here in mod name!");
+        inventory = []
+            pool
+                .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
+                .then(query_res => {
+                    for (let i = 0; i < query_res.rowCount; i++){
+                        inventory.push(query_res.rows[i]);
+                    }
+                    const data = {inventory: inventory};
+                    //console.log(inventory);
+                    res.render('admin.ejs',data);
+                });
         //res.redirect('modify_ingred.ejs');
-  
 });
 
 module.exports = router;
