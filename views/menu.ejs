@@ -25,22 +25,23 @@
             <!-- experimenting with navigation bar -->
             <center>
             <div id="nav2">
-                <li style="float:left"><a href="api/auth/google/redirect"><h3 style="font-size: 20px; margin-top: 10px;">Login </h3></a></li>
-                <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a></li>
-                <li><a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a></li>
-                <li><a href="/menu.ejs" class="active"><h3 style="font-size: 20px; margin-top: 10px;">Menu</h3></a></li>
-                <li><button onclick="toggleZoom()">Zoom</button></li>
-                <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
-                <h2 style="margin-left: 40px;margin-top: 45px;font-size: 18px; left: 0px; color: black;float: left;"> Current User: <%= currentUser %> </h2>
-
+                <li style="float:left"><a href="api/auth/google/redirect"><h3 style="font-size: 30px; margin-top: 10px;">Login </h3></a></li>
+                <li style="float:left; margin-left: 20px;"><a href="/customerorder.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Order Online</h3></a></li>
+                <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Manager</h3></a></li>
+                <li><a href="cashier/"><h3 style="font-size: 30px; margin-top: 10px;">Cashier</h3></a></li>
+                <li><a href="/menu.ejs" class="active"><h3 style="font-size: 30px; margin-top: 10px;">Menu</h3></a></li>
+                <center>
                 <a href="/"><h1 style="margin-left: 400px;"> SWEET PARIS </h1></a>
                 <a href="/"><h2 style="margin-left: 350px;"> ---- creperie & cafe ---- </h2></a>
+            </center>
+                
             </div>
             </center>
+            <div id="currentuser" style="margin-left: -100px; padding-bottom: 10px;"><center><h2 style="margin-top: 0px;font-size: 20px; color: black;;">Current User: <%= currentUser %> </h2> </center></div>
 
             <br><br><br>
             <div id="google_translate_element">
-                <script  style="float: left;margin-top:-55px;" type="text/javascript">
+                <script  style="float: left;margin-top:0px;" type="text/javascript">
                 function googleTranslateElementInit() {
                     new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
                 }
@@ -59,7 +60,7 @@
                 </ul>
             </nav>
 
-            <div id="border" style="width: 900px;margin-top: 60px;opacity: 90%;">
+            <div id="border" style="width: 900px;margin-top: 30px;opacity: 90%;">
                 <h4> MENU </h4>
                 <div class="row">
                     <br><br>
@@ -72,7 +73,7 @@
                         <h6 style="font-size: 23px; font-style: italic; margin-left: -40px;"> <img style="float: initial; width: 30px; height: 35px;" src="eiffel.png" alt=""> Browse Menu Items </h6>
                         <h6 style="font-size: 23px; font-style: italic; margin-left: 0px;"> <img style="float: initial; width: 30px; height: 35px;" src="eiffel.png" alt=""> View Item Descriptions </h6>
                         <h6 style="font-size: 23px; font-style: italic; margin-left: -77px;"> <img style="float: initial; width: 30px; height: 35px;" src="eiffel.png" alt=""> View Item Prices </h6>
-                        <h6 style="font-size: 23px; font-style: italic; margin-left: -50px;"> <img style="float: initial; width: 30px; height: 35px;" src="eiffel.png" alt=""> Add Items To Cart </h6>
+                        <h6 style="font-size: 23px; font-style: italic; margin-left: -50px;"> <img style="float: initial; width: 30px; height: 35px;" src="eiffel.png" alt=""> View Item Images </h6>
                     </ul>
                 </div>
             </div>
