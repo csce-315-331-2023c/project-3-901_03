@@ -14,6 +14,8 @@
         <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
     </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/blowup/lib/blowup.js"></script>
 
     <div id="bordernav"> <h3 style="margin-top: -15px; margin-left: 80px; color: white;"> Menu </h3>
     </div> 
@@ -83,6 +85,13 @@
                     <% } %>
                 </div>
             </div>
+            <script>
+                $(document).ready(function () {
+                    $("img").blowup({
+                        "scale": 2
+                    });
+                })
+            </script>
         
             <script src="index.js"></script>
         </body>
