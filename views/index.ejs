@@ -27,12 +27,12 @@
                 </script>
                 <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
             </div>
-            <button type="button" onclick="toggleContrast()" style="float: left;">Refresh</button>
+            <button type="button" onclick="toggleContrast()" style="float: left;">Apply Contrast</button>
             <center>
             <div id="ul" style="padding: 0px 0px 0px 0px;margin-top: -50px;margin-bottom: -10px;">
                 <li style="float:left; margin-left: -10px;"><a href="api/auth/google/redirect"><h3 style="font-size: 30px; margin-top: 10px;">Login</h3></a></li>
                 <li style="float:left; margin-left: -1px;"><a href="/menu.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Menu</h3></a></li>
-                <li style="float:left; margin-left: -10px;"><a href="/customerorder.ejs"><h3 style="width: 10px; font-size: 30px; margin-top: 10px;">Order</h3></a></li>
+                <li style="float:left; margin-left: -10px;"><a href="customerorder/"><h3 style="width: 10px; font-size: 30px; margin-top: 10px;">Order</h3></a></li>
                 <li><a href="admin/admin.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Admin</h3></a></li>
                 <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Manager</h3></a></li>
                 <li><a href="cashier/"><h3 style="font-size: 30px; margin-top: 10px;">Cashier</h3></a></li>
@@ -75,7 +75,8 @@
             function toggleContrast() {
                 var element = document.body;
                 element.classList.toggle("contrast-mode");
-
+                var element = document.h3;
+                element.classList.toggle("contrast-mode");
             } 
         </script>
     </body>

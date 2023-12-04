@@ -12,16 +12,22 @@ body {
 }
 
 .contrast-mode {
-    background-color: rgb(180, 235, 240);
     padding: 0px 0px 0px 0px;
-    background-image: url('home.jpg');
-    background-repeat: no-repeat;
-    background-position-y: -70px;
+    background-image: none;
     filter:contrast(2);
+    filter:hue-rotate(90deg);
+    backdrop-filter: hue-rotate(90deg);
 }
 .contrast-mode li a{
     color: #000;
 
+}
+.contrast-mode h3{
+    color: #000;
+
+}
+#contrast-mode ul{
+    background-color: rgb(139,171,241);
 }
 
 h1 {

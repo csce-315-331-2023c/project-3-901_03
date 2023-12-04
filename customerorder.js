@@ -35,18 +35,21 @@ process.on('SIGINT', function() {
 
 const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 
-router.get('/customerorder', async(req, res) => {
-    menuitems = []
-    pool
-    .query('SELECT * FROM food_item;')
-    .then(query_res => {
-        for (let i = 0; i < query_res.rowCount; i++){
-            menuitems.push(query_res.rows[i]);
-        }
-        const data = {menuitems: menuitems};
-            //console.log(inventory);
-        res.render('customerorder.ejs', data);
-    });
+router.get('/', async(req, res) => {
+    // console.log('');
+    // pool
+    console.log("in ge7t");
+    const sqlQuery = "SELECT * FROM food_item";
+    const result = await pool.query(sqlQuery);
+    console.log("in get");
+
+    // .then(query_res => {
+    //     for (let i = 0; i < query_res.rowCount; i++){
+    //         menuitems.push(query_res.rows[i]);
+    //     }
+    //     // const data = {menuitems: menuitems};
+    //         //console.log(inventory);
+    res.render('customerorder', {result: result.rows});
 });
 
 function randCashierNum(){
