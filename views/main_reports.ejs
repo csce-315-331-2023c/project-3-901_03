@@ -57,12 +57,16 @@
                                     <th class="border border-5 bg bg-info-subtle">Time</th>
                                     <th class="border border-5 bg bg-info-subtle">Cashier ID</th>
                                 </tr>
+                                
                                 <% for (var i in result) {%>
                                     <tr class="border border-5">
                                         <th class="border border-5"><%=result[i].row_num%></th>
                                         <th class="border border-5"><%=result[i].order_items%></th>
-                                        <th class="border border-5"><%=result[i].order_price%></th>
-                                        <th class="border border-5"><%=result[i].order_date%></th>
+                                        <th class="border border-5"><p>$<%=result[i].total_order_price%></p></th>
+                                        <% const orderDate = result[i].order_date; %> 
+                                        <% const orderDateObj = new Date(orderDate); %>
+                                        <% const formatted = orderDateObj.toISOString().split('T')[0]; %>
+                                        <th class="border border-5"><%=formatted%></th>
                                         <th class="border border-5"><%=result[i].order_time%></th>
                                         <th class="border border-5"><%=result[i].cashier_id%></th>
                                     </tr>
@@ -90,15 +94,9 @@
                         <div class="inventory-management" style="float: right" >
 
                         <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
-                            <h2>Usage Report</h2><br>
+                            <h2>Restock Report</h2><br>
                             <form method="post" action="/manager_screen/report_restock">   
-                                <label for="startDate">Enter the start date range:</label><br>
-                                <input type="date" id="startDate" name="startDate"><br>
-                    
-                                <label for="endDate">Enter the end date range:</label><br>
-                                <input type="date" id="endDate" name="endDate"><br><br>
-
-                                <button type="submit">Usage Report</button>
+                                <button type="submit">Restock Report</button>
                             </form>
                         </div>
                         </div>

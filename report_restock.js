@@ -39,17 +39,10 @@ router.get('/main_reports.ejs', (req, res) => {
 
 	 	 	
 router.post('/', async (req, res) => {
-    const startDate = req.body.startDate;
-    const endDate = req.body.endDate;
-    
-    if (!startDate || !endDate) {
-        return res.status(400).send('Please provide both start and end dates.');
-    }
-
     try {
-        const sqlQuery = 'SELECT i.ingred_name, COUNT(*) AS total_usage FROM orders o JOIN food_item fi ON o.order_item = fi.food_name JOIN inventory i ON i.ingred_name = ANY(fi.ingredients) WHERE o.order_date BETWEEN $1 AND $2 GROUP BY i.ingred_name';
+        const sqlQuery = 'SELECT ingred_name, quantity FROM inventory WHERE quantity <= 30 ORDER BY quantity ASC';
         
-        const result = await pool.query(sqlQuery, [startDate, endDate]);
+        const result = await pool.query(sqlQuery);
 
         res.render('report_restock', {result: result.rows})
         console.log("Entry displayed successfully");

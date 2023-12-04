@@ -121,6 +121,16 @@ a {
     float: right;
 }
 
+
+.orange-border {
+    border: 2px solid orange;
+}
+
+.red-border {
+    border: 2px solid red;
+}
+
+
   
 li {
     float: right;

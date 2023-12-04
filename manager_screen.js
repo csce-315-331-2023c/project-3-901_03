@@ -110,7 +110,7 @@ router.get('/modify_menu.ejs', async(req, res) => {
 });
 
 router.get('/main_reports.ejs', async (req, res) => {
-        const sqlquery = "SELECT ROW_NUMBER() OVER (ORDER BY order_date DESC, order_time DESC) AS row_num, order_date, order_time, STRING_AGG(DISTINCT order_item, ', ' ORDER BY order_item) AS order_items, MAX(order_price) AS order_price, MAX(dine_in) AS dine_in, cashier_id FROM orders GROUP BY order_date, order_time, cashier_id ORDER BY order_date DESC, order_time DESC LIMIT 100"
+        const sqlquery = "SELECT ROW_NUMBER() OVER (ORDER BY order_date DESC, order_time DESC) AS row_num, order_date, order_time, STRING_AGG(DISTINCT order_item, ', ' ORDER BY order_item) AS order_items, SUM(order_price) AS total_order_price, MAX(dine_in) AS dine_in, cashier_id FROM orders GROUP BY order_date, order_time, cashier_id ORDER BY order_date DESC, order_time DESC LIMIT 100"
         const result = await pool.query(sqlquery);
 
         res.render('main_reports', {result: result.rows})

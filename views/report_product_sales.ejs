@@ -18,12 +18,49 @@
 
     <body style="background-color: rgb(197, 197, 197);">
         <div class="report-menu-sales-screen">
+            <a href="main_reports.ejs" class="btn btn-info">Back</a>
             <table style="background-color: rgb(197, 197, 197);" class="table">
             <tr>
                 <th>
                 <div style="background-color: rgb(197, 197, 197);" class="container">
-                    <h1><center>Product Report</center></h1>
-                    <h6>Displays the total amount of times an ingredient is used within the given timeframe</h6>
+                    <center><h1>Product Report</h1>
+                    <h6>Displays the total amount of times an ingredient is used within the given timeframe</h6></center>
+                    <div style="background-color: grey;"class="modify-ingredient-add-screen border border-5 d-block p-5 bg-info-subtle">
+                        <%if (result && result.length > 0) { %>
+                            <% let minimum_item = "" %>
+                            <% let maximum_item = "" %>
+                            <%let maxItemTotal = Number.MIN_VALUE; %>
+                            <% let minItemTotal = Number.MAX_VALUE; %>
+                        
+        
+                            <% result.forEach(row => { %>
+                                <% maxItemTotal = Math.max(maxItemTotal, row.total_usage); %>
+                                <% if (maxItemTotal == row.total_usage) { %>
+                                    <% maximum_item = row.ingred_name %>
+                                <% } %>
+                            <% }); %>
+        
+                            <% result.forEach(row => { %>
+                                <% minItemTotal = Math.min(minItemTotal, row.total_usage); %>
+                                <% if (minItemTotal == row.total_usage) { %>
+                                    <% minimum_item = row.ingred_name %>
+                                <% } %>
+                            <% }); %>
+                        
+                            
+                            <center>   
+                                <h6>Maximum Item "<%=maximum_item %>"</h6> 
+                                    <p>Total: $<%= maxItemTotal %></p>
+                                    <p></p>
+                                <h6>Minimum Item "<%=minimum_item %>"</h6> 
+                                    <p>Total: $<%= minItemTotal %></p>
+                            </center> 
+                            
+        
+                        <% } else {%>
+                                <p>No results found.</p>
+                        <% } %>
+                        </div>
                     <table class="table table-bordered border border-5"> 
                         <tr class="border border-5">
                             <th class="border border-5 bg bg-info-subtle">Ingredient</th>
@@ -43,30 +80,6 @@
                     </div>
                     </th>
                     <th>
-
-                        <div style="background-color: grey;"class="modify-ingredient-add-screen border border-5 d-block p-5 bg-info-subtle">
-                            <%if (result && result.length > 0) { %>
-                                <%let maxItemTotal = Number.MIN_VALUE; %>
-                                <% let minItemTotal = Number.MAX_VALUE; %>
-                            
-
-                                <% result.forEach(row => { %>
-                                    <% maxItemTotal = Math.max(maxItemTotal, row.total_usage); %>
-                                <% }); %>
-
-                                <% result.forEach(row => { %>
-                                    <% minItemTotal = Math.min(minItemTotal, row.total_usage); %>
-                                <% }); %>
-                            
-                                
-                                    <p>Maximum Total Usage: <%= maxItemTotal %></p>
-                                    <p>Minimum Total Usage: <%= minItemTotal %></p> 
-                                
-
-                            <% } else {%>
-                                    <p>No results found.</p>
-                            <% } %>
-                        </div>
                         
 
                     

@@ -17,12 +17,13 @@
     </head>
     <body style="background-color: rgb(197, 197, 197);">
         <div class="report-menu-sales-screen">
+            <a href="main_reports.ejs" class="btn btn-info">Back</a>
             <table style="background-color: rgb(197, 197, 197);" class="table">
             <tr>
                 <th>
                 <div style="background-color: rgb(197, 197, 197);" class="container">
-                    <h1><center>Frequently Ordered Together Report</center></h1>
-                    <h6>Displays items that are frequently ordered together</h6>
+                    <center><h1>Frequently Ordered Together Report</h1>
+                    <h6>Displays items that are frequently ordered together</h6></center>
                     <table class="table table-bordered border border-5"> 
                         <tr class="border border-5">
                             <th class="border border-5 bg bg-info-subtle">Item</th>
@@ -35,8 +36,11 @@
                                 <tr class="border border-5">
                                     <th class="border border-5"><%= row.item1 %></th>
                                     <th class="border border-5"><%=row.item2%></th>
-                                    <th class="border border-5"><%=row.order_date%></th>
-                                    <th class="border border-5"><%=row.order_order_time%></th>
+                                    <% const orderDate = row.order_date; %> 
+                                    <% const orderDateObj = new Date(orderDate); %>
+                                    <% const formatted = orderDateObj.toISOString().split('T')[0]; %>
+                                    <th class="border border-5"><%=formatted%></th>
+                                    <th class="border border-5"><%=row.order_time%></th>
                                 </tr>
                             <% }); %>
                         <% } else { %>
