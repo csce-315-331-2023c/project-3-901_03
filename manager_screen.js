@@ -12,6 +12,8 @@ const path = require('path');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
+let currentUser = "NA";
+
 // Create pool
 const pool = new Pool({
     user: process.env.PSQL_USER,
@@ -35,6 +37,8 @@ const ingredAddRouter = require('./ingred_add');
 router.use("/ingred_add", ingredAddRouter)
 const ingredDeleteRouter = require('./ingred_delete');
 router.use("/ingred_delete", ingredDeleteRouter)
+const ingredRestockRouter = require('./ingred_restock');
+router.use("/ingred_restock", ingredRestockRouter)
 const menuAddRouter = require('./menu_add');
 router.use("/menu_add", menuAddRouter)
 const menuDeleteRouter = require('./menu_delete');
@@ -60,8 +64,33 @@ router.use("/report_excess", excessReportRouter)
 //index.set('views', path.join(__dirname, 'views'));
 	 	 	 	
 //router.set("view engine", "ejs");
+const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 
-router.get('/manager_screen.ejs', (req, res) => {
+router.get('/manager_screen.ejs', async(req, res) => {
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) { 
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+
+    isAuthorized = false;
+    await pool
+        .query(userQuery)
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){   
+                if(query_res.rows[i].user_name === currentUser && (query_res.rows[i].manager_perm === "Yes" 
+                || query_res.rows[i].admin_perm === "Yes"))
+                {
+                    isAuthorized = true;
+                    console.log("isAuthorized = true=" +isAuthorized);                     
+                }
+            }
+        });      
+
+
+    console.log("isAuthorized=" + isAuthorized);       
+    if(!isAuthorized) {
+        res.render('unauthorized_manager.ejs', {currentUser: currentUser, currentScreen: "manager"});
+    }
+    else {
     employees = []
     pool
         .query('SELECT * FROM employees ORDER BY employee_type DESC;')
@@ -73,6 +102,7 @@ router.get('/manager_screen.ejs', (req, res) => {
             //console.log(inventory);
             res.render('manager_screen.ejs', data);
         });
+    }
 });
 
 router.get('/modify_ingred.ejs', (req, res) => {
@@ -150,4 +180,3 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
-
