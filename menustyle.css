@@ -8,6 +8,14 @@ body {
     background-position-y: 50px;
     background-repeat:repeat-y;
 }
+.contrast-mode {
+    backdrop-filter: contrast(2); 
+    filter:contrast(2);
+}
+.contrast-mode li a{
+    color: #000;
+
+}
 
 h1 {
     font-family: "Bodoni Moda", sans-serif;
