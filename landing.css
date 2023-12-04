@@ -204,7 +204,6 @@ nav {
     border-style: ridge;
     border-color: black;
     border-width: 5px;
-    
 }
 
 #sweet {
@@ -251,8 +250,8 @@ nav {
 
 #currentuser {
     margin-top: -25px;
-    margin-left: 570px;
-    width: 200px;
+    margin-left: 550px;
+    width: 240px;
     height: 30px;
     background-color: rgb(149, 223, 234);
     border-style: double;
