@@ -39,6 +39,9 @@ const pool = new Pool({
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
 
+const customerOrderRouter = require('./customerorder');
+index.use("/customerorder", customerOrderRouter)
+
 const cashierScreenRouter = require('./cashier');
 index.use("/cashier", cashierScreenRouter)
 
@@ -79,7 +82,69 @@ index.get('/', (req, res, next) => {
         currentUser = req.session.passport.user.googleProfile.displayName;
     }
 
-    res.render('index', {currentUser: currentUser});
+    //getting weather data
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth()+1;
+    let year = date.getFullYear();
+    let currentDate  = `${year}-${month}-${day}`;
+    let weather_req = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/College Station/${currentDate}?key=VJJGNCLMUX552BNFYVJ9RYCNS`;
+    // var weather_data;
+    fetch(weather_req, {
+    method: 'GET', 
+    headers: {
+    
+    },
+            
+    }).then(response => {
+    if (!response.ok) {
+        throw response; //check the http response code and if isn't ok then throw the response as an error
+    }
+                
+    return response.json(); //parse the result as JSON
+
+    }).then(response => {
+    //response now contains parsed JSON ready for use
+    var {tempmax, tempmin, current_temp, icon} = processWeatherData(response);
+    //console.log(tempmax + " " + tempmin + " " + current_temp + " " + icon);
+    res.render('index', {currentUser: currentUser, tempmax: tempmax, tempmin: tempmin, current_temp: current_temp, icon: icon});
+
+    }).catch((errorResponse) => {
+    if (errorResponse.text) { //additional error information
+        errorResponse.text().then( errorMessage => {
+        //errorMessage now returns the response body which includes the full error message
+        })
+    } else {
+        //no additional error information 
+    } 
+    });
+
+    function processWeatherData(response) {
+    
+        var location=response.resolvedAddress;
+        var days=response.days;
+        var current = response.currentConditions;
+        var icon = response.icon;
+        console.log("Location: "+location);
+        console.log("current: " + current.temp);
+        var tempmax; 
+        var tempmin;
+        var icon;
+        var current_temp = current.temp;
+        for (var i=0;i<days.length;i++) {
+            tempmax = days[i].tempmax;
+            tempmin = days[i].tempmin;
+            icon = days[i].icon;
+        //console.log(days[i].datetime+": tempmax="+tempmax+", tempmin="+ tempmin + ", icon=" + icon);
+        }
+        return {
+            tempmax,
+            tempmin,
+            current_temp,
+            icon
+        };
+    }
+    
 });
 
 index.get('/login_screen.ejs', (req, res) => {

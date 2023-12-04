@@ -54,8 +54,10 @@ function processWeatherData(response) {
   
     var location=response.resolvedAddress;
     var days=response.days;
+    var current = response.currentConditions;
     var icon = response.icon;
     console.log("Location: "+location);
+    console.log("current: " + current.temp);
     for (var i=0;i<days.length;i++) {
       console.log(days[i].datetime+": tempmax="+days[i].tempmax+", tempmin="+days[i].tempmin + ", icon=" + days[i].icon);
     }
