@@ -60,6 +60,8 @@ index.use("/savory", savorymenuScreenRouter)
 const drinksmenuScreenRouter = require('./drinksmenu');
 index.use("/drinksmenu", drinksmenuScreenRouter)
 
+const orderScreenRouter = require('./customerorder');
+index.use("/customerorder", orderScreenRouter)
 // const pool = require('./connection.js')
 // pool.connect();
 	 	 	 	
@@ -193,6 +195,16 @@ index.get('/drinksmenu.ejs', (req, res) => {
             //console.log(inventory);
             res.render('drinksmenu.ejs', {data, currentUser: currentUser});
     });
+});
+
+index.get('/customerorder.ejs', (req, res) => {
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+    res.render('customerorder.ejs', {currentUser: currentUser});
 });
 
 index.get('/cashier2.ejs', (req, res) => {
