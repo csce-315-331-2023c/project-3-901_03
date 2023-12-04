@@ -27,6 +27,7 @@
                 </script>
                 <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
             </div>
+            <button type="button" onclick="toggleContrast()" style="float: left;">Refresh</button>
             <center>
             <div id="ul" style="padding: 0px 0px 0px 0px;margin-top: -50px;margin-bottom: -10px;">
                 <li style="float:left; margin-left: -10px;"><a href="api/auth/google/redirect"><h3 style="font-size: 30px; margin-top: 10px;">Login</h3></a></li>
@@ -48,6 +49,8 @@
                 <h3 style="color: white; font-size: 35px; margin-bottom: 0px;"> <center> Bonjour! </center> </h3>
                 <h1 style="font-size: 30px; margin-top: 0px;"> <center>Welcome to Sweet Paris Creperie & Cafe!</center></h1>
                 <h6 style="width: 500px; font-size: 25px; margin-top: 0px; margin-bottom: 0px;"> <center>Here at Sweet Paris, we want to ensure that we provide each customer with the best service. Feel free to browse our menu, place and order, or log in for more.</center></h6>
+                <br>
+                <h6 style="font-style: italic; width: 500px; font-size: 25px; margin-top: 0px; margin-bottom: 0px;"> <center>Please contact us with any questions or concerns.</center></h6>
             </div>
             
             <div id="contact">
@@ -60,22 +63,11 @@
             </center>
         </div>
         <script>
-            function toggleZoom() {
-            const body = document.body;
-            body.classList.toggle('zoomed');
-            adjustScreen();
-        }
+            function toggleContrast() {
+                var element = document.body;
+                element.classList.toggle("contrast-mode");
 
-        function adjustScreen() {
-            const body = document.body;
-            const scale = body.classList.contains('zoomed') ? 1 : 1.5; 
-            const screenWidth = window.innerWidth;
-            const newWidth = screenWidth * scale;
-            const newHeight = window.innerHeight * scale;
-
-            body.style.width = newWidth + 'px';
-            body.style.height = newHeight + 'px';
-        }
+            } 
         </script>
     </body>
 </html>

@@ -8,11 +8,25 @@ body {
     height: 1140px; */
 }
 
+.contrast-mode {
+    background-color: rgb(180, 235, 240);
+    padding: 0px 0px 0px 0px;
+    background-image: url('home.jpg');
+    background-repeat: no-repeat;
+    background-position-y: -70px;
+    filter:contrast(2);
+}
+.contrast-mode li a{
+    color: #000;
+
+}
+
 h1 {
     font-family: "Bodoni Moda", sans-serif;
     font-size: 55px;
     margin-top: -5px;
 }
+
 
 h2 {
     font-family: "Sofia", sans-serif;
@@ -26,12 +40,14 @@ h3 {
     margin-top: -25px;
 }
 
+
 h4 {
     font-family: "Bacasime Antique", sans-serif;
     font-size: 35px;
     margin-top: -15px;
     margin-left: 15px;
 }
+
 
 h5 {
     font-family: "Calligraffitti", sans-serif;
@@ -40,12 +56,14 @@ h5 {
     color: rgb(204, 255, 251);
 }
 
+
 h6 {
     font-family: "Fuzzy Bubbles", sans-serif;
     font-size: 20px;
     margin-top: -60px;
     width: 400px;
 }
+
 
 a {
     text-decoration: none;
