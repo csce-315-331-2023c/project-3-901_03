@@ -4,21 +4,27 @@ body {
     background-image: url('home.jpg');
     background-repeat: no-repeat;
     background-position-y: -70px;
+    height: 100%;
+    background-size: cover;
     /* background-size: 1500px 1140px;
     height: 1140px; */
+    background-position: center;
 }
 
 .contrast-mode {
-    background-color: rgb(180, 235, 240);
+    background-color: rgb(255,255,255);
     padding: 0px 0px 0px 0px;
-    background-image: url('home.jpg');
-    background-repeat: no-repeat;
-    background-position-y: -70px;
+    background-image: none;
     filter:contrast(2);
+    filter:hue-rotate(90deg);
+    backdrop-filter: hue-rotate(90deg);
 }
 .contrast-mode li a{
     color: #000;
 
+}
+#contrast-mode ul{
+    background-color: rgb(139,171,241);
 }
 
 h1 {
@@ -280,8 +286,9 @@ nav {
 }
 
 #welcome {  
+    width: 50%;
     background-color: rgb(117, 209, 209);
-    display: inline-block;
+    display: flexbox;
     border-radius: 90px;
     border-style: double;
     border-width: 10px;
@@ -289,10 +296,14 @@ nav {
     padding-top: 15px;
     padding-bottom: 15px;
     opacity: 99%;
-    margin-right: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
 }
 
 #contact {
+    font-size: 20px;
+    width: 30%;
     background-color: rgb(117, 209, 209);
     display: inline-block;
     border-radius: 90px;
@@ -302,8 +313,23 @@ nav {
     padding-top: 15px;
     padding-bottom: 15px;
     opacity: 99%;
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#weather {
+    width: 30%;
+    background-color: rgb(117, 209, 209);
+    display: inline-block;
+    border-radius: 90px;
+    border-style: double;
+    border-width: 10px;
+    border-color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    /* opacity: 99%; */
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 
