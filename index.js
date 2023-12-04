@@ -62,6 +62,10 @@ index.use("/drinksmenu", drinksmenuScreenRouter)
 
 const orderScreenRouter = require('./customerorder');
 index.use("/customerorder", orderScreenRouter)
+
+// const adminScreenRouter = require('./admin');
+// index.use("/admin", adminScreenRouter)
+
 // const pool = require('./connection.js')
 // pool.connect();
 	 	 	 	

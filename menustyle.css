@@ -293,8 +293,8 @@ nav {
 
 #google_translate_element {
     float: left;
-    margin-top: -190px;
-    margin-left: 0px;
+    margin-top: 0px;
+    margin-left: 10px;
 }
 
 #foodimg {
@@ -308,14 +308,14 @@ nav {
 
 #currentuser {
     margin-top: -25px;
-    margin-left: 550px;
+    margin-left: -97px;
     width: 240px;
     height: 25px;
     background-color: rgb(149, 223, 234);
     border-style: double;
     border-color: black;
     border-width: 10px;
-    padding-bottom: 0px;
+    padding-bottom: 5px;
     padding-top: 0px;
 }
 
