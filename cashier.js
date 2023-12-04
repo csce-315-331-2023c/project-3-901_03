@@ -34,6 +34,15 @@ process.on('SIGINT', function() {
 const OrderManRouter = require('./order_management');
 router.use("/order_management", OrderManRouter)
 
+const OrderSuccessRouter = require('./cashierordersuccess');
+router.use("/cashierordersuccess", OrderSuccessRouter)
+
+const OrderModStatusRouter = require('./order_mod_status');
+router.use("/order_mod_status", OrderModStatusRouter)
+
+const OrderDeleteRouter = require('./order_delete');
+router.use("/order_delete", OrderDeleteRouter)
+
 const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 router.get('/', async(req, res) => {
 
@@ -74,9 +83,16 @@ router.get('/', async(req, res) => {
     }
 });
 
-router.get('/order_management.ejs', (req, res) => {
+router.get('/order_management.ejs', async (req, res) => {
+    const sqlquery = "SELECT ROW_NUMBER() OVER (ORDER BY order_date DESC, order_time DESC) AS row_num, order_date, order_time, STRING_AGG(DISTINCT order_item, ', ' ORDER BY order_item) AS order_items, SUM(order_price) AS total_order_price, MAX(dine_in) AS dine_in, cashier_id, MAX(status) AS status FROM orders GROUP BY order_date, order_time, cashier_id ORDER BY order_date DESC, order_time DESC LIMIT 100"
+    const result = await pool.query(sqlquery);
+
+    res.render('order_management.ejs', {result: result.rows})
+});
+
+router.get('/cashierordersuccess.ejs', (req, res) => {
     console.log("hiiiiiihihihih");
-    res.render('order_management.ejs');
+    res.render('cashierordersuccess.ejs');
 });
 
 function randCashierNum(){
@@ -88,7 +104,15 @@ function randDineIn(){
     var x = Math.floor(Math.random() * 2);
     return dineInResp[x];
 }
-router.post('/submit', (req, res) => {
+
+
+router.get('/submit', (req, res) => {
+    console.log("in submit get");
+    res.render('cashierordersuccess.ejs');
+});
+
+router.post('/submit', async(req, res) => {
+    console.log('submittinggggg');
     var cashier_num = randCashierNum();
     var dineIn = randDineIn();
     const date = new Date();
@@ -106,17 +130,20 @@ router.post('/submit', (req, res) => {
     // console.log(req.body);
     const { cart } = req.body;
     //var ordernum = 118219;
+    console.log("before queries");
     for(let i = 0; i < cart.length; i++) {
         for (let j = 0; j < cart[i].count; j++) {
-        pool
-            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ");");
-        pool
+        await pool
+            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id, status) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ", 'pending');");
+        await pool
             .query("UPDATE inventory SET quantity = quantity - 1 WHERE ingred_name IN (SELECT unnest(ingredients) AS item FROM food_item WHERE food_name = '" +  cart[i].name + "');");
         }    
     }
+    console.log("after queries");
     
-    let currentOrder = [];
-    res.render('cashier2.ejs', { currentOrder: currentOrder });
+    // let currentOrder = [];
+    // res.render('cashier2.ejs', { currentOrder: currentOrder });
+    res.render('cashierordersuccess.ejs');
 });
 
 module.exports = router;

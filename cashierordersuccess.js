@@ -13,9 +13,6 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 let currentUser = "NA";
 
-// const CashierRouter = require('./cashier');
-// router.use("/cashier", CashierRouter)
-
 // Create pool
 const pool = new Pool({
     user: process.env.PSQL_USER,
@@ -43,10 +40,8 @@ process.on('SIGINT', function() {
 const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 
 router.get('/', (req, res) => {
-    res.render('order_management.ejs');
+    res.render('cashierordersuccess.ejs');
 });
-
-
 
 router.get('/index.ejs', (req, res) => {
     res.render('index.ejs');
