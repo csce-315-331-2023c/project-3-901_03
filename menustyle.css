@@ -305,3 +305,16 @@ nav {
     width: 250px;
     margin-left: 0px;
 }
+
+#currentuser {
+    margin-top: -25px;
+    margin-left: 590px;
+    width: 200px;
+    height: 20px;
+    background-color: rgb(149, 223, 234);
+    border-style: double;
+    border-color: black;
+    border-width: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}

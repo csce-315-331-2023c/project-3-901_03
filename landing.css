@@ -249,10 +249,18 @@ nav {
     left: 20px;
 }
 
-/* #welcome {
-
-
-}    */
+#currentuser {
+    margin-top: -25px;
+    margin-left: 590px;
+    width: 200px;
+    height: 30px;
+    background-color: rgb(149, 223, 234);
+    border-style: double;
+    border-color: black;
+    border-width: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
 
 #welcome::after {
     transition: 2s;
