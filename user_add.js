@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -27,25 +28,31 @@ process.on('SIGINT', function() {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
-
+	 	 	 	
 router.post('/', async(req, res) => {
-    //console.log("Here in restock! Restocking " + req.body.IngredientName);
-    await pool.query("UPDATE inventory SET quantity = 100, day_bought = CURRENT_DATE, day_bad = CURRENT_DATE + INTERVAL '30 days' WHERE ingred_name = '"
-        + req.body.IngredientName + "';");
-    //console.log("Hereeeeeeeeeeee!");
-    inventory = []
-    await pool
-        .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
+        if (req.body.Perm == "cashier") {
+            await ool
+                .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'No', 'No');");
+        }
+        else if (req.body.Perm == "manager") {
+            await pool
+                .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'Yes', 'No');");
+        }
+        else if (req.body.Perm == "admin") {
+            await pool
+                .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'Yes', 'Yes');");
+        }
+        users = []
+        await pool
+        .query('SELECT * FROM users ORDER BY user_name ASC;')
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
-                inventory.push(query_res.rows[i]);
+                users.push(query_res.rows[i]);
             }
-            const data = {inventory: inventory};
+            const data = {users: users};
             //console.log(inventory);
-            res.render('modify_ingred.ejs',data);
+            res.render('admin.ejs', data);
         });
-        //res.redirect('modify_ingred.ejs');
-  
 });
 
 module.exports = router;

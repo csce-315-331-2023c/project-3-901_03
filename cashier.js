@@ -30,6 +30,10 @@ process.on('SIGINT', function() {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
+
+const OrderManRouter = require('./order_management');
+router.use("/order_management", OrderManRouter)
+
 const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 router.get('/', async(req, res) => {
 
@@ -68,6 +72,11 @@ router.get('/', async(req, res) => {
             res.render('cashier2.ejs', data);
         });
     }
+});
+
+router.get('/order_management.ejs', (req, res) => {
+    console.log("hiiiiiihihihih");
+    res.render('order_management.ejs');
 });
 
 function randCashierNum(){

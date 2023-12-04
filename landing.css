@@ -279,10 +279,38 @@ nav {
     padding-top: 0px;
 }
 
-#welcome::after {
+#welcome {  
+    background-color: rgb(117, 209, 209);
+    display: inline-block;
+    border-radius: 90px;
+    border-style: double;
+    border-width: 10px;
+    border-color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    opacity: 99%;
+    margin-right: 100px;
+}
+
+#contact {
+    background-color: rgb(117, 209, 209);
+    display: inline-block;
+    border-radius: 90px;
+    border-style: double;
+    border-width: 10px;
+    border-color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    opacity: 99%;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+
+/* #welcome::after {
     transition: 2s;
     float: right;
-}
+} */
 
 #logout {
     margin-top: 200px;
