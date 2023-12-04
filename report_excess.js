@@ -43,17 +43,15 @@ router.get('/main_reports.ejs', (req, res) => {
 	 	 	
 router.post('/', async (req, res) => {
     const startDate = req.body.startDate;
-    const endDate = req.body.endDate;
     
-    if (!startDate || !endDate) {
+    if (!startDate) {
         return res.status(400).send('Please provide both start and end dates.');
     }
 
     try {
-        const sqlQuery = 'SELECT i.ingred_name, COUNT(*) AS total_usage FROM orders o JOIN food_item fi ON o.order_item = fi.food_name JOIN inventory i ON i.ingred_name = ANY(fi.ingredients) WHERE o.order_date BETWEEN $1 AND $2 GROUP BY i.ingred_name';
-        console.log("inside the try block");
+        const sqlQuery = 'SELECT i.ingred_name, COUNT(*) AS total_usage FROM orders o JOIN food_item fi ON o.order_item = fi.food_name JOIN inventory i ON i.ingred_name = ANY(fi.ingredients) WHERE o.order_date BETWEEN $1 AND CURRENT_DATE GROUP BY i.ingred_name';
 
-        const result = await pool.query(sqlQuery, [startDate, endDate]);
+        const result = await pool.query(sqlQuery, [startDate]);
         let ingredients = [];
         let quantities = [];
         let amountSold = [];
@@ -76,7 +74,6 @@ router.post('/', async (req, res) => {
         }
         for(let i = 0 ; i < quantities.length; i++){
             amountSold.push(0);
-            console.log("inside the amount sold for loop");
         }
 
         for(let i = 0; i < soldIngredNames.length; i++){
@@ -87,21 +84,23 @@ router.post('/', async (req, res) => {
                     
                     quantities[j] = currQuantity;
                     amountSold[j] = usage;
-                    console.log("inside the curr quanity loop");
                 }
                 
             }
         }
 
         //now calculate the inventory items that sold less than 10% of their inventory
-        let text = "";
-        for(let i = 0 ; i < ingredients.length; i++){
-            console.log("inside the for loop");
-            console.log(amountSold[i]);
-            console.log(0.1 * startQuantity);
-            if(amountSold[i] < (0.1*startQuantity)){
-                text += ingredients[i] + " " + quantities[i] + '\n';
-                console.log("inside of the if in text loop");
+        let text = [];
+        for (let i = 0; i < ingredients.length; i++) {
+
+            if (amountSold[i] < 0.1 * startQuantity) {
+                for (const row of result.rows) {
+                    if (row.ingred_name == ingredients[i]) {
+                        row.total_usage = amountSold[i];
+                        text.push(row);
+                    }
+                }
+                
             }
         }
 
@@ -109,7 +108,7 @@ router.post('/', async (req, res) => {
             text = "No excess items in this time window \n";
         }
 
-        res.render('report_excess', {text: text.rows})
+        res.render('report_excess', {text: text})
         console.log("Entry displayed successfully");
     } catch (error) {
         console.error('Error executing SQL query:', error);

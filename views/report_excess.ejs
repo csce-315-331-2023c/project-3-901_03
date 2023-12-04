@@ -5,30 +5,58 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Manager View</title>
+        <link rel="stylesheet" href="../manager_screen.css">
+        <link rel="stylesheet" href="../manager.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bodoni Moda' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Beth Ellen' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bacasime Antique' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
     </head>
-    <body>
-        <div class="report-menu-excess-screen">
-            <h1>Report Excess</h1>
+    <body style="background-color: rgb(171, 171, 171);">
+        <div class="report-menu-sales-screen">
+            <a href="main_reports.ejs" class="btn btn-info">Back</a>
+            <table style="background-color: rgb(197, 197, 197);" class="table">
+            <tr>
+                <th>
+                <div style="background-color: rgb(197, 197, 197);" class="container">
+                    <h1>Report Excess</h1>
+                    <h6>Displays items that have used less than 10% of their inventory from the given date to the current date</h6>
+                
+                    <table class="table table-bordered border border-5"> 
+                        <tr class="border border-5">
+                            <th class="border border-5 bg bg-info-subtle">Item</th>
+                            <th class="border border-5 bg bg-info-subtle">Total Usage</th>
+                        </tr>
+                        <% if (text && text.length > 0) { %>
+                            <% text.forEach(item => { %>
+                                <tr class="border border-5">
+                                    <th class="border border-5"><%=item.ingred_name; %></th>
+                                    <th class="border border-5"><%=item.total_usage; %></th>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <p>No results found.</p>
+                        <% } %>
+                    </table>
+                    </div>
+                    </th>
+                    <th>
 
-            <p>Order Name:</p> 
-             <% if (text && text.length > 0) { %>
-                <ul>
-                    <% text.forEach(item => { %>
-                        <li><%= text %></li>
-                    <% }); %>
-                </ul>
-            <% } else { %>
-                <p>No results found.</p>
-            <% } %>
-			       
+        
+                        
 
-            
+                    
+                </div>
+            </th>
+            </tr>
+            </table>
         </div>
-
     </body>
    
-    <script src="report_excess.js"></script>
+    <script src="report_sales.js"></script>
 
 </html>
