@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -27,10 +28,21 @@ pool.connect();
 //         });
 // });
 
-router.post('/', (req, res) => {
-    pool
+router.post('/', async(req, res) => {
+    await pool
         .query("DELETE FROM users WHERE user_name = '" + req.body.UserName + "';");
-        res.render('admin.ejs');
+    
+    users = []
+    await pool
+        .query('SELECT * FROM users ORDER BY user_name ASC;')
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                users.push(query_res.rows[i]);
+            }
+            const data = {users: users};
+            //console.log(inventory);
+            res.render('admin.ejs', data);
+        });
 });
 
 // app.listen(port, () => {

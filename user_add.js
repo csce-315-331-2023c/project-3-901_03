@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -28,20 +29,30 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 	 	 	 	
-router.post('/', (req, res) => {
+router.post('/', async(req, res) => {
         if (req.body.Perm == "cashier") {
-            pool
+            await ool
                 .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'No', 'No');");
         }
         else if (req.body.Perm == "manager") {
-            pool
+            await pool
                 .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'Yes', 'No');");
         }
         else if (req.body.Perm == "admin") {
-            pool
+            await pool
                 .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'Yes', 'Yes');");
         }
-        res.render('admin.ejs');
+        users = []
+        await pool
+        .query('SELECT * FROM users ORDER BY user_name ASC;')
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                users.push(query_res.rows[i]);
+            }
+            const data = {users: users};
+            //console.log(inventory);
+            res.render('admin.ejs', data);
+        });
 });
 
 module.exports = router;

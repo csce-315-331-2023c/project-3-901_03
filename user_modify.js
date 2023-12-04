@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -11,36 +12,31 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 const pool = require('./connection.js')
 pool.connect();
-	 	 	 	
 
-// router.get('/ingred_mod_name.ejs', (req, res) => {
-//     inventory = []
-//     pool
-//         .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
-//         .then(query_res => {
-//             for (let i = 0; i < query_res.rowCount; i++){
-//                 inventory.push(query_res.rows[i]);
-//             }
-//             const data = {inventory: inventory};
-//             //console.log(inventory);
-//             res.render('modify_ingred.ejs', data);
-//         });
-// });
-
-router.post('/', (req, res) => {
+router.post('/', async(req, res) => {
     if (req.body.Perm == "cashier") {
-        pool
+        await pool
             .query("UPDATE users SET cashier_perm = 'Yes', manager_perm = 'No', admin_perm = 'No' WHERE user_name = '" + req.body.UserName + "';");
     }
     else if (req.body.Perm == "manager") {
-        pool
+        await pool
             .query("UPDATE users SET cashier_perm = 'Yes', manager_perm = 'Yes', admin_perm = 'No' WHERE user_name = '" + req.body.UserName + "';");
     }
     else if (req.body.Perm == "admin") {
-        pool
+        await pool
             .query("UPDATE users SET cashier_perm = 'Yes', manager_perm = 'Yes', admin_perm = 'Yes' WHERE user_name = '" + req.body.UserName + "';");
     }
-    res.render('admin.ejs');
+    users = []
+    await pool
+        .query('SELECT * FROM users ORDER BY user_name ASC;')
+        .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){
+                users.push(query_res.rows[i]);
+            }
+            const data = {users: users};
+            //console.log(inventory);
+            res.render('admin.ejs', data);
+        });
 });
 
 // app.listen(port, () => {

@@ -79,7 +79,7 @@ router.get('/admin.ejs', async(req, res) => {
         }
 });
 
-router.get('/index.ejs', (req, res) => {
+router.get('/', (req, res) => {
     res.render('index.ejs');
 });
 
