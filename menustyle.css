@@ -9,6 +9,8 @@ body {
     background-repeat:repeat-y;
 }
 .contrast-mode {
+    background-image: none;
+    backdrop-filter: hue-rotate(90deg);
     backdrop-filter: contrast(2); 
     filter:contrast(2);
 }
