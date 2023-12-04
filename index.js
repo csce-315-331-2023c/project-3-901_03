@@ -6,6 +6,7 @@ const passport = require('passport');
 const google = require('./google');
 
 var bodyParser = require("body-parser");
+const fetch = require("node-fetch");
 
 let currentUser = "NA";
 // Create express app
