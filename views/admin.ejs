@@ -83,7 +83,7 @@
                 </th>
     
                 <th>
-                    <div class="admin-management" style="float: right" >
+                    <div class="admin-management" style="float: right;"> <!--style="float: right"-->
 
                     <div class="modify-user-add-screen border border-5 d-block p-5 bg-info-subtle">
                         <center>
@@ -93,34 +93,66 @@
                             <input type="text" id="UserName" name="UserName"><br>
                                 
                             <br> 
-
-                            <p>Choose User's Cashier Permission:</p>
-                            <input type="radio" id="CashierPerm" name="CashierPerm" value="Yes">
-                            <label for="CashierPerm">Yes</label><br>
-                    
-                            <input type="radio" id="CashierPerm" name="CashierPerm" value="No">
-                            <label for="CashierPerm">No</label><br><br>
                             
-                            <p>Choose User's Manager Permission:</p>
-                            <input type="radio" id="ManagerPerm" name="ManagerPerm" value="Yes">
-                            <label for="ManagerPerm">Yes</label><br>
+                            Select User Permission:
+                            <select class="select" name="Perm" id="Perm">
+                                <option value="" selected disabled>Select</option>
+                                    <option value="admin" >Administrator</option>
+                                    <option value="manager" >Manager</option>
+                                    <option value="cashier" >Cashier</option>
+                            </select><br><br>
                     
-                            <input type="radio" id="ManagerPerm" name="ManagerPerm" value="No">
-                            <label for="ManagerPerm">No</label><br><br>
-                            
-                            <p>Choose User's Administrative Permission:</p>
-                            <input type="radio" id="AdminPerm" name="AdminPerm" value="Yes">
-                            <label for="AdminPerm">Yes</label><br>
-                    
-                            <input type="radio" id="AdminPerm" name="AdminPerm" value="No">
-                            <label for="AdminPerm">No</label><br><br>
-                    
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="Add User">
                         </form>
                     </center>
                     </div>
     
                     <br></br>
+
+                    <div class="modify-user-mod-screen border border-5 d-block p-5 bg-info-subtle">
+                    <center>
+                        <h2>Modify Permissions for Existing User</h2><br>
+                        <form method="post" action="/admin/user_modify">
+                            Please select User Name:
+                            <select class="select" name="UserName" id="UserName">
+                                <option value="" selected disabled>Select</option>
+                                <% for (var i in users) {%>
+                                    <option value="<%=users[i].user_name%>" ><%=users[i].user_name%></option>
+                                <% } %>
+                            </select><br><br>
+
+                            Select User Permission:
+                            <select class="select" name="Perm" id="Perm">
+                                <option value="" selected disabled>Select</option>
+                                    <option value="admin" >Administrator</option>
+                                    <option value="manager" >Manager</option>
+                                    <option value="cashier" >Cashier</option>
+                            </select><br><br>
+                
+                        <input type="submit" value="Modify User">
+                        </form>
+                        </center>
+                    </div>
+                    
+                    <br><br>
+
+                    <div class="modify-user-delete-screen border border-5 d-block p-5 bg-info-subtle">
+                        <center>
+                            <h2>Delete User</h2><br>
+                            <form method="post" action="/admin/user_delete">
+                                Please select User Name to Delete:
+                                <select class="select" name="UserName" id="UserName">
+                                    <option value="" selected disabled>Select</option>
+                                    <% for (var i in users) {%>
+                                        <option value="<%=users[i].user_name%>" ><%=users[i].user_name%></option>
+                                    <% } %>
+                                </select><br><br>
+    
+                            <input type="submit" value="Delete User">
+                            </form>
+                            </center>
+                        </div>
+
                 </th>
             </tr>
         

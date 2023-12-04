@@ -29,21 +29,19 @@ process.on('SIGINT', function() {
 });
 	 	 	 	
 router.post('/', (req, res) => {
-    pool
-        .query("INSERT INTO users VALUES ('" + req.body.UserName + "', '" + req.body.CashierPerm + "', '" + req.body.ManagerPerm + "', '" + req.body.AdminPerm + "');");
-        //console.log("Here in mod name!");
-        inventory = []
+        if (req.body.Perm == "cashier") {
             pool
-                .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
-                .then(query_res => {
-                    for (let i = 0; i < query_res.rowCount; i++){
-                        inventory.push(query_res.rows[i]);
-                    }
-                    const data = {inventory: inventory};
-                    //console.log(inventory);
-                    res.render('admin.ejs',data);
-                });
-        //res.redirect('modify_ingred.ejs');
+                .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'No', 'No');");
+        }
+        else if (req.body.Perm == "manager") {
+            pool
+                .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'Yes', 'No');");
+        }
+        else if (req.body.Perm == "admin") {
+            pool
+                .query("INSERT INTO users VALUES ('" + req.body.UserName + "', 'Yes', 'Yes', 'Yes');");
+        }
+        res.render('admin.ejs');
 });
 
 module.exports = router;

@@ -28,23 +28,19 @@ pool.connect();
 // });
 
 router.post('/', (req, res) => {
-    pool
-        .query("UPDATE inventory SET ingred_name = '" + req.body.NewItemName + "' WHERE ingred_name = '"
-        + req.body.ItemName + "';");
-        //console.log("Here in mod name!");
-        inventory = []
-            pool
-                .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
-                .then(query_res => {
-                    for (let i = 0; i < query_res.rowCount; i++){
-                        inventory.push(query_res.rows[i]);
-                    }
-                    const data = {inventory: inventory};
-                    //console.log(inventory);
-                    res.render('admin.ejs', data);
-                });
-        //res.redirect('modify_ingred.ejs');
-  
+    if (req.body.Perm == "cashier") {
+        pool
+            .query("UPDATE users SET cashier_perm = 'Yes', manager_perm = 'No', admin_perm = 'No' WHERE user_name = '" + req.body.UserName + "';");
+    }
+    else if (req.body.Perm == "manager") {
+        pool
+            .query("UPDATE users SET cashier_perm = 'Yes', manager_perm = 'Yes', admin_perm = 'No' WHERE user_name = '" + req.body.UserName + "';");
+    }
+    else if (req.body.Perm == "admin") {
+        pool
+            .query("UPDATE users SET cashier_perm = 'Yes', manager_perm = 'Yes', admin_perm = 'Yes' WHERE user_name = '" + req.body.UserName + "';");
+    }
+    res.render('admin.ejs');
 });
 
 // app.listen(port, () => {

@@ -29,22 +29,8 @@ pool.connect();
 
 router.post('/', (req, res) => {
     pool
-        .query("UPDATE inventory SET ingred_name = '" + req.body.NewItemName + "' WHERE ingred_name = '"
-        + req.body.ItemName + "';");
-        //console.log("Here in mod name!");
-        inventory = []
-            pool
-                .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
-                .then(query_res => {
-                    for (let i = 0; i < query_res.rowCount; i++){
-                        inventory.push(query_res.rows[i]);
-                    }
-                    const data = {inventory: inventory};
-                    //console.log(inventory);
-                    res.render('admin.ejs',data);
-                });
-        //res.redirect('modify_ingred.ejs');
-  
+        .query("DELETE FROM users WHERE user_name = '" + req.body.UserName + "';");
+        res.render('admin.ejs');
 });
 
 // app.listen(port, () => {
