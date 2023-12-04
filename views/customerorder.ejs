@@ -9,7 +9,7 @@
     <title>Point of Sale</title>
     <script>
         let currentOrder = [];
-        function checkoutCart(currentOrder) {
+        function checkoutCart(currentOrder) { 
             console.log("CHECKING OUT");
             console.log(currentOrder);
             fetch("/customerorder/submit", {
@@ -110,14 +110,15 @@
         <div class="menu">
             <h2>Menu</h2>
             <ul id="menu-items">
-                <form method="get" action="/index/customerorder"></form>
-                <form method="post" action="/index/customerorder2">
-                    <% for (var i in menuitems) {%>
-                        <li data-name="<%=menuitems[i].food_name%>" data-price="<%=menuitems[i].price_food%>" value="<%=menuitems[i].food_name%>">
-                            <%=menuitems[i].food_name%>: $<%=menuitems[i].price_food%>
+                <form method="get" action="/index/customerorder">
+                    <% if (result && result.length > 0) { %>
+                        <% result.forEach(row => { %>
+                        <li data-name="<%= row.food_name%>" data-price="<%=row.price_food%>" value="<%=row.food_name%>">
+                            <%=row.food_name%>: $<%=row.price_food%>
                         </li>
                         <br><br>
-                        <% } %>
+                        <% }); %>
+                    <% } %>
                 </form>
             </ul>
         </div>
