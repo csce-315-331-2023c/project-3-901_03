@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var async = require('async');
 
 
+let currentUser = "NA";
 // Create express app
 const router = express.Router(); //chnage to router
 const port = 3000;
