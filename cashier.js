@@ -33,10 +33,7 @@ process.on('SIGINT', function() {
 const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 router.get('/', async(req, res) => {
 
-    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
-        console.log("index req.session.passport.user.googleProfile");      
-        console.log(req.session.passport.user.googleProfile.id);   
-        console.log(req.session.passport.user.googleProfile.displayName);   
+    if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) { 
         currentUser = req.session.passport.user.googleProfile.displayName;
     }
 
@@ -45,16 +42,10 @@ router.get('/', async(req, res) => {
         .query(userQuery)
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
-                console.log("Check currentUser=" + currentUser + " with users table.");     
-                console.log("query_res.rows[i].user_name=" + query_res.rows[i].user_name);
-                console.log("query_res.rows[i].cashier_perm=" + query_res.rows[i].cashier_perm);      
-                console.log("query_res.rows[i].manager_perm=" + query_res.rows[i].manager_perm);     
-                console.log("query_res.rows[i].admin_perm=" + query_res.rows[i].admin_perm);     
                 if(query_res.rows[i].user_name === currentUser && (query_res.rows[i].manager_perm === "Yes" 
                 || query_res.rows[i].admin_perm === "Yes" || query_res.rows[i].cashier_perm == "Yes"))
                 {
-                    isAuthorized = true;
-                    console.log("isAuthorized = true=" +isAuthorized);                     
+                    isAuthorized = true;                     
                 }
             }
         });      
