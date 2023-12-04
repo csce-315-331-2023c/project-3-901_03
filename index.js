@@ -39,6 +39,9 @@ const pool = new Pool({
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
 
+const customerOrderRouter = require('./customerorder');
+index.use("/customerorder", customerOrderRouter)
+
 const cashierScreenRouter = require('./cashier');
 index.use("/cashier", cashierScreenRouter)
 
