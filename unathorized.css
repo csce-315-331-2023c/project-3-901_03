@@ -1,0 +1,244 @@
+body {
+    background-color: rgb(180, 235, 240);
+    padding: 0px 0px 0px 0px;
+     background-repeat: no-repeat;
+    background-position-y: -70px;
+    /* background-size: 1500px 1140px;
+    height: 1140px; */
+}
+
+h1 {
+    font-family: "Bodoni Moda", sans-serif;
+    font-size: 55px;
+    margin-top: -5px;
+}
+
+h2 {
+    font-family: "Sofia", sans-serif;
+    font-size: 35px;
+    margin-top: -60px;
+}
+
+h3 {
+    font-family: "Beth Ellen", sans-serif;
+    font-size: 35px;
+    margin-top: -25px;
+}
+
+h4 {
+    font-family: "Bacasime Antique", sans-serif;
+    font-size: 35px;
+    margin-top: -15px;
+    margin-left: 15px;
+}
+
+h5 {
+    font-family: "Calligraffitti", sans-serif;
+    font-size: 40px;
+    margin-top: -5px;
+    color: rgb(204, 255, 251);
+}
+
+h6 {
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-size: 20px;
+    margin-top: -60px;
+    width: 400px;
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+
+#border {
+    background-color: rgb(117, 209, 209);
+    border-radius: 50px;
+    border-width: 15px;
+}
+
+.reports-top {
+    background-color: rgb(117, 209, 209);
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.option-buttons {
+    transition-duration: 0.4s;
+    background-color: rgb(117, 209, 209); /* Green */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    width: 150px;
+    padding-bottom: -15px;
+}
+
+.option-buttons:hover {
+    background-color: rgb(81, 145, 145); /* Green */
+    color: white;
+}
+
+#ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(117, 209, 209);
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 0px;
+    /* border-radius: 50px; */
+    width: 1500;
+    height: 120px;
+    border-style: double;
+    border-color: rgb(31, 31, 31);
+    border-width: 12px;
+}
+
+.light-blue-box {
+    width: 200px;
+    height: 200px;
+    background-color: lightblue;
+    border: 2px solid black;
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: right;
+}
+
+  
+li {
+    float: right;
+    padding: 0px 0px 0px 0px;
+}
+  
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 25px 30px 16px;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    height: 20px;
+    /* transition: 0.6s; */
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-thickness: 5px;
+    text-decoration-color: rgb(81, 145, 145);
+}
+
+.active { 
+    text-decoration: underline;
+    text-decoration-thickness: 5px;
+    text-decoration-color: rgb(81, 145, 145);
+}
+
+nav {
+    border-top: 15px;
+    background-color: black;
+    margin-top: 25px;
+    margin-right: 500px;
+    margin-left: 0px;
+    padding: 0;
+    border-radius: 0px;
+}
+
+#sidebar a{/* customize links for new id sidebar*/
+    position: absolute;
+    width: 100px;
+    left: -80px;
+    transition: 0.5s;
+    padding: 10px;
+    color: white;
+    font-size: 0px;
+    text-align: left;
+    border-radius: 0 15px 15px 0;
+    margin-right: 400px;
+    text-shadow: 60px;
+}
+
+#seasonal {
+    font-style: bold;
+    top: 240px;
+    background-color: rgb(255, 0, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+    font-size: 5px;
+}
+
+#breakfast {
+    font-style: bold;
+    top: 300px;
+    background-color: rgb(255, 42, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+    
+}
+
+#sweet {
+    font-style: bold;
+    top: 360px;
+    background-color: rgb(255, 60, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#savory {
+    font-style: bold;
+    top: 420px;
+    background-color: rgb(255, 94, 0);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#drinks {
+    top: 480px;
+    background-color: rgb(255, 110, 1);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#homeimg {
+    float:right;
+}
+
+#p {
+    background-color: rgb(149, 223, 234);
+    border-radius: 40px;
+    border-color: gray;
+    border-style: ridge;
+    width: 510px;
+    left: 20px;
+}
+
+#welcome::after {
+    transition: 2s;
+    float: right;
+}

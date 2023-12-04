@@ -17,9 +17,25 @@
     
     <body>
         <div class="home-screen">
-            <a href="/"  style="font-size: xx-large;color: red;" >Home Screen</a>            
+        <div id="google_translate_element">
+            <script  style="float: left;margin-top:-55px;" type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+            </script>
+            <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </div>
+        <center>
+            <div id="ul" style="padding: 0px 0px 0px 0px;margin-top: -50px;margin-bottom: -10px;">
+                <li><button onclick="toggleZoom()">Zoom</button></li>
+                <center>
+            <a href="/"><h1 style="margin-left: 50px;"> <center>SWEET PARIS </center></h1></a>
+            <a href="/"><h2> <center>---- creperie & cafe ---- </center></h2></a>
+            </center>
+            <h2 class="btn btn-lg" style="float: top right; margin-left: 800px;margin-top: 90px;font-size: 18px; color: black;float: left;"> Current User: <%= currentUser %> </h2>
+        </div>     
             <center>
-                <div class="body" style="font-size: xx-large;color: red;">Current User: <%= currentUser %> is not authorized to <%= currentScreen %> screen.</div>
+        <div class="body" id="logout" style="margin-top: 100px; font-size: xx-large;color: red;"><h1 style="margin-bottom: 0px; font-size: 40px; font-weight: bold;">Error: current user "<%= currentUser %>" is not authorized to access <%= currentScreen %> screen.</h1></div>
         </div>
         
         <script src="logout.js"></script>
