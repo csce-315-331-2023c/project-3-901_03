@@ -33,27 +33,24 @@ process.on('SIGINT', function() {
 
 
 
-const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 
 router.get('/', async(req, res) => {
-    // console.log('');
-    // pool
-    console.log("in ge7t");
-    const sqlQuery = "SELECT * FROM food_item";
-    const result = await pool.query(sqlQuery);
     console.log("in get");
+    const sqlQuery = "SELECT * FROM food_item";
 
-    // .then(query_res => {
-    //     for (let i = 0; i < query_res.rowCount; i++){
-    //         menuitems.push(query_res.rows[i]);
-    //     }
-    //     // const data = {menuitems: menuitems};
-    //         //console.log(inventory);
-    res.render('customerorder', {result: result.rows});
+    try {
+        const result = await pool.query(sqlQuery);
+        console.log(result.rowCount);
+
+        res.render('customerorder.ejs', { result: result.rows });
+    } catch (error) {
+        console.error("Error executing SQL query:", error);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
 function randCashierNum(){
-    var x = 'customer';
+    var x = Math.floor(Math.random() * 10)+1;
     return x;
 }
 
@@ -62,7 +59,7 @@ function randDineIn(){
     var x = Math.floor(Math.random() * 2);
     return dineInResp[x];
 }
-router.post('/submit', (req, res) => {
+router.post('/submit', async(req, res) => {
     var cashier_num = randCashierNum();
     var dineIn = randDineIn();
     const date = new Date();
@@ -82,9 +79,9 @@ router.post('/submit', (req, res) => {
     //var ordernum = 118219;
     for(let i = 0; i < cart.length; i++) {
         for (let j = 0; j < cart[i].count; j++) {
-        pool
-            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ");");
-        pool
+        await pool
+            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id, status) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ", 'pending' );");
+        await pool
             .query("UPDATE inventory SET quantity = quantity - 1 WHERE ingred_name IN (SELECT unnest(ingredients) AS item FROM food_item WHERE food_name = '" +  cart[i].name + "');");
         }    
     }

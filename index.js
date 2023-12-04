@@ -264,65 +264,10 @@ index.get('/drinksmenu.ejs', (req, res) => {
 });
 
 index.get('/customerorder.ejs', async(req, res) => {
-
-    console.log("in ge7t");
-    const sqlQuery = "SELECT * FROM food_item";
-    const result = await pool.query(sqlQuery);
-    console.log("in get");
-    console.log(result.rowCount);
-
-    // .then(query_res => {
-    //     for (let i = 0; i < query_res.rowCount; i++){
-    //         menuitems.push(query_res.rows[i]);
-    //     }
-    //     // const data = {menuitems: menuitems};
-    //         //console.log(inventory);
-
-  
-    res.render('customerorder.ejs', { result: result.rows});
-});
-
-function randCashierNum(){
-    var x = Math.floor(Math.random() * 10)+1;
-    return x;
-}
-function randDineIn(){
-    var dineInResp = ["Yes", "No"];
-    var x = Math.floor(Math.random() * 2);
-    return dineInResp[x];
-}
-
-index.post('/customerorder/submit', (req, res) => {
-    console.log("inside of psot");
-    var cashier_num = randCashierNum();
-    var dineIn = randDineIn();
-    const date = new Date();
-    currentHours = date.getHours();
-    currentHours = ("0" + currentHours).slice(-2);
-    currentMin = date.getMinutes();
-    currentMin = ("0" + currentMin).slice(-2);
-    currentSec = date.getSeconds();
-    currentSec = ("0" + currentSec).slice(-2);
-    const timestamp = currentHours + ":" + currentMin + ":" + currentSec;
-    let day = date.getDate();
-    let month = date.getMonth()+1;
-    let year = date.getFullYear();
-    let currentDate  = `${year}-${month}-${day}`;
-    // console.log(req.body);
-    const { cart } = req.body;
-    //var ordernum = 118219;
-    for(let i = 0; i < cart.length; i++) {
-        for (let j = 0; j < cart[i].count; j++) {
-        pool
-            .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ");");
-        pool
-            .query("UPDATE inventory SET quantity = quantity - 1 WHERE ingred_name IN (SELECT unnest(ingredients) AS item FROM food_item WHERE food_name = '" +  cart[i].name + "');");
-        }    
-    }
-    
     let currentOrder = [];
     res.render('customerorder.ejs', { currentOrder: currentOrder });
 });
+
 
 index.get('/cashier2.ejs', (req, res) => {
     let currentOrder = [];
