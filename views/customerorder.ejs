@@ -15,6 +15,7 @@
             fetch("/customerorder/submit", {
                 method: "POST",
                 body: JSON.stringify({ cart: currentOrder }),
+
                 headers: {
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Origin": "*",
@@ -26,70 +27,100 @@
             const menuItems = document.querySelectorAll("#menu-items li");
             const orderList = document.querySelector("#order-items");
             const totalPrice = document.querySelector("#total-price");
-            const deleteButton = document.querySelector("#delete-button");
 
             let total = 0.00;
 
-            menuItems.forEach(item => {
-                item.addEventListener("click", () => {
-                    const order_num = item.getAttribute("order-num")
-                    const itemName = item.getAttribute("data-name");
-                    const itemPrice = parseFloat(item.getAttribute("data-price"));
+            function getDescription(foodItem) {
+                // Replace this logic with your actual data structure and logic
+                if (foodItem === "breakfast") {
+                    return breakfast.description;
+                } else if (foodItem === "seasonal") {
+                    return seasonal.description;
+                }
+                // Add more conditions as needed for other food items
+            }
 
-                    const newItem = document.createElement("li");
+            function createOrderItem(itemName, itemPrice, itemDescription) {
+                const newItem = document.createElement("li");
 
-                    const incrementButton = document.createElement("button");
-                    incrementButton.textContent = "+";
-                    incrementButton.addEventListener("click", () => {
-                        // Increment the count of the item
-                        const orderItem = currentOrder.find(orderItem => orderItem.name === itemName);
-                        orderItem.count++;
-                        countSpan.textContent = orderItem.count;
-                        updateTotal();
-                    });
-
-                    const countSpan = document.createElement("span");
-                    countSpan.textContent = "1"; // Default count is 1
-                    countSpan.style.padding = "0 8px"; // Added padding
-
-                    const decrementButton = document.createElement("button");
-                    decrementButton.textContent = "-";
-                    decrementButton.addEventListener("click", () => {
-                        // Decrement the count of the item, and remove if count is zero
-                        const orderItem = currentOrder.find(orderItem => orderItem.name === itemName);
-                        if (orderItem.count > 1) {
-                            orderItem.count--;
-                            countSpan.textContent = orderItem.count;
-                        } else {
-                            const itemIndex = currentOrder.indexOf(orderItem);
-                            currentOrder.splice(itemIndex, 1);
-                            orderList.removeChild(newItem);
-                        }
-                        updateTotal();
-                    });
-
-                    newItem.textContent = `${itemName} - $${itemPrice.toFixed(2)}`;
-                    newItem.style.padding = "0 8px";
-                    newItem.appendChild(incrementButton);
-                    newItem.appendChild(countSpan);
-                    newItem.appendChild(decrementButton);
-
-                    currentOrder.push({ name: itemName, price: itemPrice, count: 1 });
-
-                    newItem.addEventListener("click", () => {
-                        newItem.classList.toggle("selected");
-                    });
-
-                    orderList.appendChild(newItem);
+                const incrementButton = document.createElement("button");
+                incrementButton.textContent = "+";
+                incrementButton.addEventListener("click", () => {
+                    const orderItem = currentOrder.find(orderItem => orderItem.name === itemName);
+                    orderItem.count++;
+                    countSpan.textContent = orderItem.count;
                     updateTotal();
                 });
+
+                const countSpan = document.createElement("span");
+                countSpan.textContent = "1";
+                countSpan.style.padding = "0 8px";
+
+                const decrementButton = document.createElement("button");
+                decrementButton.textContent = "-";
+                decrementButton.addEventListener("click", () => {
+                    const orderItem = currentOrder.find(orderItem => orderItem.name === itemName);
+                    if (orderItem.count > 1) {
+                        orderItem.count--;
+                        countSpan.textContent = orderItem.count;
+                    } else {
+                        const itemIndex = currentOrder.indexOf(orderItem);
+                        currentOrder.splice(itemIndex, 1);
+                        orderList.removeChild(newItem);
+                    }
+                    updateTotal();
+                });
+
+            newItem.textContent = `${itemName} - $${itemPrice.toFixed(2)} - ${itemDescription}`;
+            newItem.style.padding = "0 8px";
+            newItem.appendChild(incrementButton);
+            newItem.appendChild(countSpan);
+            newItem.appendChild(decrementButton);
+
+            currentOrder.push({ name: itemName, price: itemPrice, count: 1 });
+
+            return newItem;
+        }
+
+        function addToOrder(box) {
+            const itemName = box.getAttribute("data-name");
+            const itemPrice = parseFloat(box.getAttribute("data-price"));
+            const itemDescription = box.getAttribute("data-description");
+
+            const newItem = createOrderItem(itemName, itemPrice, itemDescription);
+
+            newItem.addEventListener("click", () => {
+                newItem.classList.toggle("selected");
             });
 
-            function updateTotal() {
-                total = currentOrder.reduce((acc, item) => acc + item.price * item.count, 0);
-                totalPrice.textContent = total.toFixed(2);
-            }
+            orderList.appendChild(newItem);
+            updateTotal();
+        }
+
+        menuItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const itemName = item.getAttribute("data-name");
+                const itemPrice = parseFloat(item.getAttribute("data-price"));
+                const itemDescription = getDescription(itemName); // Get description based on the food item
+
+                const newItem = createOrderItem(itemName, itemPrice, itemDescription);
+
+                newItem.addEventListener("click", () => {
+                    newItem.classList.toggle("selected");
+                });
+
+                orderList.appendChild(newItem);
+                updateTotal();
+            });
         });
+
+        function updateTotal() {
+            total = currentOrder.reduce((acc, item) => acc + item.price * item.count, 0);
+            totalPrice.textContent = total.toFixed(2);
+        }
+    });
+
+
     </script>
 </head>
 
@@ -109,14 +140,23 @@
         </div>
         <div class="menu">
             <h2>Menu</h2>
-            <ul id="menu-items">
+            <ul id="menu-items" class="clearfix">
                 <form method="get" action="/index/customerorder">
                     <% if (result && result.length > 0) { %>
+                        <% let count = 0; %>
                         <% result.forEach(row => { %>
-                        <li data-name="<%= row.food_name%>" data-price="<%=row.price_food%>" value="<%=row.food_name%>">
-                            <%=row.food_name%>: $<%=row.price_food%>
-                        </li>
-                        <br><br>
+                            <li data-name="<%= row.food_name%>" data-price="<%=row.price_food%>" value="<%=row.food_name%>"
+                                data-description="<%= row.description %>">
+                                <img class="food-img" src="/<%=row.food_name%>.png" onerror="this.onerror=null; this.src='defaultimg.png';" alt="<%=row.food_name%>">
+                                <div class="menu-item-box" onclick="addToOrder(this)">
+                                    <h3><%=row.food_name%></h3>
+                                    <p><%= row.description %></p>
+                                    <p>$<%= Number(row.price_food).toFixed(2) %></p>
+                                </div>
+                            </li>
+                            <% if (++count % 3 === 0) { %>
+                                <div class="clearfix"></div>
+                            <% } %>
                         <% }); %>
                     <% } %>
                 </form>
