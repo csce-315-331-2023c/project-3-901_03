@@ -314,9 +314,9 @@ nav {
     border-width: 10px;
     border-color: black;
     padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
     opacity: 99%;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin-left: 10px;
 }
 

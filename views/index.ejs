@@ -29,18 +29,22 @@
             </div>
             <button type="button" onclick="toggleContrast()" style="float: left;">Apply Contrast</button>
             <center>
+                <ol>
             <div id="ul" style="padding: 0px 0px 0px 0px;margin-top: -50px;margin-bottom: -10px;">
+                <!-- <dl> -->
                 <li style="float:left; margin-left: -10px;"><a href="api/auth/google/redirect"><h3 style="font-size: 30px; margin-top: 10px;">Login</h3></a></li>
                 <li style="float:left; margin-left: -1px;"><a href="/menu.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Menu</h3></a></li>
                 <li style="float:left; margin-left: -10px;"><a href="customerorder/"><h3 style="width: 10px; font-size: 30px; margin-top: 10px;">Order</h3></a></li>
                 <li><a href="admin/admin.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Admin</h3></a></li>
                 <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 30px; margin-top: 10px;">Manager</h3></a></li>
                 <li><a href="cashier/"><h3 style="font-size: 30px; margin-top: 10px;">Cashier</h3></a></li>
+                <!-- </dl> -->
                 <center>
                 <h1 style="margin-left: 450px;"> <center>SWEET PARIS </center></h1>
                 <h2 style="margin-left: 450px;"> <center>---- creperie & cafe ---- </center></h2>
                 </center>
             </div>
+                </ol>
             </center>
             
             <div id="currentuser" style="width: 30%;"><center><h2 style="margin-top: 0px;font-size: 20px; color: black;">Current User: <%= currentUser %></center></h2> </div>
@@ -48,7 +52,7 @@
             <center>
                 <div id="welcome" style="opacity: 95%;">
                     <h3 style="font-size: 35px; margin-bottom: 0px;"> <center> Bonjour! </center> </h3>
-                    <h1 style="font-size: 25px; margin-top: 0px;"> <center>Welcome to Sweet Paris Creperie & Cafe!</center></h1>
+                    <h4 style="font-size: 30px; margin-top: 0px; margin-bottom: 2%;"> <center>Welcome to Sweet Paris Creperie & Cafe!</center></h4>
                     <h6 style="width: 500px; font-size: 20px; margin-top: 0px; margin-bottom: 0px;"> <center>Here at Sweet Paris, we want to ensure that we provide each customer with the best service. Feel free to browse our menu, place and order, or log in for more.</center></h6>
                 </div>
                 </center>
@@ -56,9 +60,9 @@
                 <center>
                 <div id="contact" style="opacity: 95%;"> 
                     <h3 style="font-size: 35px;"> <center> Contact Us: </center> </h3>
-                    <h6 style="font-size: 20px; margin-top: -20px; margin-bottom: 45px;"> <center>Email: <h1 style="font-size: 20px; margin-top: 0px;">info@sweetparis.com</h1> </center></h6>
-                    <h6 style="font-size: 20px; margin-top: -20px; margin-bottom: 45px;"> <center>Phone: <h1 style="font-size: 20px; margin-top: 0px;">(979) 704-6200</h1></center></h1>
-                    <h6 style="font-size: 20px; margin-top: -20px; margin-bottom: 0px;"> <center>Address: <h1 style="font-size: 20px; margin-top: 0px;">143 Century Square Dr Suite 110, College Station, TX 77840</h1></center></h1>
+                    <h4 style="font-size: 20px; margin-top: -20px; margin-bottom: 45px;"> <center>Email: <h6 style="font-size: 20px; margin-top: 0px;">info@sweetparis.com</h6> </center></h4>
+                    <h4 style="font-size: 20px; margin-top: -20px; margin-bottom: 45px;"> <center>Phone: <h6 style="font-size: 20px; margin-top: 0px;">(979) 704-6200</h6></center></h4>
+                    <h4 style="font-size: 20px; margin-top: -20px; margin-bottom: 0px;"> <center>Address: <h6 style="font-size: 20px; margin-top: 0px;">143 Century Square Dr Suite 110, College Station, TX 77840</h6></center></h4>
                     
                 </div>  
                 
@@ -68,7 +72,7 @@
                     <h3 style="font-size: 35px;"><center>Weather</center></h3>
                     <h6 style="font-size: 20px; margin-top: -20px; margin-bottom: 45px;"><center>The current weather at our College Station location has a high of <%=tempmax%>, and a low of <%=tempmin%>.</center></h6>
                     <h6 style="font-size: 20px; margin-top: -20px; margin-bottom: 45px;"><center>The current temperature is: <%=current_temp%></center></h6>
-                    <center><img id="weathericon" src="<%=icon%>.png"></center>
+                    <center><img id="weathericon" alt="weather icon" src="<%=icon%>.png"></center>
                 </div>
                 </center>
         </div>
