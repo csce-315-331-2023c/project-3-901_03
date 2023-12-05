@@ -273,7 +273,7 @@ nav {
 
 #currentuser {
     margin-top: -25px;
-    margin-left: 535px;
+    margin-left: 445px;
     width: 240px;
     height: 30px;
     background-color: rgb(149, 223, 234);
@@ -310,9 +310,9 @@ nav {
     border-width: 10px;
     border-color: black;
     padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
     opacity: 99%;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin-left: 10px;
 }
 
@@ -330,12 +330,6 @@ nav {
     margin-top: 10px;
     margin-left: 10px;
 }
-
-
-/* #welcome::after {
-    transition: 2s;
-    float: right;
-} */
 
 #logout {
     margin-top: 200px;
@@ -361,3 +355,12 @@ nav {
     font-style: italic;
 }
 
+#google_translate_element {
+    margin-left: -6px;
+    margin-top: -25px;
+}
+
+#contrast {
+    margin-left: -6px;
+    margin-top: -1px;
+}
