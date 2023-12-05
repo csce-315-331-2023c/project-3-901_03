@@ -6,8 +6,6 @@ body {
     background-position-y: -70px;
     height: 100%;
     background-size: cover;
-    /* background-size: 1500px 1140px;
-    height: 1140px; */
     background-position: center;
 }
 
@@ -15,8 +13,6 @@ body {
     padding: 0px 0px 0px 0px;
     background-image: none;
     filter:contrast(2);
-    filter:hue-rotate(90deg);
-    backdrop-filter: hue-rotate(90deg);
 }
 .contrast-mode li a{
     color: #000;
@@ -26,7 +22,7 @@ body {
     color: #000;
 
 }
-#contrast-mode ul{
+.contrast-mode #ul{
     background-color: rgb(139,171,241);
 }
 
