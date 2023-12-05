@@ -166,7 +166,7 @@ li {
   
 li a {
     display: block;
-    color: white;
+    /* color: white; */
     text-align: center;
     text-decoration: none;
     padding: 25px 30px 16px;

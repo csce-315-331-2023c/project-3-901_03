@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
+var async = require('async');
 
 // Create express app
 const router = express.Router(); //chnage to router
@@ -28,12 +29,14 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 
-router.post('/', (req, res) => {
-    pool
+router.post('/', async(req, res) => {
+    await pool
         .query("DELETE FROM inventory WHERE ingred_name = '" + req.body.IngredientName + "';");
+    await pool
+        .query("UPDATE food_item SET ingredients = array_remove(ingredients, '" + req.body.IngredientName + "');");
         
     inventory = []
-    pool
+    await pool
         .query('SELECT * FROM inventory ORDER BY ingred_name ASC;')
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++){
