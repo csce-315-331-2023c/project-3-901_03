@@ -74,10 +74,11 @@ router.post('/submit', async(req, res) => {
     let month = date.getMonth()+1;
     let year = date.getFullYear();
     let currentDate  = `${year}-${month}-${day}`;
-    // console.log(req.body);
+    console.log("in post");
     const { cart } = req.body;
     //var ordernum = 118219;
     for(let i = 0; i < cart.length; i++) {
+        console.log("in for loop " + currentDate, cart[i].name);
         for (let j = 0; j < cart[i].count; j++) {
         await pool
             .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id, status) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ", 'pending' );");
