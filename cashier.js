@@ -3,6 +3,7 @@ const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 var bodyParser = require("body-parser");
 var async = require('async');
+const fetch = require("node-fetch");
 
 
 let currentUser = "NA";
@@ -141,9 +142,11 @@ router.post('/submit', async(req, res) => {
     }
     console.log("after queries");
     
-    // let currentOrder = [];
-    // res.render('cashier2.ejs', { currentOrder: currentOrder });
-    res.render('cashierordersuccess.ejs');
+    let currentOrder = [];
+    //res.render('cashier2.ejs', { currentOrder: currentOrder });
+    //res.send("Helooooooooooooooooooooooooo");
+    let employees = [];
+    res.render('manager_screen',{employees: employees});
 });
 
 module.exports = router;
