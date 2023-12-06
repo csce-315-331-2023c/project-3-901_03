@@ -71,7 +71,7 @@ index.use("/admin", adminScreenRouter)
 index.set("view engine", "ejs");
 
 index.get('/', (req, res, next) => { 
-    console.log("Session Start");
+    // console.log("Session Start");
     if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
         console.log("index req.session.passport.user.googleProfile");      
         console.log(req.session.passport.user.googleProfile.id);   
@@ -79,70 +79,70 @@ index.get('/', (req, res, next) => {
         currentUser = req.session.passport.user.googleProfile.displayName;
         console.log("Passport Success");
     }
-    console.log("Session Start1");
-    //getting weather data
-    // const date = new Date();
-    // let day = date.getDate();
-    // let month = date.getMonth()+1;
-    // let year = date.getFullYear();
-    // let currentDate  = `${year}-${month}-${day}`;
-    // let weather_req = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/College Station/${currentDate}?key=VJJGNCLMUX552BNFYVJ9RYCNS`;
-    // // var weather_data;
-    // fetch(weather_req, {
-    // method: 'GET', 
-    // headers: {
+    // console.log("Session Start1");
+    // getting weather data
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth()+1;
+    let year = date.getFullYear();
+    let currentDate  = `${year}-${month}-${day}`;
+    let weather_req = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/College Station/${currentDate}?key=VJJGNCLMUX552BNFYVJ9RYCNS`;
+    // var weather_data;
+    fetch(weather_req, {
+    method: 'GET', 
+    headers: {
     
-    // },
+    },
             
-    // }).then(response => {
-    // if (!response.ok) {
-    //     throw response; //check the http response code and if isn't ok then throw the response as an error
-    // }
+    }).then(response => {
+    if (!response.ok) {
+        throw response; //check the http response code and if isn't ok then throw the response as an error
+    }
                 
-    // return response.json(); //parse the result as JSON
+    return response.json(); //parse the result as JSON
 
-    // }).then(response => {
-    // //response now contains parsed JSON ready for use
-    // var {tempmax, tempmin, current_temp, icon} = processWeatherData(response);
-    // console.log("Weather Success");
-    // //console.log(tempmax + " " + tempmin + " " + current_temp + " " + icon);
-    // res.render('index', {currentUser: currentUser, tempmax: tempmax, tempmin: tempmin, current_temp: current_temp, icon: icon});
+    }).then(response => {
+    //response now contains parsed JSON ready for use
+    var {tempmax, tempmin, current_temp, icon} = processWeatherData(response);
+    console.log("Weather Success");
+    //console.log(tempmax + " " + tempmin + " " + current_temp + " " + icon);
+    res.render('index', {currentUser: currentUser, tempmax: tempmax, tempmin: tempmin, current_temp: current_temp, icon: icon});
 
-    // }).catch((errorResponse) => {
-    // if (errorResponse.text) { //additional error information
-    //     errorResponse.text().then( errorMessage => {
-    //     //errorMessage now returns the response body which includes the full error message
-    //     })
-    // } else {
-    //     //no additional error information 
-    // } 
-    // });
+    }).catch((errorResponse) => {
+    if (errorResponse.text) { //additional error information
+        errorResponse.text().then( errorMessage => {
+        //errorMessage now returns the response body which includes the full error message
+        })
+    } else {
+        //no additional error information 
+    } 
+    });
 
-    // function processWeatherData(response) {
+    function processWeatherData(response) {
     
-    //     var location=response.resolvedAddress;
-    //     var days=response.days;
-    //     var current = response.currentConditions;
-    //     var icon = response.icon;
-    //     console.log("Location: "+location);
-    //     console.log("current: " + current.temp);
-    //     var tempmax; 
-    //     var tempmin;
-    //     var icon;
-    //     var current_temp = current.temp;
-    //     for (var i=0;i<days.length;i++) {
-    //         tempmax = days[i].tempmax;
-    //         tempmin = days[i].tempmin;
-    //         icon = days[i].icon;
-    //     //console.log(days[i].datetime+": tempmax="+tempmax+", tempmin="+ tempmin + ", icon=" + icon);
-    //     }
-    //     return {
-    //         tempmax,
-    //         tempmin,
-    //         current_temp,
-    //         icon
-    //     };
-    // }
+        var location=response.resolvedAddress;
+        var days=response.days;
+        var current = response.currentConditions;
+        var icon = response.icon;
+        console.log("Location: "+location);
+        console.log("current: " + current.temp);
+        var tempmax; 
+        var tempmin;
+        var icon;
+        var current_temp = current.temp;
+        for (var i=0;i<days.length;i++) {
+            tempmax = days[i].tempmax;
+            tempmin = days[i].tempmin;
+            icon = days[i].icon;
+        //console.log(days[i].datetime+": tempmax="+tempmax+", tempmin="+ tempmin + ", icon=" + icon);
+        }
+        return {
+            tempmax,
+            tempmin,
+            current_temp,
+            icon
+        };
+    }
     
 });
 
@@ -305,7 +305,7 @@ index.get('/logout', (req, res) => {
 });
 
 index.listen(port, () => {
-    console.log("Session Start2");
+    // console.log("Session Start2");
     console.log(`Example app listening at http://localhost:${port}`);
 });
 
