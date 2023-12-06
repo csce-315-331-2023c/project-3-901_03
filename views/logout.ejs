@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Logout Successful</title>
+        <link rel="stylesheet" href="../landing.css">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" -->
+            <!-- integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bodoni Moda' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Beth Ellen' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bacasime Antique' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
+    </head>
+    
+    <body>
+        <div class="home-screen">
+            <div id="google_translate_element">
+                <script  style="float: left;margin-top:-55px;" type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                }
+                </script>
+                <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            </div>
+            <center>
+            <div id="ul" style="padding: 0px 0px 0px 0px;margin-top: -50px;margin-bottom: -10px;">
+                <!-- <li style="float:left; margin-left: 40px;"><a href="/menu.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Menu</h3></a></li> -->
+                <!-- <li style="float:left; margin-left: 40px;"><a href="/customerorder.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Order Online</h3></a></li> -->
+                <!-- <li><a href="manager_screen/manager_screen.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Manager</h3></a></li> -->
+                <!-- <li><a href="cashier/"><h3 style="font-size: 20px; margin-top: 10px;">Cashier</h3></a></li> -->
+                <!-- <li><a href="api/auth/google/redirect"><h3 style="font-size: 20px; margin-top: 10px;">Login </h3></a></li> -->
+                <!-- <li><a href="/customerorder.ejs"><h3 style="font-size: 20px; margin-top: 10px;">Order Online</h3></a></li> -->
+                <li><button onclick="toggleZoom()">Zoom</button></li>
+                <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
+                <!-- <h2 style="float: top right; margin-left: 700px;margin-top: 90px;font-size: 18px; color: black;float: left;"> Current User: <%= currentUser %> </h2> -->
+                <center>
+                <a href="/"><h1 style="margin-left: 50px;"> <center>SWEET PARIS </center></h1></a>
+                <a href="/"><h2> <center>---- creperie & cafe ---- </center></h2></a>
+                </center>
+                <h2 class="btn btn-lg" style="float: top right; margin-left: 800px;margin-top: 90px;font-size: 18px; color: black;float: left;"> Current User: <%= currentUser %> </h2>
+
+            </div>
+                <div id="switchuser" style="float: top left;">
+                    <a href="/api/auth/google/redirect" class="btn btn-lg"><h1 style=" font-size: 30px; margin-bottom: 0px;">Switch User</h1></a>            
+                </div>
+                <div id="logout">
+                    <center>
+                    <h3 style="margin-top: 5px; margin-bottom: 5px; font-size: 30px;">Logout successful for: <h1 style="font-size: 30px;"><%= currentUser %></h1></h3>
+                    </center>
+                </div>
+        </div>
+        
+        <script src="logout.js"></script>
+    </body>
+</html>

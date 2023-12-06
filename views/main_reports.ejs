@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Manager View</title>
+        <link rel="stylesheet" href="../manager_screen.css">
+        <link rel="stylesheet" href="../manager.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bodoni Moda' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Beth Ellen' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Bacasime Antique' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Fuzzy Bubbles' rel='stylesheet'>
+        
+    
+    </head>
+
+    <body>
+        <div class="reports-top">
+        <div id="google_translate_element"></div>
+
+        <script type="text/javascript">
+        function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <a href="manager_screen.ejs" class="btn btn-info">Back</a>
+
+        <div class="report-menu-sales-screen">
+            <center>
+                <div class="managing-buttons">
+                    <h1>Manager Business Reports</h1><br>
+                </div>
+            </center>
+        </div>
+
+        
+        <br></br>
+       <div class ="inventory-container mx-5" style="float: left">
+            <table class="table">
+                <tr>
+                    <th>
+                        <div class="container">
+                            <h2>Order History</h2>
+                            <table class = "table table-bordered border border-5">
+                                <tr class="border border-5">
+                                    <th class="border border-5 bg bg-info-subtle"> </th>
+                                    <th class="border border-5 bg bg-info-subtle">Order</th>
+                                    <th class="border border-5 bg bg-info-subtle">Price</th>
+                                    <th class="border border-5 bg bg-info-subtle">Date</th>
+                                    <th class="border border-5 bg bg-info-subtle">Time</th>
+                                    <th class="border border-5 bg bg-info-subtle">Cashier ID</th>
+                                    <th class="border border-5 bg bg-info-subtle">Status</th>
+                                </tr>
+                                
+                                <% for (var i in result) {%>
+                                    <tr class="border border-5">
+                                        <th class="border border-5"><%=result[i].row_num%></th>
+                                        <th class="border border-5"><%=result[i].order_items%></th>
+                                        <th class="border border-5"><p>$<%=result[i].total_order_price%></p></th>
+                                        <% const orderDate = result[i].order_date; %> 
+                                        <% const orderDateObj = new Date(orderDate); %>
+                                        <% const formatted = orderDateObj.toISOString().split('T')[0]; %>
+                                        <th class="border border-5"><%=formatted%></th>
+                                        <th class="border border-5"><%=result[i].order_time%></th>
+                                        <th class="border border-5"><%=result[i].cashier_id%></th>
+                                        <th class="border border-5"><%=result[i].status%></th>
+                                    </tr>
+                                <% } %>
+                            </table>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="inventory-management" style="float: right" >
+
+                        <div class="modify-ingredient-add-screen border border-5 d-block p-5 bg-info-subtle">
+                            <center>
+                            <h2>Sales Report</h2><br>
+                            <form method="post" action="/manager_screen/report_sales">   
+                                <label for="startDate">Enter the start date range:</label><br>
+                                <input type="date" id="startDate" name="startDate"><br>
+                    
+                                <label for="endDate">Enter the end date range:</label><br>
+                                <input type="date" id="endDate" name="endDate"><br><br>
+
+                                <button type="submit">Sales Report</button>
+                            </form>
+                            </center>
+                        </div>
+
+                        <br></br>
+
+                        <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
+                            <center>
+                            <h2>Restock Report</h2><br>
+                            <form method="post" action="/manager_screen/report_restock">   
+                                <button type="submit">Restock Report</button>
+                            </form>
+                            </center>
+                        </div>
+                        
+                        <br></br>
+
+
+                        <div class="report-together-screen border border-5 d-block p-5 bg-info-subtle">
+                            <center>
+                            <h2>Items Frequently Ordered Together</h2>
+                            <form method="post" action="/manager_screen/report_together">   
+                                <label for="startDate">Enter the start date range:</label><br>
+                                <input type="date" id="startDate" name="startDate"><br>
+                    
+                                <label for="endDate">Enter the end date range:</label><br>
+                                <input type="date" id="endDate" name="endDate"><br><br>
+
+                                <button type="submit">Ordered Together Report</button>
+                            </form>
+                            </center>
+                        </div>
+
+                        <br></br>
+                        
+                        <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
+                            <center>
+                            <h2>Product Sales Report</h2><br>
+                            <form method="post" action="/manager_screen/report_product_sales">   
+                                <label for="startDate">Enter the start date range:</label><br>
+                                <input type="date" id="startDate" name="startDate"><br>
+                    
+                                <label for="endDate">Enter the end date range:</label><br>
+                                <input type="date" id="endDate" name="endDate"><br><br>
+
+                                <button type="submit">Product Sales Report</button>
+                            </form>
+                            </center>
+                        </div>
+
+                        <br></br>
+
+                        <div class="report-restock-screen border border-5 d-block p-5 bg-info-subtle">
+                            <center>
+                            <h2>Excess Report</h2><br>
+                            <p>Under Construction!</p>
+                            <form method="post" action="/manager_screen/report_excess">   
+                                <label for="startDate">Enter the start date range:</label><br>
+                                <input type="date" id="startDate" name="startDate"><br><br>
+                                
+                                <button type="submit">Excess Product Report</button>
+                            </form>
+                            </center>
+                        </div>
+                    </th>
+                </tr>
+            </table>
+       </div>
+       
+        <script src="manager_screen.js"></script>
+        </div>
+    </body>
+
+</html>
