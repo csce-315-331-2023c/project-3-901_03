@@ -17,6 +17,13 @@
         
     
     </head>
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            background-color: rgb(117, 209, 209); /* Set your desired background color */
+        }
+    </style>
 
     <body>
         <div class="reports-top">
@@ -32,25 +39,24 @@
 
         
 
-        <div class="order-success-container" style="height: 100%;">
+        <div class="order-success-container">
             <center>
                 <div class="managing-buttons">
                     <h1>Order Submitted Successfully!</h1><br>
                 </div>
             </center>
         </div>
-
         
         <br></br>
         <center>
-       <div class ="order-again-container m-5 p-5 bg bg-info-subtle">
+       <div class ="order-again-container rounded-circle border border-5 p-5 bg bg-info-subtle" style="width: 50%;">
         
           <h2>Place Another Order: </h2>
-          <a href="/cashier/" class="btn btn-info">Place Order</a>
-        
+          <a href="/cashier/" class="btn btn-info btn btn-lg border-3 border border-dark">Place Order</a> <br><br>
         </div>
-    </center>
+        </center>
         <script src="cashier.js"></script>
+        </div>
     </body>
 
 </html>
