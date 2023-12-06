@@ -158,7 +158,7 @@
         <button type="button" onclick="toggleContrast()" style="background-color: rgb(55, 216, 230); border-color: black; border-radius: 5px; height: 60px; width: 120px;" >Apply Contrast</button>
     </div>
     <div class="p-2">
-    <a href="/" class="btn btn-lg border border-1 border border-dark">Home</a>
+    <a href="/" class="btn btn-lg border border-1 border border-dark">Cancel Order</a>
     </div>
     
     <div class="pos-container">
@@ -169,6 +169,13 @@
             </ul>
             <p>Total: $<span id="total-price">0.00</span></p>
             <button id="submit-button" style="width: 100px; height: 80px; font-size: 20px;" onclick="checkoutCart(currentOrder)">Checkout</button>
+        </div>
+
+        <div class="middle">
+            <% for (let i = 0; i < 82; i++) { %>
+            <img class="design-img" src="/design.png" alt=”Image” height="300px" width="250px">
+            <br>
+            <% } %>
         </div>
         <div class="menu">
             <h6>Menu</h6>
