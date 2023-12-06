@@ -19,6 +19,7 @@ index.use(express.static(__dirname + '/'));
 index.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 index.use(passport.initialize());
 index.use(passport.session());
+require('events').EventEmitter.defaultMaxListeners = 30;
 
 // Create pool
 const pool = new Pool({
@@ -30,12 +31,12 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-// // Add process hook to shutdown pool
-// process.on('SIGINT', function() {
-//     pool.end();
-//     console.log('Application successfully shutdown');
-//     process.exit(0);
-// });
+//Add process hook to shutdown pool
+ process.on('SIGINT', function() {
+    pool.end();
+     console.log('Application successfully shutdown');
+     process.exit(0);
+ });
 
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
@@ -67,81 +68,81 @@ index.use("/customerorder", customerScreenRouter)
 const adminScreenRouter = require('./admin');
 index.use("/admin", adminScreenRouter)
 
-// const pool = require('./connection.js')
-// pool.connect();
-	 	 	 	
 index.set("view engine", "ejs");
 
 index.get('/', (req, res, next) => { 
+    console.log("Session Start");
     if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
         console.log("index req.session.passport.user.googleProfile");      
         console.log(req.session.passport.user.googleProfile.id);   
         console.log(req.session.passport.user.googleProfile.displayName);   
         currentUser = req.session.passport.user.googleProfile.displayName;
+        console.log("Passport Success");
     }
-
+    console.log("Session Start1");
     //getting weather data
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth()+1;
-    let year = date.getFullYear();
-    let currentDate  = `${year}-${month}-${day}`;
-    let weather_req = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/College Station/${currentDate}?key=VJJGNCLMUX552BNFYVJ9RYCNS`;
-    // var weather_data;
-    fetch(weather_req, {
-    method: 'GET', 
-    headers: {
+    // const date = new Date();
+    // let day = date.getDate();
+    // let month = date.getMonth()+1;
+    // let year = date.getFullYear();
+    // let currentDate  = `${year}-${month}-${day}`;
+    // let weather_req = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/College Station/${currentDate}?key=VJJGNCLMUX552BNFYVJ9RYCNS`;
+    // // var weather_data;
+    // fetch(weather_req, {
+    // method: 'GET', 
+    // headers: {
     
-    },
+    // },
             
-    }).then(response => {
-    if (!response.ok) {
-        throw response; //check the http response code and if isn't ok then throw the response as an error
-    }
+    // }).then(response => {
+    // if (!response.ok) {
+    //     throw response; //check the http response code and if isn't ok then throw the response as an error
+    // }
                 
-    return response.json(); //parse the result as JSON
+    // return response.json(); //parse the result as JSON
 
-    }).then(response => {
-    //response now contains parsed JSON ready for use
-    var {tempmax, tempmin, current_temp, icon} = processWeatherData(response);
-    //console.log(tempmax + " " + tempmin + " " + current_temp + " " + icon);
-    res.render('index', {currentUser: currentUser, tempmax: tempmax, tempmin: tempmin, current_temp: current_temp, icon: icon});
+    // }).then(response => {
+    // //response now contains parsed JSON ready for use
+    // var {tempmax, tempmin, current_temp, icon} = processWeatherData(response);
+    // console.log("Weather Success");
+    // //console.log(tempmax + " " + tempmin + " " + current_temp + " " + icon);
+    // res.render('index', {currentUser: currentUser, tempmax: tempmax, tempmin: tempmin, current_temp: current_temp, icon: icon});
 
-    }).catch((errorResponse) => {
-    if (errorResponse.text) { //additional error information
-        errorResponse.text().then( errorMessage => {
-        //errorMessage now returns the response body which includes the full error message
-        })
-    } else {
-        //no additional error information 
-    } 
-    });
+    // }).catch((errorResponse) => {
+    // if (errorResponse.text) { //additional error information
+    //     errorResponse.text().then( errorMessage => {
+    //     //errorMessage now returns the response body which includes the full error message
+    //     })
+    // } else {
+    //     //no additional error information 
+    // } 
+    // });
 
-    function processWeatherData(response) {
+    // function processWeatherData(response) {
     
-        var location=response.resolvedAddress;
-        var days=response.days;
-        var current = response.currentConditions;
-        var icon = response.icon;
-        console.log("Location: "+location);
-        console.log("current: " + current.temp);
-        var tempmax; 
-        var tempmin;
-        var icon;
-        var current_temp = current.temp;
-        for (var i=0;i<days.length;i++) {
-            tempmax = days[i].tempmax;
-            tempmin = days[i].tempmin;
-            icon = days[i].icon;
-        //console.log(days[i].datetime+": tempmax="+tempmax+", tempmin="+ tempmin + ", icon=" + icon);
-        }
-        return {
-            tempmax,
-            tempmin,
-            current_temp,
-            icon
-        };
-    }
+    //     var location=response.resolvedAddress;
+    //     var days=response.days;
+    //     var current = response.currentConditions;
+    //     var icon = response.icon;
+    //     console.log("Location: "+location);
+    //     console.log("current: " + current.temp);
+    //     var tempmax; 
+    //     var tempmin;
+    //     var icon;
+    //     var current_temp = current.temp;
+    //     for (var i=0;i<days.length;i++) {
+    //         tempmax = days[i].tempmax;
+    //         tempmin = days[i].tempmin;
+    //         icon = days[i].icon;
+    //     //console.log(days[i].datetime+": tempmax="+tempmax+", tempmin="+ tempmin + ", icon=" + icon);
+    //     }
+    //     return {
+    //         tempmax,
+    //         tempmin,
+    //         current_temp,
+    //         icon
+    //     };
+    // }
     
 });
 
@@ -269,13 +270,6 @@ index.get('/customerorder.ejs', async(req, res) => {
     res.render('customerorder.ejs', { currentOrder: currentOrder });
 });
 
-
-// index.get('/cashier2.ejs', (req, res) => {
-//     let currentOrder = [];
-//     console.log('renderrrrrr');
-//     res.render('cashier2.ejs', { currentOrder: currentOrder });
-// });
-
 index.get('/api/auth/google/redirect', passport.authenticate('google'),  (req, res) => {
     res.redirect('/');
 });
@@ -311,6 +305,7 @@ index.get('/logout', (req, res) => {
 });
 
 index.listen(port, () => {
+    console.log("Session Start2");
     console.log(`Example app listening at http://localhost:${port}`);
 });
 
