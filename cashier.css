@@ -16,16 +16,21 @@ body {
 }
 
 
-
-.menu, .order {
-    flex: 1;
-    padding: 10px;
+.menu {
+    gap: 16px;
+    display: grid;
+    justify-content: space-between;
+    background-color: rgb(128, 171, 171);
+    padding: 20px;
+    width: 500px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.menu {
-    background-color: rgb(117, 209, 209);
+#grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 ul {
@@ -36,8 +41,9 @@ ul {
 li {
     margin: 5px;
     cursor: pointer;
+    float: right;
     border-radius: 3px;
-    border: 1px solid #000;
+    border: 3px solid rgb(47, 121, 121);
 }
 
 li:hover {
@@ -45,15 +51,26 @@ li:hover {
     cursor: pointer;
     border-radius: 3px;
     border: 1px solid #000;
-    background-color: #ffffff;
+    background-color: rgb(84, 155, 200);
 }
 
 .order {
     background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.categ {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 #total-price {
     font-weight: bold;
+    
 }
 
 .topnav {
@@ -92,13 +109,15 @@ li:hover {
 
 food-img {
     max-width: 100%;
-    max-height: 100%;
+    height: auto;
+    border-radius: 8px;
+
 }
 
 .menu-item-box {
-    width: 150px;
-    height: 200px;
-    border: 1px solid #ccc;
+    width: 285px;
+    height: 230px;
+    border: 1px solid #a52626;
     margin: 10px;
     padding: 10px;
     text-align: center;
@@ -114,6 +133,7 @@ h1 {
 
 h2 {
     font-family: "Sofia", sans-serif;
+
     font-size: 35px;
     margin-top: -60px;
 }
@@ -134,18 +154,18 @@ h4 {
 
 
 h5 {
-    font-family: "Calligraffitti", sans-serif;
+    font-family:  "Times New Roman", Times, serif;
     font-size: 40px;
     margin-top: -5px;
-    color: rgb(204, 255, 251);
+    color: rgb(75, 158, 151);
 }
 
 
 h6 {
-    font-family: "Fuzzy Bubbles", sans-serif;
-    font-size: 20px;
-    margin-top: -60px;
-    width: 400px;
+    font-family:  "Times New Roman", Times, serif;
+    font-size: 40px;
+    margin-top: -5px;
+    color: rgb(30, 39, 38);
 }
 
 
