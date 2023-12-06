@@ -303,26 +303,26 @@ nav {
     opacity: 99%;
     margin-right: 10px;
     margin-bottom: 10px;
-
 }
 
 #contact {
+    float: left;
     font-size: 20px;
     width: 30%;
     background-color: rgb(117, 209, 209);
+    margin-left:250px;
     display: inline-block;
     border-radius: 90px;
     border-style: double;
     border-width: 10px;
     border-color: black;
-    padding-top: 15px;
-    /* padding-bottom: 15px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
     opacity: 99%;
-    /* margin-top: 10px; */
-    margin-left: 10px;
 }
 
 #weather {
+    float: right;
     width: 30%;
     background-color: rgb(117, 209, 209);
     display: inline-block;
@@ -333,8 +333,8 @@ nav {
     padding-top: 15px;
     padding-bottom: 15px;
     /* opacity: 99%; */
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 250px;
 }
 
 #logout {
