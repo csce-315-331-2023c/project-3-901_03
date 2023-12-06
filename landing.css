@@ -25,7 +25,7 @@ body {
     background-color: #aeead6;
 }
 #contrast-toggle{
-    margin-top: 10px;
+    margin-top: 30px;
     margin-right: 1500px;
     padding-bottom:0px;
     position:fixed;
@@ -80,6 +80,12 @@ a {
     text-decoration: none;
     text-align: center;
     color: black;
+}
+.btn{ 
+    background-color:#FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
 }
 
 #border {
