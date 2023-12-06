@@ -31,7 +31,8 @@ process.on('SIGINT', function() {
     process.exit(0);
 });
 
-
+const OrderSuccessRouter = require('./customerordersuccess');
+router.use("/customerordersuccess", OrderSuccessRouter)
 
 
 router.get('/', async(req, res) => {
@@ -87,8 +88,13 @@ router.post('/submit', async(req, res) => {
         }    
     }
     
-    let currentOrder = [];
-    res.render('customerorder.ejs', { currentOrder: currentOrder });
+    const redirectPage = 'customerordersuccess';
+    res.json({redirect: redirectPage});
+});
+
+router.get('/customerordersuccess', (req, res) => {
+    console.log("hi");
+    res.render('customerordersuccess');
 });
 
 	 	

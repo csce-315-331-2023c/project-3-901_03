@@ -153,5 +153,36 @@ router.get('/cashierordersuccess', (req, res) => {
     res.render('cashierordersuccess');
 });
 
+
+router.get('/logout', (req, res) => {
+    console.log("logoutStarting...");     
+    let previousUser = null;
+    if(req.session != null && req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        previousUser = req.session.passport.user.googleProfile.displayName;
+    }
+       
+    if(req.session) {
+        req.session.destroy(err => {
+            if(err) {
+                console.log("logout error");           
+            }
+            else {
+                console.log("logout ok"); 
+                currentUser = "NA"           
+            }
+        })
+    }    
+    if(req.session != null && req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
+        console.log("index req.session.passport.user.googleProfile");      
+        console.log(req.session.passport.user.googleProfile.id);   
+        console.log(req.session.passport.user.googleProfile.displayName);   
+        currentUser = req.session.passport.user.googleProfile.displayName;
+    }
+    else {
+        currentUser = previousUser;
+    }    
+    res.render('logout.ejs', {currentUser: currentUser});
+});
+
 module.exports = router;
 
