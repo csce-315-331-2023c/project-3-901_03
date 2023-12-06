@@ -15,7 +15,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 require('events').EventEmitter.defaultMaxListeners = 30;
 
-require('events').EventEmitter.defaultMaxListeners = 30;
+require('events').EventEmitter.defaultMaxListeners = 100;
 
 const pool = new Pool({
     user: process.env.PSQL_USER,
