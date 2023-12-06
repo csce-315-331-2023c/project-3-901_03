@@ -4,13 +4,12 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../customer.css">
-    <title>Order Online</title>
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../cashier.css">
+    <title>Point of Sale</title>
     <script>
         let currentOrder = [];
-
-        function checkoutCart(currentOrder) {
+        function checkoutCart(currentOrder) { 
             console.log("CHECKING OUT");
             console.log(currentOrder);
             fetch("/customerorder/submit", {
@@ -24,23 +23,28 @@
                 },
             });
         }
-
         document.addEventListener("DOMContentLoaded", function () {
+            const menuItems = document.querySelectorAll("#menu-items li");
             const orderList = document.querySelector("#order-items");
             const totalPrice = document.querySelector("#total-price");
+
             let total = 0.00;
 
+            
             function getDescription(foodItem) {
                 // Replace this logic with your actual data structure and logic
                 if (foodItem === "breakfast") {
                     return breakfast.description;
                 } else if (foodItem === "seasonal") {
                     return seasonal.description;
-                } else if (foodItem === "drinks") {
+                }
+                else if (foodItem === "drinks") {
                     return drinks.description;
-                } else if (foodItem === "savory") {
+                }
+                else if (foodItem === "savory") {
                     return savory.description;
-                } else if (foodItem === "sweet") {
+                }
+                else if (foodItem === "sweet") {
                     return sweet.description;
                 }
 
@@ -78,29 +82,37 @@
                     updateTotal();
                 });
 
-                newItem.innerHTML = `
-                    <img class="food-img" src="/${itemName}.png" onerror="this.onerror=null; this.src='defaultimg.png';" alt="${itemName}">
-                    <div class="menu-item-box" onclick="addToOrder(this)">
-                        <br></br>
-                        <h3>${itemName}</h3>
-                        <p>${itemDescription}</p>
-                        <p>$${itemPrice.toFixed(2)}</p>
-                    </div>
-                    `;
-                newItem.style.padding = "0 8px";
-                newItem.appendChild(incrementButton);
-                newItem.appendChild(countSpan);
-                newItem.appendChild(decrementButton);
+            newItem.textContent = `${itemName} - $${itemPrice.toFixed(2)} - ${itemDescription}`;
+            newItem.style.padding = "0 8px";
+            newItem.appendChild(incrementButton);
+            newItem.appendChild(countSpan);
+            newItem.appendChild(decrementButton);
 
-                currentOrder.push({ name: itemName, price: itemPrice, count: 1 });
+            currentOrder.push({ name: itemName, price: itemPrice, count: 1 });
 
-                return newItem;
-            }
+            return newItem;
+        }
 
-            function addToOrder(box) {
-                const itemName = box.querySelector("h3").textContent;
-                const itemPrice = parseFloat(box.querySelector("p:last-child").textContent.substring(1)); // Extract price from the last <p> element
-                const itemDescription = box.querySelector("p:nth-last-child(2)").textContent; // Extract description from the second last <p> element
+        function addToOrder(box) {
+            const itemName = box.getAttribute("data-name");
+            const itemPrice = parseFloat(box.getAttribute("data-price"));
+            const itemDescription = box.getAttribute("data-description");
+
+            const newItem = createOrderItem(itemName, itemPrice, itemDescription);
+
+            newItem.addEventListener("click", () => {
+                newItem.classList.toggle("selected");
+            });
+
+            orderList.appendChild(newItem);
+            updateTotal();
+        }
+
+        menuItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const itemName = item.getAttribute("data-name");
+                const itemPrice = parseFloat(item.getAttribute("data-price"));
+                const itemDescription = getDescription(itemName); // Get description based on the food item
 
                 const newItem = createOrderItem(itemName, itemPrice, itemDescription);
 
@@ -110,92 +122,19 @@
 
                 orderList.appendChild(newItem);
                 updateTotal();
-            }
-
-            const categories = Array.from(new Set(result.map(row => row.category)));
-
-            function createCategoryButtons() {
-                const categoryButtonsContainer = document.getElementById("category-buttons");
-                categories.forEach(category => {
-                    const categoryButton = document.createElement("button");
-                    categoryButton.textContent = category;
-                    categoryButton.addEventListener("click", () => {
-                        showItemsByCategory(category);
-                    });
-                    categoryButtonsContainer.appendChild(categoryButton);
-                });
-            }
-
-            function showItemsByCategory(category) {
-                const menuItemsContainer = document.getElementById("menu-items");
-                const filteredItems = result.filter(row => row.category === category);
-                menuItemsContainer.innerHTML = "";
-
-                filteredItems.forEach(row => {
-                    const menuItem = document.createElement("li");
-                    menuItem.innerHTML = `
-                        <img class="food-img" src="/${row.food_name}.png" onerror="this.onerror=null; this.src='defaultimg.png';" alt="${row.food_name}">
-                        <div class="menu-item-box" onclick="addToOrder(this)">
-                            <br></br>
-                            <h3>${row.food_name}</h3>
-                            <p>${row.description}</p>
-                            <p>$${Number(row.price_food).toFixed(2)}</p>
-                        </div>
-                    `;
-
-                    menuItemsContainer.appendChild(menuItem);
-                });
-            }
-
-            function createFilterByButtons() {
-                const filterByContainer = document.getElementById("filter-by-buttons");
-
-                categories.forEach(category => {
-                    const filterButton = document.createElement("button");
-                    filterButton.textContent = `Filter by ${category}`;
-                    filterButton.addEventListener("click", () => {
-                        filterByCategory(category);
-                    });
-
-                    filterByContainer.appendChild(filterButton);
-                });
-            }
-
-            function filterByCategory(category) {
-                const menuItemsContainer = document.getElementById("menu-items");
-                const filteredItems = result.filter(row => row.category === category);
-                menuItemsContainer.innerHTML = "";
-
-                filteredItems.forEach(row => {
-                    const menuItem = document.createElement("li");
-                    menuItem.innerHTML = `
-                        <img class="food-img" src="/${row.food_name}.png" onerror="this.onerror=null; this.src='defaultimg.png';" alt="${row.food_name}">
-                        <div class="menu-item-box" onclick="addToOrder(this)">
-                            <br></br>
-                            <h3>${row.food_name}</h3>
-                            <p>${row.description}</p>
-                            <p>$${Number(row.price_food).toFixed(2)}</p>
-                        </div>
-                    `;
-
-                    menuItemsContainer.appendChild(menuItem);
-                });
-            }
-
-            // Create category buttons and show items for the default category
-            createCategoryButtons();
-            createFilterByButtons();
-            showItemsByCategory(categories[0]);
-
-            // ... (remaining JavaScript content)
-
-            function updateTotal() {
-                total = currentOrder.reduce((acc, item) => acc + item.price * item.count, 0);
-                totalPrice.textContent = total.toFixed(2);
-            }
+            });
         });
+
+        function updateTotal() {
+            total = currentOrder.reduce((acc, item) => acc + item.price * item.count, 0);
+            totalPrice.textContent = total.toFixed(2);
+        }
+    });
+
+
     </script>
 </head>
+
 <body>
     <div class="p-2">
     <a href="/" class="btn btn-lg border border-1 border border-dark">Back</a>
@@ -210,11 +149,6 @@
             <p>Total: $<span id="total-price">0.00</span></p>
             <button id="submit-button" onclick="checkoutCart(currentOrder)">Submit</button>
         </div>
-
-        <div class="categ">
-            
-        </div>
-
         <div class="menu">
             <h6>Menu</h6>
             <div id="grid">
@@ -237,7 +171,7 @@
                     <% } %>
                 </form>
             </ul>
-            </div>
+        </div>
         </div>
     </div>
     <script src="customerorder.js"></script>
