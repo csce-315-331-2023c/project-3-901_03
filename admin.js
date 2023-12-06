@@ -96,7 +96,8 @@ router.get('/logout', (req, res) => {
                 console.log("logout error");           
             }
             else {
-                console.log("logout ok");           
+                console.log("logout ok"); 
+                currentUser = "NA"          
             }
         })
     }    
