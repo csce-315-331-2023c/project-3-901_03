@@ -22,7 +22,7 @@ body {
     justify-content: space-between;
     background-color: rgb(128, 171, 171);
     padding: 20px;
-    width: 500px;
+    width: 700px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -57,8 +57,17 @@ li:hover {
 .order {
     background-color: #f0f0f0;
     padding: 10px;
+    width: 600px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.middle {
+    padding: 10px;
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .categ {
@@ -112,6 +121,11 @@ food-img {
     height: auto;
     border-radius: 8px;
 
+}
+
+design-img {
+    width: 50%;
+    height: auto;
 }
 
 .menu-item-box {
