@@ -270,10 +270,11 @@ index.get('/customerorder.ejs', async(req, res) => {
 });
 
 
-index.get('/cashier2.ejs', (req, res) => {
-    let currentOrder = [];
-    res.render('cashier2.ejs', { currentOrder: currentOrder });
-});
+// index.get('/cashier2.ejs', (req, res) => {
+//     let currentOrder = [];
+//     console.log('renderrrrrr');
+//     res.render('cashier2.ejs', { currentOrder: currentOrder });
+// });
 
 index.get('/api/auth/google/redirect', passport.authenticate('google'),  (req, res) => {
     res.redirect('/');

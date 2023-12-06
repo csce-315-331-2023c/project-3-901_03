@@ -6,17 +6,12 @@ body {
     background-position-y: -70px;
     height: 100%;
     background-size: cover;
-    /* background-size: 1500px 1140px;
-    height: 1140px; */
     background-position: center;
 }
 
 .contrast-mode {
     padding: 0px 0px 0px 0px;
     background-image: none;
-    filter:contrast(2);
-    filter:hue-rotate(90deg);
-    backdrop-filter: hue-rotate(90deg);
 }
 .contrast-mode li a{
     color: #000;
@@ -26,8 +21,15 @@ body {
     color: #000;
 
 }
-#contrast-mode ul{
-    background-color: rgb(139,171,241);
+.contrast-mode #ul{
+    background-color: #aeead6;
+}
+#contrast-toggle{
+    margin-top: 10px;
+    margin-right: 1500px;
+    padding-bottom:0px;
+    position:fixed;
+    
 }
 
 h1 {
@@ -277,7 +279,7 @@ nav {
 
 #currentuser {
     margin-top: -25px;
-    margin-left: 535px;
+    margin-left: 445px;
     width: 240px;
     height: 30px;
     background-color: rgb(149, 223, 234);
@@ -301,26 +303,26 @@ nav {
     opacity: 99%;
     margin-right: 10px;
     margin-bottom: 10px;
-
 }
 
 #contact {
+    float: left;
     font-size: 20px;
     width: 30%;
     background-color: rgb(117, 209, 209);
+    margin-left:250px;
     display: inline-block;
     border-radius: 90px;
     border-style: double;
     border-width: 10px;
     border-color: black;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     opacity: 99%;
-    margin-top: 10px;
-    margin-left: 10px;
 }
 
 #weather {
+    float: right;
     width: 30%;
     background-color: rgb(117, 209, 209);
     display: inline-block;
@@ -331,15 +333,9 @@ nav {
     padding-top: 15px;
     padding-bottom: 15px;
     /* opacity: 99%; */
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 250px;
 }
-
-
-/* #welcome::after {
-    transition: 2s;
-    float: right;
-} */
 
 #logout {
     margin-top: 200px;
@@ -365,3 +361,12 @@ nav {
     font-style: italic;
 }
 
+#google_translate_element {
+    margin-left: -6px;
+    margin-top: -25px;
+}
+
+#contrast {
+    margin-left: -6px;
+    margin-top: -1px;
+}

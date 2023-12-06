@@ -44,6 +44,7 @@ router.use("/order_mod_status", OrderModStatusRouter)
 const OrderDeleteRouter = require('./order_delete');
 router.use("/order_delete", OrderDeleteRouter)
 
+
 const userQuery = 'SELECT user_name, cashier_perm, manager_perm, admin_perm FROM public.users;';
 router.get('/', async(req, res) => {
 
@@ -91,10 +92,7 @@ router.get('/order_management.ejs', async (req, res) => {
     res.render('order_management.ejs', {result: result.rows})
 });
 
-router.get('/cashierordersuccess.ejs', (req, res) => {
-    console.log("hiiiiiihihihih");
-    res.render('cashierordersuccess.ejs');
-});
+
 
 function randCashierNum(){
     var x = Math.floor(Math.random() * 10)+1;
@@ -107,12 +105,12 @@ function randDineIn(){
 }
 
 
-router.get('/submit', (req, res) => {
-    console.log("in submit get");
-    res.render('cashierordersuccess.ejs');
-});
+// router.get('/submit', (req, res) => {
+//     console.log("in submit get");
+//     res.render('cashierordersuccess.ejs');
+// });
 
-router.post('/submit', async(req, res) => {
+router.post('/submit', (req, res) => {
     console.log('submittinggggg');
     var cashier_num = randCashierNum();
     var dineIn = randDineIn();
@@ -134,19 +132,25 @@ router.post('/submit', async(req, res) => {
     console.log("before queries");
     for(let i = 0; i < cart.length; i++) {
         for (let j = 0; j < cart[i].count; j++) {
-        await pool
+        pool
             .query("INSERT INTO orders (order_num, order_date, order_time, order_item, order_price, dine_in, cashier_id, status) VALUES ((SELECT COALESCE(MAX(order_num), 0) + 1 FROM orders), '" + currentDate + "', '" + timestamp + "', '" + cart[i].name + "', " +  cart[i].price + ", '" + dineIn + "', " + cashier_num + ", 'pending');");
-        await pool
+        pool
             .query("UPDATE inventory SET quantity = quantity - 1 WHERE ingred_name IN (SELECT unnest(ingredients) AS item FROM food_item WHERE food_name = '" +  cart[i].name + "');");
         }    
     }
     console.log("after queries");
     
-    let currentOrder = [];
+    //let currentOrder = [];
     //res.render('cashier2.ejs', { currentOrder: currentOrder });
     //res.send("Helooooooooooooooooooooooooo");
-    let employees = [];
-    res.render('manager_screen',{employees: employees});
+    const redirectPage = 'cashierordersuccess';
+    res.json({redirect: redirectPage});
+    //res.render('cashierordersuccess');
+});
+
+router.get('/cashierordersuccess', (req, res) => {
+    console.log("hiiiiiihihihih");
+    res.render('cashierordersuccess');
 });
 
 module.exports = router;
