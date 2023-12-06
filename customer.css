@@ -5,6 +5,32 @@ body {
     background-color: #f0f0f0;
 }
 
+.contrast-mode {
+    padding: 0px 0px 0px 0px;
+    background-image: none;
+}
+.contrast-mode li a{
+    color: #000;
+
+}
+.contrast-mode h5{
+    color: #000;
+
+}
+.contrast-mode li{
+    background-color: #beaeea;
+}
+.contrast-mode .menu{
+    background-color: #beaeea;
+}
+#contrast-toggle{
+    margin-top: 10px;
+    margin-left: 1335px;
+    padding-bottom:0px;
+    position:fixed;
+    
+}
+
 .pos-container {
     display: flex;
     justify-content: space-between;

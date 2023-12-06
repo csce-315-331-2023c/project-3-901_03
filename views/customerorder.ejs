@@ -146,6 +146,17 @@
 </head>
 
 <body>
+    <div id="google_translate_element">
+        <script  style="float: left;" type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        </script>
+        <script  style="float: left;" type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </div>
+    <div id ="contrast-toggle">
+        <button type="button" onclick="toggleContrast()" style="background-color: rgb(55, 216, 230); border-color: black; border-radius: 5px; height: 60px; width: 120px;" >Apply Contrast</button>
+    </div>
     <div class="p-2">
     <a href="/" class="btn btn-lg border border-1 border border-dark">Home</a>
     </div>
@@ -157,7 +168,7 @@
                 <!-- Items will be added here dynamically -->
             </ul>
             <p>Total: $<span id="total-price">0.00</span></p>
-            <button id="submit-button" onclick="checkoutCart(currentOrder)">Submit</button>
+            <button id="submit-button" style="width: 100px; height: 80px; font-size: 20px;" onclick="checkoutCart(currentOrder)">Checkout</button>
         </div>
         <div class="menu">
             <h6>Menu</h6>
@@ -184,6 +195,14 @@
         </div>
         </div>
     </div>
+    <script>
+        function toggleContrast() {
+            var element = document.body;
+            element.classList.toggle("contrast-mode");
+            var element = document.ul;
+            element.classList.toggle("contrast-mode");
+        } 
+    </script>
     <script src="customerorder.js"></script>
 </body>
 
