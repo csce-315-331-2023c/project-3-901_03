@@ -1,6 +1,6 @@
 const http = require('http');
-const hostname = '127.0.0.1';
-const port = 3000;
+const hostname = '0.0.0.0';
+const port = 10000;
 // Create a server object and pass an arrow function
 const server = http.createServer((req, res) => {
 res.statusCode = 200;

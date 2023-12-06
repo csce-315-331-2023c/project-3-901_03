@@ -31,12 +31,12 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-//Add process hook to shutdown pool
- process.on('SIGINT', function() {
+// Add process hook to shutdown pool
+process.on('SIGINT', function() {
     pool.end();
-     console.log('Application successfully shutdown');
-     process.exit(0);
- });
+    console.log('Application successfully shutdown');
+    process.exit(0);
+});
 
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
