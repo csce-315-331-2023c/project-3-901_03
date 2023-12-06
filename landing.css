@@ -12,7 +12,6 @@ body {
 .contrast-mode {
     padding: 0px 0px 0px 0px;
     background-image: none;
-    filter:contrast(2);
 }
 .contrast-mode li a{
     color: #000;
@@ -23,7 +22,14 @@ body {
 
 }
 .contrast-mode #ul{
-    background-color: rgb(139,171,241);
+    background-color: #aeead6;
+}
+#contrast-toggle{
+    margin-top: 10px;
+    margin-right: 1500px;
+    padding-bottom:0px;
+    position:fixed;
+    
 }
 
 h1 {

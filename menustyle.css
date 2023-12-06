@@ -70,6 +70,9 @@ body {
 }
 .contrast-mode #border{
     background-color: #aeead6;
+    border-color: #000;
+    border-style: solid;
+    border-width: 3px;
 }
 
 h1 {
@@ -119,6 +122,14 @@ a {
     text-align: center;
     color: black;
 }
+#contrast-toggle{
+    margin-top: -60px;
+    margin-right: 1500px;
+    padding-bottom:60px;
+    position:fixed;
+    
+}
+
 
 #border {
     background-color: rgb(117, 209, 209);
@@ -132,6 +143,10 @@ a {
     border-style: solid; */
     padding-top: 20px;
     padding-bottom: 20px;
+}
+.button{
+    height:500px;
+    width: 200px;
 }
 
 .column {
