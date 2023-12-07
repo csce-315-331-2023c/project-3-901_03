@@ -1,0 +1,64 @@
+SPRINT 3 MEETING NOTES
+
+11/29/2023
+Sarah:
+Yesterday: Weather API
+Today: Weather API
+Obstacles: Not enough knowledge about how to properly use it
+
+Caroline:
+Yesterday: Working on Authorization for user types
+Today: Authorization and accessibility tools research
+Obstacles: Routing isn't working due to technical issues 
+
+Mahika:
+Yesterday: Dynamic Menu
+Today: Dynamic Menu
+Obstacles: Getting HTML to output correctly with the SQL data
+
+Maggie:
+Yesterday: Order History report 
+Today: Excess Report functionally
+Obstacles: Getting the times to output correctly instead of showing up as 00:00:00 
+
+12/1/2023
+Sarah:
+Yesterday: Refactoring mod ingredients and mod menu javascript files
+Today: fixing cashier implementation and styling 
+Obstacles: experiencing routing issues
+
+Caroline:
+Yesterday: Authorization and screen magnifier 
+Today:  screen magnifier and high contrast mode
+Obstacles: Not enough documentation on the integrated tools + lacking Jquery knowledge
+
+Mahika:
+Yesterday: Dynamic Menu + Styling
+Today: Dynamic Menu + Image management 
+Obstacles: Getting the layout correct and figuring out how to use a default image
+
+Maggie:
+Yesterday: Restock Report + Report Styling 
+Today: Customer Order Page
+Obstacles: Query + javascript implementation had lots of small time consuming technical issues to fix
+
+12/3/2023
+Sarah:
+Yesterday: Cashier Order Success Redirect
+Today: Styling
+Obstacles: Refresh was experiencing issues 
+
+Caroline:
+Yesterday: Fixed Login on all screens
+Today: Styling contrast on all customer screens
+Obstacles: 
+
+Mahika:
+Yesterday: Displaying images on customer order 
+Today: Styling
+Obstacles: Not getting routing to path name due to complications 
+
+Maggie:
+Yesterday: Create Backend for customer order
+Today: Styling and testing for customer order 
+Obstacles: getting the display to not break everytime and item is added to cart

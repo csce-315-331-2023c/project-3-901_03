@@ -1,0 +1,68 @@
+Sprint Planning Meeting Notes - 10/27/2023
+-
+
+Scrum Meeting Notes - 10/28/2023
+Sarah
+-Yesterday: Researching hosting services and what frameworks to use
+-Today:  Researching hosting services and what frameworks to use
+-Obstacle: Not knowing enough about the subject 
+
+Caroline
+-Yesterday: Researching frotend tools and learning react
+-Today: Learning React and making the UI
+-Obstacle: Not knowing enough about the subject 
+
+Mahika
+-Yesterday: Brainstroming with Maggie about webpage and researched specific API's
+-Today: Learning React and researching the webpage
+-Obstacle: Not knowing enough about the subject 
+
+Maggie
+-Yesterday: Brainstroming with Mahika about webpage and researched specific API's
+-Today: Researching backend and making a webpage
+-Obstacle: Not knowing enough about the subject
+
+
+-------------------------------------------------------------------------------------
+
+Sprint Planning Meeting Notes - 10/29/2023
+Sarah
+-Yesterday: Beginning the backend tools to implement SQL in the java with Mahika
+-Today: Implenting SQL in the JavaScript with Mahika
+-Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Caroline
+-Yesterday: Creating and desgining HTML pages
+-Today: Creating and desgning HTML pages with BootStrap
+-Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Mahika
+-Yesterday: Designing a menu on the HTML page for user interface
+-Today: Implenting SQL in the JavaScript with Sarah 
+-Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Maggie
+-Yesterday: Creating and designing HTML pages
+-Today: Researching how to implement SQL in the JavaScript
+-Obstacle: Not understanding how to have a webpage that interacts with the database
+
+Scrum Meeting Notes - 10/30/2023
+Sarah
+-Yesterday: working on SQL and framework
+-Today:  working on SQL and framework
+-Obstacle: Don't know how to implement multiple commands 
+
+Caroline
+-Yesterday: making html page for the cashier
+-Today: making html pages for the manager
+-Obstacle: time and bootstrap knowledge 
+
+Mahika
+-Yesterday: making html page for the menu
+-Today: working on SQL and framework
+-Obstacle: Don't know how to implement multiple commands 
+
+Maggie
+-Yesterday:  with Mahika about webpage and researched specific API's
+-Today: Researching website hosting 
+-Obstacle: Not knowing enough about the subject

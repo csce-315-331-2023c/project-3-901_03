@@ -1,0 +1,404 @@
+body {
+    background-color: rgb(180, 235, 240);
+    height: 20px;
+    background-image: url("menubg.jpg");
+    /* background-size: 1350px; */
+    background-size: 1440px 830px;
+    background-position:bottom;
+    background-position-y: 50px;
+    background-repeat:repeat-y;
+}
+.contrast-mode {
+    background-image: none;
+}
+.contrast-mode li a{
+    color: #000;
+
+}
+.contrast-mode h3{
+    color:black;
+    
+}
+.contrast-mode h5{
+    color: #000;
+    font-weight: 800;
+}
+.contrast-mode h6{
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-size: 20px;
+    margin-top: -60px;
+    width: 650px;
+
+}
+.contrast-mode #bordernav{
+    position: fixed;
+    float: left;
+    margin-top: 235px;
+    margin-bottom: 0px;
+    height: 400px;
+    width: 270px;
+    border-radius: 0px 45px 45px 0px;
+    background-color: #aeead6;
+    border-style: groove;
+    border-width: 20px;
+    margin-left: -10px;
+
+}
+.contrast-mode #nav2{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: -10px;
+    overflow: hidden;
+    background-color: #aeead6;
+    margin-left: -10px;
+    margin-right: -10px;
+    /* border-radius: 50px; */
+    width: 1500;
+    height: 120px;
+    border-style: double;
+    border-color: rgb(31, 31, 31);
+    border-width: 12px;
+
+}
+.contrast-mode #nav2 li a{
+    color: #000;
+
+}
+.contrast-mode #sidebar a{
+    border-color: #000;
+}
+.contrast-mode #border{
+    background-color: #aeead6;
+    border-color: #000;
+    border-style: solid;
+    border-width: 3px;
+}
+
+h1 {
+    font-family: "Bodoni Moda", sans-serif;
+    font-size: 55px;
+    margin-top: -5px;
+}
+
+h2 {
+    font-family: "Sofia", sans-serif;
+    font-size: 35px;
+    margin-top: -60px;
+}
+
+h3 {
+    font-family: "Beth Ellen", sans-serif;
+    font-size: 35px;
+    margin-top: -25px;
+    color: black;
+}
+
+h4 {
+    font-family: "Bacasime Antique", sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: -3px;
+    margin-left: 15px;
+    margin-bottom: 45px;
+}
+
+h5 {
+    font-family: "Calligraffitti", sans-serif;
+    font-size: 40px;
+    margin-top: -5px;
+    color: rgb(204, 255, 251);
+}
+
+h6 {
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-size: 20px;
+    margin-top: -60px;
+    width: 650px;
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+#contrast-toggle{
+    margin-top: -60px;
+    margin-right: 1500px;
+    padding-bottom:60px;
+    position:fixed;
+    
+}
+
+
+#border {
+    background-color: rgb(117, 209, 209);
+    border-radius: 50px;
+    border-width: 15px;
+    width: 1000px;
+    margin-left: 300px;
+    margin-top: -50px;
+    /* border-color: black; */
+    /* border-width: 2px;
+    border-style: solid; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.button{
+    height:500px;
+    width: 200px;
+}
+
+.column {
+    /* float: center; */
+    width: 50;
+    border-color: black;
+    border-style: solid;
+    border-style: 5px;
+    border-radius: 10%;
+    padding-top: 45px;
+    /* padding-right: 70px; */
+    /* margin-top: 20px; */
+    margin-bottom: 50px;
+    width: 750px;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.option-buttons {
+    transition-duration: 0.4s;
+    background-color: rgb(117, 209, 209); /* Green */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    width: 150px;
+    padding-bottom: -15px;
+}
+
+.option-buttons:hover {
+    background-color: rgb(81, 145, 145); /* Green */
+    color: white;
+}
+
+#nav2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: -10px;
+    overflow: hidden;
+    background-color: rgb(117, 209, 209);
+    margin-left: -10px;
+    margin-right: -10px;
+    /* border-radius: 50px; */
+    width: 1500;
+    height: 120px;
+    border-style: double;
+    border-color: rgb(31, 31, 31);
+    border-width: 12px;
+}
+  
+li {
+    float: right;
+}
+  
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 25px 30px 16px;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    height: 20px;
+    /* transition: 0.6s; */
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-thickness: 5px;
+    text-decoration-color: rgb(81, 145, 145);
+}
+
+.active { 
+    text-decoration: underline;
+    text-decoration-thickness: 5px;
+    text-decoration-color: rgb(81, 145, 145);
+}
+
+nav {
+    border-top: 15px;
+    background-color: black;
+    margin-top: 25px;
+    margin-right: 500px;
+    margin-left: 0px;
+    padding: 0;
+    border-radius: 0px;
+}
+
+#sidebar a{/* customize links for new id sidebar*/
+    position: fixed;
+    font-style: bold;
+    color: black;
+    left: 28px;
+    font-style: 50px;
+    text-align: center;
+    border-style: groove;
+    border-color: white;
+    width: 240px;
+    font-size: 30px;
+    font-family: "Sofia";
+    border-radius: 15px;
+}
+
+#seasonal {
+    font-style: bold;
+    top: 305px;
+    background-color: rgb(180, 235, 240);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+    font-size: 5px;
+}
+
+#breakfast {
+    font-style: bold;
+    top: 375px;
+    background-color: rgb(144, 227, 234);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+    
+}
+
+#sweet {
+    font-style: bold;
+    top: 445px;
+    background-color: rgb(106, 221, 232);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#savory {
+    font-style: bold;
+    top: 515px;
+    background-color: rgb(55, 216, 230);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#drinks {
+    top: 585px;
+    background-color: rgb(0, 210, 230);
+    opacity: 85%;
+    border-style: ridge;
+    border-color: black;
+    border-width: 5px;
+}
+
+#bordernav {
+    position: fixed;
+    float: left;
+    margin-top: 235px;
+    margin-bottom: 0px;
+    height: 400px;
+    width: 270px;
+    border-radius: 0px 45px 45px 0px;
+    background-color: rgb(139, 219, 219);
+    border-style: groove;
+    border-color: rgb(81, 145, 145);
+    border-width: 20px;
+    margin-left: -10px;
+}
+
+#bordercont {
+    font-family: "Aclonica", sans-serif;
+    font-size: 1px;
+    border-color: black;
+    color: azure;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 65px;
+}
+
+
+#sidebar a:hover {
+    position: fixed;
+    font-style: bold;
+    color: black;
+    left: 28px;
+    font-style: 50px;
+    text-align: center;
+    border-style: outset;
+    border-color: gray;
+    width: 240px;
+    font-size: 30px;
+    font-family: "Sofia";
+    border-radius: 15px;
+}
+
+#sidebar a:active {
+    position: fixed;
+    font-style: bold;
+    color: white;
+    left: 28px;
+    font-style: 50px;
+    text-align: center;
+    border-style: inset;
+    border-color: gray;
+    width: 240px;
+    font-size: 30px;
+    font-family: "Sofia";
+    border-radius: 15px;
+}
+
+.menuactive { 
+   font-style: italic;
+   border-radius: 50px;
+   border-style: inset;
+   border-color: gray;
+}
+
+#google_translate_element {
+    float: left;
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+#foodimg {
+    border-radius: 10%;
+    border-color: black;
+    border-style: dotted;
+    border-width: 10px;
+    width: 250px;
+    margin-left: 0px;
+}
+
+#currentuser {
+    margin-top: -25px;
+    margin-left: -97px;
+    width: 240px;
+    height: 25px;
+    background-color: rgb(149, 223, 234);
+    border-style: double;
+    border-color: black;
+    border-width: 10px;
+    padding-bottom: 5px;
+    padding-top: 0px;
+}
+
+#google_translate_element {
+    margin-top: -215px;
+    margin-left: 4px;
+}
