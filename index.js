@@ -19,6 +19,7 @@ index.use(express.static(__dirname + '/'));
 index.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 index.use(passport.initialize());
 index.use(passport.session());
+require('events').EventEmitter.defaultMaxListeners = 30;
 
 // Create pool
 const pool = new Pool({
@@ -30,12 +31,12 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-// // Add process hook to shutdown pool
-// process.on('SIGINT', function() {
-//     pool.end();
-//     console.log('Application successfully shutdown');
-//     process.exit(0);
-// });
+// Add process hook to shutdown pool
+process.on('SIGINT', function() {
+    pool.end();
+    console.log('Application successfully shutdown');
+    process.exit(0);
+});
 
 const managerScreenRouter = require('./manager_screen');
 index.use("/manager_screen", managerScreenRouter)
@@ -67,20 +68,19 @@ index.use("/customerorder", customerScreenRouter)
 const adminScreenRouter = require('./admin');
 index.use("/admin", adminScreenRouter)
 
-// const pool = require('./connection.js')
-// pool.connect();
-	 	 	 	
 index.set("view engine", "ejs");
 
 index.get('/', (req, res, next) => { 
+    // console.log("Session Start");
     if(req.session.passport != null && req.session.passport.user != null && req.session.passport.user.googleProfile != null) {
         console.log("index req.session.passport.user.googleProfile");      
         console.log(req.session.passport.user.googleProfile.id);   
         console.log(req.session.passport.user.googleProfile.displayName);   
         currentUser = req.session.passport.user.googleProfile.displayName;
+        console.log("Passport Success");
     }
-
-    //getting weather data
+    // console.log("Session Start1");
+    // getting weather data
     const date = new Date();
     let day = date.getDate();
     let month = date.getMonth()+1;
@@ -104,6 +104,7 @@ index.get('/', (req, res, next) => {
     }).then(response => {
     //response now contains parsed JSON ready for use
     var {tempmax, tempmin, current_temp, icon} = processWeatherData(response);
+    console.log("Weather Success");
     //console.log(tempmax + " " + tempmin + " " + current_temp + " " + icon);
     res.render('index', {currentUser: currentUser, tempmax: tempmax, tempmin: tempmin, current_temp: current_temp, icon: icon});
 
@@ -269,13 +270,6 @@ index.get('/customerorder.ejs', async(req, res) => {
     res.render('customerorder.ejs', { currentOrder: currentOrder });
 });
 
-
-// index.get('/cashier2.ejs', (req, res) => {
-//     let currentOrder = [];
-//     console.log('renderrrrrr');
-//     res.render('cashier2.ejs', { currentOrder: currentOrder });
-// });
-
 index.get('/api/auth/google/redirect', passport.authenticate('google'),  (req, res) => {
     res.redirect('/');
 });
@@ -310,7 +304,8 @@ index.get('/logout', (req, res) => {
     res.render('logout.ejs', {currentUser: currentUser});
 });
 
-index.listen(port, () => {
+index.listen(port, '0.0.0.0', () => {
+    // console.log("Session Start2");
     console.log(`Example app listening at http://localhost:${port}`);
 });
 

@@ -1,0 +1,13 @@
+{
+    "web": {
+        "client_id": "732182815623-uaa3b18u5b86ipthrjgf2u7c76p6fk6e.apps.googleusercontent.com",
+        "project_id": "csce313prod",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "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",
+        "redirect_uris": [
+            "https://p3-sp.onrender.com/api/auth/google/redirect"
+        ]
+    }
+}
