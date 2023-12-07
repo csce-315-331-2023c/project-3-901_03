@@ -304,7 +304,7 @@ index.get('/logout', (req, res) => {
     res.render('logout.ejs', {currentUser: currentUser});
 });
 
-index.listen(port, () => {
+index.listen(port, '0.0.0.0', () => {
     // console.log("Session Start2");
     console.log(`Example app listening at http://localhost:${port}`);
 });
