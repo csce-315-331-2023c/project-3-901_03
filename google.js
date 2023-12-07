@@ -6,8 +6,8 @@ const VerifyCallback=require('passport-google-oauth20').VerifyCallback;
 passport.use(
   new Strategy(
     {
-      clientID: "732182815623-en9h03k46oi28j7g8kl9d8c1okg7ksrf.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientID: "732182815623-uaa3b18u5b86ipthrjgf2u7c76p6fk6e.apps.googleusercontent.com",
+      clientSecret: "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",
       callbackURL: "https://p3-sp.onrender.com/api/auth/google/redirect",
       scope: [
         'email',
